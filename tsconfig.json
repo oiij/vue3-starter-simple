@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@eiog/ts-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsxImportSource": "vue",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "vitest/globals",
+      "unplugin-icons/types/vue",
+      "naive-ui/volar",
+      "vite-plugin-svg-icons/client",
+      "vite-plugin-vue-layouts/client",
+      "@intlify/unplugin-vue-i18n/messages"
+    ]
+  },
+  "include": [
+    "*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "electron/**/*.ts",
+    "electron/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
