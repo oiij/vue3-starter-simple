@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 
 import AutoImport from 'unplugin-auto-import/vite'
+import { VueHooksPlusResolver } from '@vue-hooks-plus/resolvers'
 
 export function VitePluginAutoImport(): PluginOption[] {
   return [
@@ -21,7 +22,7 @@ export function VitePluginAutoImport(): PluginOption[] {
       ],
       dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
       vueTemplate: true,
-      resolvers: [],
+      resolvers: [VueHooksPlusResolver()],
     }), // https://github.com/antfu/unplugin-auto-import
   ]
 }

@@ -46,6 +46,7 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const encrypto: typeof import('./src/utils/useCrypto')['encrypto']
+  const eventBusKey: typeof import('./src/composables/useEventBusKey')['eventBusKey']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const formatJsonToUrlParams: typeof import('./src/utils/useFormat')['formatJsonToUrlParams']
   const get: typeof import('./src/utils/useHttp')['get']
@@ -59,6 +60,7 @@ declare global {
   const getVersion: typeof import('@tauri-apps/api/app')['getVersion']
   const h: typeof import('vue')['h']
   const http: typeof import('./src/utils/useHttp')['http']
+  const hyphenToCamelCase: typeof import('./src/utils/useString')['hyphenToCamelCase']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
@@ -271,6 +273,7 @@ declare global {
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const useParallax: typeof import('@vueuse/core')['useParallax']
+  const useParam: typeof import('./src/composables/useParam')['useParam']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
   const usePerformanceObserver: typeof import('@vueuse/core')['usePerformanceObserver']
   const usePermission: typeof import('@vueuse/core')['usePermission']
@@ -329,10 +332,12 @@ declare global {
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTrack: typeof import('./src/composables/useTrack')['useTrack']
   const useTransition: typeof import('@vueuse/core')['useTransition']
+  const useTyped: typeof import('./src/composables/useTyped')['default']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
+  const useVerifyForm: typeof import('./src/composables/useVerifyForm')['useVerifyForm']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
@@ -411,6 +416,7 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly encrypto: UnwrapRef<typeof import('./src/utils/useCrypto')['encrypto']>
+    readonly eventBusKey: UnwrapRef<typeof import('./src/composables/useEventBusKey')['eventBusKey']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatJsonToUrlParams: UnwrapRef<typeof import('./src/utils/useFormat')['formatJsonToUrlParams']>
     readonly get: UnwrapRef<typeof import('./src/utils/useHttp')['get']>
@@ -421,6 +427,7 @@ declare module 'vue' {
     readonly getSatusColor: UnwrapRef<typeof import('./src/stores/helps')['getSatusColor']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
+    readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
@@ -520,7 +527,6 @@ declare module 'vue' {
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
-    readonly useAlova: UnwrapRef<typeof import('./src/composables/useAlova')['useAlova']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useAppStore: UnwrapRef<typeof import('./src/stores/useAppStore')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -625,6 +631,7 @@ declare module 'vue' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
+    readonly useParam: UnwrapRef<typeof import('./src/composables/useParam')['useParam']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
@@ -682,10 +689,12 @@ declare module 'vue' {
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTrack: UnwrapRef<typeof import('./src/composables/useTrack')['useTrack']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
+    readonly useTyped: UnwrapRef<typeof import('./src/composables/useTyped')['default']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
+    readonly useVerifyForm: UnwrapRef<typeof import('./src/composables/useVerifyForm')['useVerifyForm']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
@@ -757,6 +766,7 @@ declare module '@vue/runtime-core' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly encrypto: UnwrapRef<typeof import('./src/utils/useCrypto')['encrypto']>
+    readonly eventBusKey: UnwrapRef<typeof import('./src/composables/useEventBusKey')['eventBusKey']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatJsonToUrlParams: UnwrapRef<typeof import('./src/utils/useFormat')['formatJsonToUrlParams']>
     readonly get: UnwrapRef<typeof import('./src/utils/useHttp')['get']>
@@ -767,6 +777,7 @@ declare module '@vue/runtime-core' {
     readonly getSatusColor: UnwrapRef<typeof import('./src/stores/helps')['getSatusColor']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
+    readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
@@ -866,7 +877,6 @@ declare module '@vue/runtime-core' {
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
-    readonly useAlova: UnwrapRef<typeof import('./src/composables/useAlova')['useAlova']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useAppStore: UnwrapRef<typeof import('./src/stores/useAppStore')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -971,6 +981,7 @@ declare module '@vue/runtime-core' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
+    readonly useParam: UnwrapRef<typeof import('./src/composables/useParam')['useParam']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
@@ -1028,10 +1039,12 @@ declare module '@vue/runtime-core' {
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTrack: UnwrapRef<typeof import('./src/composables/useTrack')['useTrack']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
+    readonly useTyped: UnwrapRef<typeof import('./src/composables/useTyped')['default']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
+    readonly useVerifyForm: UnwrapRef<typeof import('./src/composables/useVerifyForm')['useVerifyForm']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>

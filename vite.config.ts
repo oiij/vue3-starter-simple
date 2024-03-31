@@ -23,8 +23,7 @@ import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginP
 
 export default defineConfig(({ command, mode }) => {
   const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
-  const isElectron = mode === 'electron'
-  const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
+  const debug = !!process.env.VSCODE_DEBUG
 
   return {
     plugins: [
@@ -101,11 +100,11 @@ export default defineConfig(({ command, mode }) => {
             [VITE_API_BASE_PREFIX]: {
               target: VITE_API_BASE_URL,
               changeOrigin: true,
-              rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
+              rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
             },
           },
     },
-    envPrefix: ['VITE_', 'TAURI_'],
+    envPrefix: ['VITE_'],
     build: {
       minify: debug ? false : 'esbuild',
       sourcemap: debug,

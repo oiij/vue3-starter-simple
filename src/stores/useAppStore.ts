@@ -6,6 +6,7 @@ import {
   useOsTheme,
 } from 'naive-ui'
 import { getSatusColor } from './helps'
+import { i18n } from '~/modules'
 
 export const useAppStore = defineStore(
   'appStore',
@@ -54,7 +55,7 @@ export const useAppStore = defineStore(
         },
       }
     })
-    const { locale } = useI18n()
+    const { locale } = i18n.global
     const language = ref<'cn' | 'en'>(locale.value as any)
     watch(language, language => (locale.value = language))
     const changeLanguage = (lang?: 'cn' | 'en') => {

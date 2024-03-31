@@ -1,18 +1,27 @@
 import type { App } from 'vue'
-import { setupPinia } from './pinia'
-import { setupI18n } from './i18n'
-import { setupRouter } from './router'
-import { setupHead } from './usehead'
-import { setupDirectives } from './directives'
-import { setupAssets } from './assets'
-import { setupNotivue } from './notivue'
 
+import { directive } from './directives'
+import { i18n } from './i18n'
+import { notivue } from './notivue'
+import { pinia } from './pinia'
+import { router } from './router'
+import { routerScroller } from './router-scroller'
+import { head } from './vue-use-head'
+
+export * from './directives'
+export * from './i18n'
+export * from './notivue'
+export * from './pinia'
+export * from './router'
+export * from './router-scroller'
+export * from './vue-use-head'
 export function useModules(app: App) {
-  setupRouter(app)
-  setupPinia(app)
-  setupI18n(app)
-  setupHead(app)
-  setupDirectives(app)
-  setupNotivue(app)
-  setupAssets()
+  app
+    .use(directive)
+    .use(i18n)
+    .use(notivue)
+    .use(pinia)
+    .use(router)
+    .use(routerScroller)
+    .use(head)
 }
