@@ -8,15 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BackToHome: typeof import('./src/components/BackToHome.vue')['default']
-    DarkModeToggle: typeof import('./src/components/DarkModeToggle.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DefineInput: typeof import('./src/components/DefineInput.vue')['default']
-    Dependents: typeof import('./src/components/Dependents.vue')['default']
-    Examples: typeof import('./src/components/Examples.vue')['default']
-    Hello: typeof import('./src/components/Hello.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NaiveProvider: typeof import('./src/components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NotivueProvider: typeof import('./src/components/NotivueProvider.vue')['default']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

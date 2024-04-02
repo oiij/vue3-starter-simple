@@ -5,6 +5,8 @@ import {
   presetTypography,
   presetUno,
   presetWebFonts,
+  transformerAttributifyJsx,
+  transformerCompileClass,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
@@ -71,5 +73,10 @@ export default defineConfig({
     presetScrollbar(),
     presetDaisy(),
   ],
-  transformers: [transformerDirectives(), transformerVariantGroup()],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup(),
+    transformerAttributifyJsx(),
+    transformerCompileClass(),
+  ],
 })

@@ -17,12 +17,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex-col-center gap-10">
+  <div class="flex-col-center gap10">
     <HelloWorld />
-    <Examples />
-    <Dependents />
     {{ data }}
-    <div class="flex-center gap-1">
+    <div class="flex justify-center items-center gap1">
       <NButton v-track:exposure>
         ExposureTrack
       </NButton>

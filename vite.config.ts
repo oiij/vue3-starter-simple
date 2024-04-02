@@ -17,7 +17,7 @@ import postcssPresetEnv from 'postcss-preset-env'
 import VitePluginDebug from 'vite-plugin-debug'
 import { VitePluginMock } from './plugin'
 
-import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginPWA } from './config'
+import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 
 // https://vitejs.dev/config/
 
@@ -85,6 +85,7 @@ export default defineConfig(({ command, mode }) => {
       ...VitePluginComponents(),
       ...VitePluginI18n(),
       ...VitePluginPWA({ command, mode }),
+      ...VitePluginMarkdown(),
     ],
     clearScreen: true,
     base: VITE_BASE ?? '/',

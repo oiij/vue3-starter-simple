@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { useDarkMode, language } = storeToRefs(useAppStore())
 useHead({
   title: import.meta.env.VITE_APP_NAME,
   meta: [
@@ -19,8 +20,10 @@ useHead({
 </script>
 
 <template>
-  <RouterView />
-  <NotivueProvider />
+  <NaiveProvider :locale="language" :dark="useDarkMode">
+    <RouterView />
+    <NotivueProvider />
+  </NaiveProvider>
 </template>
 
 <style>
