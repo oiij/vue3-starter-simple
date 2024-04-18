@@ -59,6 +59,7 @@ echarts.use([
 /**
  * Echarts hooks函数
  * @param options - 图表配置
+ * @param darkMode - 暗黑模式
  * @param renderFun - 图表函数(例如：图表监听函数)
  */
 export default function useEcharts(

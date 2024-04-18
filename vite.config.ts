@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import process from 'node:process'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -15,8 +16,8 @@ import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import Pages from 'vite-plugin-pages'
 import postcssPresetEnv from 'postcss-preset-env'
 import VitePluginDebug from 'vite-plugin-debug'
+import TurboConsole from 'unplugin-turbo-console/vite'
 import { VitePluginMock } from './plugin'
-
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 
 // https://vitejs.dev/config/
@@ -78,7 +79,7 @@ export default defineConfig(({ command, mode }) => {
       }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
 
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
-
+      TurboConsole(),
       Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
       Unocss(), // https://github.com/antfu/unocss
       ...VitePluginAutoImport(),

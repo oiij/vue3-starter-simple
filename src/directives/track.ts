@@ -2,7 +2,7 @@ import type { DirectiveBinding } from 'vue'
 
 interface BindingValue {
   url: string
-  data?: Object
+  data?: object
 }
 type Args = undefined | 'exposure' | 'click' | 'long-press'
 function onExposure(el: HTMLElement, cb?: () => void) {

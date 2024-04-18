@@ -56,7 +56,7 @@ export function useBScroll(option?: Options) {
       refresh()
     })
 
-    bsRef.value.on('scroll', (p: { x: number; y: number }) => {
+    bsRef.value.on('scroll', (p: { x: number, y: number }) => {
       x.value = p.x
       y.value = p.y
     })

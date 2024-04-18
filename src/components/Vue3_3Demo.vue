@@ -3,17 +3,17 @@
 interface Props {
   name?: string
 }
-const props = defineProps<Props & { extraProp?: T; msg?: string }>()
+defineOptions({ inheritAttrs: false })
+const props = defineProps<Props & { extraProp?: T, msg?: string }>()
 const emit = defineEmits<{
   foo: [id: number]
   bar: [name: string, ...rest: any[]]
 }>()
-const { msg: propsMsg } = toRefs(props)
-defineOptions({ inheritAttrs: false })
 defineSlots<{
   default?: (props: { msg: string }) => any
   item?: (props: { id: number }) => any
 }>()
+const { msg: propsMsg } = toRefs(props)
 const value = defineModel<string>('value')
 </script>
 

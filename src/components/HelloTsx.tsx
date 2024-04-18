@@ -7,7 +7,7 @@ export const HelloTsx = defineComponent({
     },
   },
   emits: {
-    'update:value': (value: number) => true,
+    'update:value': (value?: number) => value,
   },
   setup(props, { emit }) {
     const inputValue = ref<number>(props.value ?? 0)
@@ -23,9 +23,9 @@ export const HelloTsx = defineComponent({
   render() {
     return (
       <div>
-        <button class="bg-black/10 p-x-8 p-y-2 rounded-md text-3xl active:bg-black/20" onClick={this.sub} >-</button>
+        <button class="bg-black/10 p-x-8 p-y-2 rounded-md text-3xl active:bg-black/20" onClick={this.sub}>-</button>
         <span class="text-3xl p-x-8 p-y-2">{this.inputValue}</span>
-        <button class="bg-black/10 p-x-8 p-y-2 rounded-md text-3xl active:bg-black/20" onClick={this.add} >+</button>
+        <button class="bg-black/10 p-x-8 p-y-2 rounded-md text-3xl active:bg-black/20" onClick={this.add}>+</button>
       </div>
     )
   },

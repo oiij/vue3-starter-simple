@@ -5,7 +5,7 @@ export interface Param {
 }
 
 export function useParam<T extends Param >(param?: { [key: string]: any }) {
-  const paramRaw: { page: number;limit: number } = {
+  const paramRaw: { page: number, limit: number } = {
     page: 1,
     limit: 10,
     ...param,

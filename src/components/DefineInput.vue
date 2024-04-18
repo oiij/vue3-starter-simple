@@ -1,8 +1,8 @@
 <script setup lang=ts>
-const value = defineModel<number>('value', { default: 0 })
 defineOptions({
   name: 'DefineInput',
 })
+const value = defineModel<number>('value', { default: 0 })
 </script>
 
 <template>

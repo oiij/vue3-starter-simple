@@ -1,8 +1,9 @@
 import type {
-  Push
-} from 'notivue';
+  Push,
+} from 'notivue'
+
 declare global {
   interface Window {
-    $notivue: Push;
+    $notivue: Push
   }
 }
