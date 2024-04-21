@@ -15,7 +15,6 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import Pages from 'vite-plugin-pages'
 import postcssPresetEnv from 'postcss-preset-env'
-import VitePluginDebug from 'vite-plugin-debug'
 import TurboConsole from 'unplugin-turbo-console/vite'
 import { VitePluginMock } from './plugin'
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
@@ -29,7 +28,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       VueDevTools(), // https://devtools-next.vuejs.org/
-      VitePluginDebug(), // https://github.com/hu3dao/vite-plugin-debug/blob/master/README.zh-CN.md
+      // VitePluginDebug(), // https://github.com/hu3dao/vite-plugin-debug/blob/master/README.zh-CN.md
       // virtual({
       //   'virtual:module': 'export default { mode: \'web\' }',
       // }), // https://github.com/patak-dev/vite-plugin-virtual Vite5 type=module 报错
@@ -62,13 +61,7 @@ export default defineConfig(({ command, mode }) => {
         ifGlobal: true,
       }), // https://github.com/ZhongxuYang/vite-plugin-version-mark
 
-      vue({
-        script: {
-          defineModel: true,
-          propsDestructure: true,
-        },
-        include: [/\.vue$/, /\.md$/],
-      }), // https://github.com/vitejs/vite-plugin-vue
+      vue(), // https://github.com/vitejs/vite-plugin-vue
 
       vueJsx(), // https://github.com/vitejs/vite-plugin-vue
 

@@ -64,6 +64,7 @@ declare global {
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
+  const injectionKey: typeof import('./src/composables/useInjectionKey')['injectionKey']
   const isArray: typeof import('./src/utils/useTypeOf')['isArray']
   const isBoolean: typeof import('./src/utils/useTypeOf')['isBoolean']
   const isDark: typeof import('./src/composables/useDark')['isDark']
@@ -84,6 +85,7 @@ declare global {
   const isSet: typeof import('./src/utils/useTypeOf')['isSet']
   const isString: typeof import('./src/utils/useTypeOf')['isString']
   const isUndefined: typeof import('./src/utils/useTypeOf')['isUndefined']
+  const key: typeof import('./src/composables/useInjectionKey')['key']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -431,6 +433,7 @@ declare module 'vue' {
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
+    readonly injectionKey: UnwrapRef<typeof import('./src/composables/useInjectionKey')['injectionKey']>
     readonly isArray: UnwrapRef<typeof import('./src/utils/useTypeOf')['isArray']>
     readonly isBoolean: UnwrapRef<typeof import('./src/utils/useTypeOf')['isBoolean']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/useDark')['isDark']>
@@ -781,6 +784,7 @@ declare module '@vue/runtime-core' {
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
+    readonly injectionKey: UnwrapRef<typeof import('./src/composables/useInjectionKey')['injectionKey']>
     readonly isArray: UnwrapRef<typeof import('./src/utils/useTypeOf')['isArray']>
     readonly isBoolean: UnwrapRef<typeof import('./src/utils/useTypeOf')['isBoolean']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/useDark')['isDark']>

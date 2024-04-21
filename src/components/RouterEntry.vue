@@ -3,10 +3,10 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <template v-if="Component">
-      <transition mode="out-in">
-        <keep-alive>
+      <transition mode="out-in" :name="route.meta.transition || undefined ">
+        <keep-alive :include="route.meta.keepAlive ? route.name?.toString() : '' ">
           <Suspense>
-            <component :is="Component" :key="route" />
+            <component :is="Component" :key="route.path" />
             <template #fallback>
               Suspense 正在加载...
             </template>
