@@ -17,7 +17,7 @@ export function VitePluginMock(options?: { prefix?: string, dirPath?: string }):
   const routesFunc = routesPath.map(m => `router.all('/${m.replace('.ts', '')}', ${hyphenToCamelCase(m).replace('.ts', '')})`).join('\n')
 
   const routesFile = `// eslint-disable-next-line ts/ban-ts-comment
-  // @ts-nocheck
+// @ts-nocheck
 import { Router } from 'express'
 ${routesImports}
 

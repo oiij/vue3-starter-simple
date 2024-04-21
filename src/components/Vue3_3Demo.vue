@@ -18,7 +18,7 @@ const value = defineModel<string>('value')
 </script>
 
 <template>
-  <div class="flex-col gap-1 text-xl bg-white p-5 rounded-xl shadow-xl">
+  <div class="flex-col gap-1 rounded-xl bg-white p-5 text-xl shadow-xl">
     <div>PropsMsg:{{ propsMsg }}</div>
     <div>Props:{{ props }}</div>
     <div class="flex gap-2">
@@ -30,7 +30,7 @@ const value = defineModel<string>('value')
       </button>
     </div>
     <div>
-      <input v-model="value" type="text" class="input input-bordered input-primary" placeholder="请输入">
+      <input v-model="value" type="text" class="input-bordered input-primary input" placeholder="请输入">
     </div>
   </div>
 </template>

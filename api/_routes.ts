@@ -1,5 +1,5 @@
 // eslint-disable-next-line ts/ban-ts-comment
-  // @ts-nocheck
+// @ts-nocheck
 import { Router } from 'express'
 import hello from './hello.ts'
 import info from './info.ts'

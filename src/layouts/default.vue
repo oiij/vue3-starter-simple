@@ -3,7 +3,7 @@ const currentPath = computed(() => useRoute().path)
 </script>
 
 <template>
-  <header class="w-full h16 flex justify-center items-center">
+  <header class="h16 w-full flex items-center justify-center">
     <nav class="w-screen-lg flex-y-center justify-end gap3 <lg:w-full lg:p-x-10">
       <BackToHome class="m-r-auto" />
       <div>currentPath: {{ currentPath }}</div>
@@ -11,14 +11,14 @@ const currentPath = computed(() => useRoute().path)
       <ToggleLanguage />
     </nav>
   </header>
-  <main class="flex-1 w-screen-lg flex-col <lg:w-full lg:p-x-10">
+  <main class="w-screen-lg flex-col flex-1 <lg:w-full lg:p-x-10">
     <RouterEntry />
-    <div class="w-full flex justify-center items-center m-y-10 gap5">
-      <a class="text-3xl flex justify-center items-center gap1" href="https://github.com/Eiog/vue3-starter-simple" target="_blank" rel="noopener noreferrer">
+    <div class="m-y-10 w-full flex items-center justify-center gap5">
+      <a class="flex items-center justify-center gap1 text-3xl" href="https://github.com/Eiog/vue3-starter-simple" target="_blank" rel="noopener noreferrer">
         <i class="i-ri-github-fill" />
         <span>Source</span>
       </a>
-      <a class="text-3xl flex justify-center items-center gap1" href="https://note.eiog.me/" target="_blank" rel="noopener noreferrer">
+      <a class="flex items-center justify-center gap1 text-3xl" href="https://note.eiog.me/" target="_blank" rel="noopener noreferrer">
         <i class="i-ri-github-fill" />
         <span>MyNote</span>
       </a>

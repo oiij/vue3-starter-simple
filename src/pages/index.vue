@@ -21,7 +21,7 @@ onMounted(() => {
     <HelloWorld />
     {{ data }}
     <DefineInput />
-    <div class="flex justify-center items-center gap1">
+    <div class="flex items-center justify-center gap1">
       <NButton v-track:exposure>
         ExposureTrack
       </NButton>

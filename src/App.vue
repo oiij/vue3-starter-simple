@@ -32,11 +32,12 @@ useHead({
   margin: 0;
   padding: 0;
 }
-html,body{
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: auto !important;
-  background:linear-gradient(to bottom,#d6dbdc,#FFFFFF);
+  background: linear-gradient(to bottom, #d6dbdc, #ffffff);
   color: #1a1a1a;
 }
 
@@ -46,8 +47,9 @@ html,body{
   flex-direction: column;
   align-items: center;
 }
-.dark html,.dark body{
-  background:linear-gradient(to bottom,#383838,#000000);
+.dark html,
+.dark body {
+  background: linear-gradient(to bottom, #383838, #000000);
   color: #dadada;
 }
 </style>
