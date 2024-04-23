@@ -61,7 +61,9 @@ export default defineConfig(({ command, mode }) => {
         ifGlobal: true,
       }), // https://github.com/ZhongxuYang/vite-plugin-version-mark
 
-      vue(), // https://github.com/vitejs/vite-plugin-vue
+      vue({
+        include: [/\.vue$/, /\.md$/],
+      }), // https://github.com/vitejs/vite-plugin-vue
 
       vueJsx(), // https://github.com/vitejs/vite-plugin-vue
 
@@ -78,8 +80,9 @@ export default defineConfig(({ command, mode }) => {
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
       ...VitePluginI18n(),
-      ...VitePluginPWA({ command, mode }),
       ...VitePluginMarkdown(),
+      ...VitePluginPWA({ command, mode }),
+
     ],
     clearScreen: true,
     base: VITE_BASE ?? '/',

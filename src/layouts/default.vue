@@ -6,6 +6,11 @@ const currentPath = computed(() => useRoute().path)
   <header class="h16 w-full flex items-center justify-center">
     <nav class="w-screen-lg flex-y-center justify-end gap3 <lg:w-full lg:p-x-10">
       <BackToHome class="m-r-auto" />
+      <RouterLink to="/about">
+        <NButton quaternary>
+          About
+        </NButton>
+      </RouterLink>
       <div>currentPath: {{ currentPath }}</div>
       <ToggleDarkMode />
       <ToggleLanguage />
