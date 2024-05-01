@@ -1,6 +1,6 @@
 ---
-title: Daisy UI Demo
-name: daisy-ui-demo
+title: About
+name: About
 ---
 
 ## About
