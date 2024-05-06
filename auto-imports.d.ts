@@ -56,6 +56,7 @@ declare global {
   const getLocal: typeof import('./src/utils/useStorage')['getLocal']
   const getName: typeof import('@tauri-apps/api/app')['getName']
   const getSatusColor: typeof import('./src/stores/helps')['getSatusColor']
+  const getStatusColor: typeof import('./src/stores/helps')['getStatusColor']
   const getTauriVersion: typeof import('@tauri-apps/api/app')['getTauriVersion']
   const getVersion: typeof import('@tauri-apps/api/app')['getVersion']
   const h: typeof import('vue')['h']
@@ -249,8 +250,10 @@ declare global {
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
+  const useLanguage: typeof import('./src/composables/useLanguage')['useLanguage']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router')['useLink']
+  const useLoading: typeof import('./src/composables/useLoading')['useLoading']
   const useLoadingBar: typeof import('naive-ui')['useLoadingBar']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
@@ -266,6 +269,7 @@ declare global {
   const useMousePressed: typeof import('@vueuse/core')['useMousePressed']
   const useMutationObserver: typeof import('@vueuse/core')['useMutationObserver']
   const useNProgress: typeof import('./src/composables/useNProgress')['useNProgress']
+  const useNaiveTheme: typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
   const useNotification: typeof import('naive-ui')['useNotification']
@@ -320,6 +324,7 @@ declare global {
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
+  const useTheme: typeof import('./src/composables/useTheme')['useTheme']
   const useThrottle: typeof import('@vueuse/core')['useThrottle']
   const useThrottleFn: typeof import('@vueuse/core')['useThrottleFn']
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
@@ -426,7 +431,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getLocal: UnwrapRef<typeof import('./src/utils/useStorage')['getLocal']>
-    readonly getSatusColor: UnwrapRef<typeof import('./src/stores/helps')['getSatusColor']>
+    readonly getStatusColor: UnwrapRef<typeof import('./src/stores/helps')['getStatusColor']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
     readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
@@ -611,8 +616,10 @@ declare module 'vue' {
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
+    readonly useLanguage: UnwrapRef<typeof import('./src/composables/useLanguage')['useLanguage']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLoading: UnwrapRef<typeof import('./src/composables/useLoading')['useLoading']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
@@ -626,6 +633,7 @@ declare module 'vue' {
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNProgress: UnwrapRef<typeof import('./src/composables/useNProgress')['useNProgress']>
+    readonly useNaiveTheme: UnwrapRef<typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
@@ -777,7 +785,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getLocal: UnwrapRef<typeof import('./src/utils/useStorage')['getLocal']>
-    readonly getSatusColor: UnwrapRef<typeof import('./src/stores/helps')['getSatusColor']>
+    readonly getStatusColor: UnwrapRef<typeof import('./src/stores/helps')['getStatusColor']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
     readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
@@ -962,8 +970,10 @@ declare module '@vue/runtime-core' {
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
+    readonly useLanguage: UnwrapRef<typeof import('./src/composables/useLanguage')['useLanguage']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLoading: UnwrapRef<typeof import('./src/composables/useLoading')['useLoading']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
@@ -977,6 +987,7 @@ declare module '@vue/runtime-core' {
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNProgress: UnwrapRef<typeof import('./src/composables/useNProgress')['useNProgress']>
+    readonly useNaiveTheme: UnwrapRef<typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
