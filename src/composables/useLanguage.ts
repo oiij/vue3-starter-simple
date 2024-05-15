@@ -9,7 +9,7 @@ function toggleLanguage(lang?: 'cn' | 'en') {
 }
 export function useLanguage() {
   return {
-    language,
+    language: language as WritableComputedRef<'cn' | 'en'>,
     toggleLanguage,
   }
 }

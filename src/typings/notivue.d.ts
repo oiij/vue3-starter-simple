@@ -1,6 +1,4 @@
-import type {
-  Push,
-} from 'notivue'
+import type { Push } from 'notivue'
 
 declare global {
   interface Window {

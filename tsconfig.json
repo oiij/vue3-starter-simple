@@ -4,6 +4,7 @@
   "compilerOptions": {
     "jsxImportSource": "vue",
     "baseUrl": ".",
+    "moduleResolution": "Bundler",
     "paths": {
       "~/*": [
         "src/*"
@@ -13,9 +14,10 @@
       "vitest/globals",
       "unplugin-icons/types/vue",
       "naive-ui/volar",
-      "vite-plugin-svg-icons/client",
       "vite-plugin-vue-layouts/client",
-      "@intlify/unplugin-vue-i18n/messages"
+      "@intlify/unplugin-vue-i18n/messages",
+      "unplugin-vue-router/client",
+      "unplugin-info/client"
     ]
   },
   "include": [
@@ -23,9 +25,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "electron/**/*.ts",
-    "electron/**/*.d.ts"
+    "src/**/*.vue"
   ],
   "exclude": [
     "node_modules",

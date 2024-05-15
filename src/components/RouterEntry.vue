@@ -1,35 +1,62 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const keepAliveName = computed(() => new RegExp(useRouter().getRoutes().filter(f => !f.meta.isLayout).filter(f => f.meta.keepAlive).map((m) => {
+  const name = m.name?.toString().match(/([^/]+)/) ? m.name.toString().match(/([^/]+)/)![1] : 'index'
+  return `${name}|${toUpperCamelCase(name)}`
+}).join('|'), 'i'))
+</script>
 
 <template>
-  <router-view v-slot="{ Component, route }">
-    <template v-if="Component">
-      <transition mode="out-in" :name="route.meta.transition || undefined ">
-        <keep-alive :include="route.meta.keepAlive ? route.name?.toString() : '' ">
-          <Suspense>
-            <component :is="Component" :key="route.path" />
-            <template #fallback>
-              Suspense 正在加载...
-            </template>
-          </Suspense>
-        </keep-alive>
-      </transition>
-    </template>
-  </router-view>
+  <RouterView v-slot="{ Component, route }">
+    <Transition appear mode="out-in" :name="route.meta.transition">
+      <KeepAlive :include="keepAliveName">
+        <Suspense>
+          <component :is="Component" :key="route.path" />
+          <template #fallback>
+            <slot name="fallback">
+              Component Fallback
+            </slot>
+          </template>
+        </Suspense>
+      </KeepAlive>
+    </Transition>
+  </RouterView>
 </template>
 
-<style scoped lang="less">
-.v-leave-active,
-.v-enter-active {
+<style>
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.3s ease-in-out;
 }
-
-.v-enter-from {
-  transform: scale(0.95);
+.fade-enter-from,
+.fade-leave-to {
+  transform: scale(0.99);
   opacity: 0;
 }
 
-.v-leave-to {
-  transform: scale(1.05);
+.slide-left-move,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.slide-left-enter-from {
+  transform: translate(100%, 0);
+}
+.slide-left-leave-to {
+  transform: translate(10%, 0);
+  opacity: 0;
+}
+
+.slide-right-move,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.slide-right-enter-from {
+  transform: translate(-100%, 0);
+}
+.slide-right-leave-to {
+  transform: translate(-10%, 0);
   opacity: 0;
 }
 </style>

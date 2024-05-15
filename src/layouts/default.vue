@@ -1,34 +1,21 @@
 <script setup lang="ts">
-const currentPath = computed(() => useRoute().path)
 </script>
 
 <template>
-  <header class="h-16 w-full flex items-center justify-center">
-    <nav class="w-screen-lg flex-y-center justify-end gap-3 <lg:w-full <lg:p-x-3">
-      <BackToHome class="m-r-auto" />
-      <RouterLink to="/about">
-        <NButton quaternary>
-          About
-        </NButton>
-      </RouterLink>
-      <div>currentPath: {{ currentPath }}</div>
-      <ToggleDarkMode />
-      <ToggleLanguage />
-    </nav>
-  </header>
-  <main class="w-screen-lg flex-col flex-1 <lg:w-full lg:p-x-10">
-    <RouterEntry />
-    <div class="m-y-10 w-full flex items-center justify-center gap-5">
-      <a class="flex items-center justify-center gap-1 text-3xl" href="https://github.com/Eiog/vue3-starter-simple" target="_blank" rel="noopener noreferrer">
-        <i class="i-ri-github-fill" />
-        <span>Source</span>
-      </a>
-      <a class="flex items-center justify-center gap-1 text-3xl" href="https://note.eiog.me/" target="_blank" rel="noopener noreferrer">
-        <i class="i-ri-github-fill" />
-        <span>MyNote</span>
-      </a>
-    </div>
-  </main>
+  <div class="w-full flex-col-center">
+    <header class="h-16 w-full flex items-center justify-center">
+      <nav class="w-screen-md flex-y-center justify-end gap-3 <md:w-full <md:p-x-3">
+        <BackToHome class="m-r-auto" />
+        <ToggleDarkMode />
+        <ToggleLanguage />
+        <GitHub />
+      </nav>
+    </header>
+    <TabBar />
+    <main class="w-screen-md flex-col overflow-x-hidden p-x-3 <md:w-full md:p-x-10">
+      <RouterEntry />
+    </main>
+  </div>
 </template>
 
 <style scoped lang="less"></style>

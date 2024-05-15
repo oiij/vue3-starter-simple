@@ -2,6 +2,7 @@ import type { PluginOption } from 'vite'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueHooksPlusResolver } from '@vue-hooks-plus/resolvers'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 
 export function VitePluginAutoImport(): PluginOption[] {
   return [
@@ -17,8 +18,8 @@ export function VitePluginAutoImport(): PluginOption[] {
         '@vueuse/core',
         '@vueuse/head',
         'pinia',
-        'vue-router',
         'vue-i18n',
+        VueRouterAutoImports,
       ],
       dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
       vueTemplate: true,
