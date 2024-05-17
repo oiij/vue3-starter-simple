@@ -8,12 +8,14 @@ useHead({
   title: '首页',
 })
 const { data } = useRequest(() => get('/info'))
+const { value } = useNumberAnimation(100)
 </script>
 
 <template>
   <div class="flex-col-center gap-10">
     <HelloWorld />
     {{ data }}
+    <div>{{ value }}</div>
     <DefineInput />
     <div class="flex items-center justify-center gap-1">
       <NButton v-track:exposure>
