@@ -2,35 +2,35 @@
 <script setup lang='ts'>
 import * as THREE from 'three'
 
-const { domRef, scene, camera, axesHelper, onAnimated, onRendered } = useThreeJs()
+const { domRef, scene, onRendered } = useThreeJs()
 onRendered(() => {
   console.log('onRendered')
 })
 onMounted(() => {
-  scene.add(axesHelper)
-  camera.position.z = 3
-  const geometry = new THREE.BoxGeometry()
-  const material = new THREE.MeshBasicMaterial({ color: 0x00FF00 })
-  const cube = new THREE.Mesh(geometry, material)
-  cube.castShadow = true // 让立方体投射阴影
-  scene.add(cube)
-  const groundGeometry = new THREE.PlaneGeometry(20, 20)
-  const groundMaterial = new THREE.MeshStandardMaterial({ color: 0xCCCCCC })
-  const ground = new THREE.Mesh(groundGeometry, groundMaterial)
-  ground.rotation.x = -Math.PI / 2 // 使地面平行于 X 轴
-  ground.position.y = -2 // 地面放置在立方体下方
-  ground.receiveShadow = true // 让地面接收阴影
-  scene.add(ground)
-  onAnimated(() => {
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
-  })
+  // 创建一个球体
+  const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
+  const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF })
+  const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+  sphere.castShadow = true // 球体投射阴影
+  sphere.position.y = 1 // 使球体悬浮在地面上
+  scene.add(sphere)
+  // 创建一个平面
+  const planeGeometry = new THREE.PlaneGeometry(200, 200)
+  const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 })
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+  plane.receiveShadow = true // 平面接收阴影
+  plane.rotation.x = -Math.PI / 2 // 使平面水平
+  plane.position.y = 0
+  scene.add(plane)
 })
 </script>
 
 <template>
-  <div class="h-[100vh] bg-black/5">
-    <div ref="domRef" class="h-[400px] w-full" />
+  <div class="h-[100vh] flex-col flex-y-center gap-3">
+    <h1 class="text-2xl font-bold">
+      ThreeJs Demo
+    </h1>
+    <div ref="domRef" class="h-[400px] w-full bg-black/20" />
   </div>
 </template>
 

@@ -14,6 +14,9 @@ dependencies:
   '@morev/vue-transitions':
     specifier: ^3.0.2
     version: 3.0.2(rollup@2.79.1)(vue@3.4.27)
+  '@tweakpane/plugin-essentials':
+    specifier: ^0.2.1
+    version: 0.2.1(tweakpane@4.0.3)
   '@unocss/reset':
     specifier: ^0.60.2
     version: 0.60.2
@@ -50,6 +53,9 @@ dependencies:
   three:
     specifier: ^0.164.1
     version: 0.164.1
+  tweakpane:
+    specifier: ^4.0.3
+    version: 4.0.3
   typed.js:
     specifier: ^2.1.0
     version: 2.1.0
@@ -85,6 +91,9 @@ devDependencies:
   '@plugin-web-update-notification/vite':
     specifier: ^1.7.1
     version: 1.7.1(vite@5.2.11)
+  '@tweakpane/core':
+    specifier: ^2.0.3
+    version: 2.0.3
   '@types/crypto-js':
     specifier: ^4.2.2
     version: 4.2.2
@@ -3462,6 +3471,18 @@ packages:
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
+
+  /@tweakpane/core@2.0.3:
+    resolution: {integrity: sha512-qHci4XA1Wngpwy8IzsLh5JEdscz8aDti/9YhyOaq01si+cgNDaZfwzTtXdn1+xTxSnCM+pW4Zb2/4eqn+K1ATw==}
+    dev: true
+
+  /@tweakpane/plugin-essentials@0.2.1(tweakpane@4.0.3):
+    resolution: {integrity: sha512-VbFU1/uD+CJNFQdfLXUOLjeG5HyUZH97Ox9CxmyVetg1hqjVun3C83HAGFULyhKzl8tSgii8jr304r8QpdHwzQ==}
+    peerDependencies:
+      tweakpane: ^4.0.0
+    dependencies:
+      tweakpane: 4.0.3
+    dev: false
 
   /@tweenjs/tween.js@23.1.2:
     resolution: {integrity: sha512-kMCNaZCJugWI86xiEHaY338CU5JpD0B97p1j1IKNn/Zto8PgACjQx0UxbHjmOcLl/dDOBnItwD07KmCs75pxtQ==}
@@ -12097,6 +12118,10 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: true
+
+  /tweakpane@4.0.3:
+    resolution: {integrity: sha512-BlcWOAe8oe4c+k9pmLBARGdWB6MVZMszayekkixQXTgkxTaYoTUpHpwVEp+3HkoamZkomodpbBf0CkguIHTgLg==}
+    dev: false
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

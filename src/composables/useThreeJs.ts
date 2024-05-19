@@ -1,6 +1,15 @@
-import { AmbientLight, AxesHelper, DirectionalLight, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
+import { ACESFilmicToneMapping, AmbientLight, AxesHelper, DirectionalLight, PCFShadowMap, PerspectiveCamera, Raycaster, Scene, Vector2, WebGLRenderer } from 'three'
+import type { Object3D } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import type { BladeApi } from 'tweakpane'
+import { Pane } from 'tweakpane'
+import * as EssentialsPlugin from '@tweakpane/plugin-essentials'
+import type { BladeController, View } from '@tweakpane/core'
 
+interface FPSGraph extends BladeApi<BladeController<View>> {
+  begin: () => void
+  end: () => void
+}
 export function useThreeJs() {
   const domRef = ref<HTMLElement>()
   const { width, height } = useElementSize(domRef)
@@ -12,7 +21,14 @@ export function useThreeJs() {
     alpha: true,
     antialias: true,
   })
+  // More realistic shadows
   renderer.shadowMap.enabled = true // 启用阴影
+  renderer.shadowMap.type = PCFShadowMap
+  // renderer.physicallyCorrectLights = true
+  // renderer.outputEncoding = sRGBEncoding
+  renderer.toneMapping = ACESFilmicToneMapping
+  renderer.toneMappingExposure = 1
+
   // 添加环境光
   const ambientLight = new AmbientLight(0xFFFFFF, 0.5)
   scene.add(ambientLight)
@@ -23,10 +39,24 @@ export function useThreeJs() {
   scene.add(directionalLight)
   // 添加相机
   const camera = new PerspectiveCamera(45, width.value / height.value, 0.1, 1000)
+  camera.position.set(9, 4, 9)
   // 添加坐标轴
   const axesHelper = new AxesHelper(5)
+  scene.add(axesHelper)
   // 添加控制器
   const controls = new OrbitControls(camera, renderer.domElement)
+  controls.enableDamping = true
+  // GUI Debugger
+  const gui = new Pane()
+  gui.addBinding(axesHelper, 'visible', {
+    label: 'AxesHelper',
+  })
+  gui.registerPlugin(EssentialsPlugin)
+  // FPSGraph
+  const fpsGraph = gui.addBlade({
+    view: 'fpsgraph',
+    label: 'fpsgraph',
+  }) as FPSGraph
 
   let canvasDom: HTMLCanvasElement | null = null
 
@@ -47,14 +77,56 @@ export function useThreeJs() {
     if (renderFun)
       renderFun()
   }
+  // 鼠标设备坐标
+  const mouse = new Vector2(1, 1)
+  // 创建一个射线投射器
+  const raycaster = new Raycaster()
+  // 判断是否相交
+  function onIntersectObject(objClick: Object3D, event: MouseEvent) {
+    const rect = renderer.domElement.getBoundingClientRect()
+    // 计算鼠标点击位置的归一化设备坐标
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
 
+    raycaster.setFromCamera(mouse, camera)
+    // 计算射线与球体的相交情况
+    const intersects = raycaster.intersectObject(objClick)
+    // 如果有相交，则说明点击了球体
+    if (intersects.length > 0)
+      return true
+    else
+      return false
+  }
+  let objClick: Object3D | null = null
+  let objClickFun: ((event: MouseEvent) => void) | null = null
+  renderer.domElement.addEventListener('click', (event) => {
+    if (objClick) {
+      if (onIntersectObject(objClick, event)) {
+        if (objClickFun)
+          objClickFun(event)
+      }
+    }
+  })
+  let objMouseMoveFun: ((event: MouseEvent) => void) | null = null
+  renderer.domElement.addEventListener('mousemove', (event) => {
+    if (objClick) {
+      if (onIntersectObject(objClick, event)) {
+        if (objMouseMoveFun)
+          objMouseMoveFun(event)
+      }
+    }
+  })
+
+  // 动画循环
   let animateFun: (() => void) | null = null
   function animate() {
-    requestAnimationFrame(animate)
-    renderer.render(scene, camera)
+    fpsGraph.begin()
     controls.update()
+    renderer.render(scene, camera)
+    fpsGraph.end()
     if (animateFun)
       animateFun()
+    requestAnimationFrame(animate)
   }
   animate()
   watch([width, height], () => {
@@ -72,11 +144,22 @@ export function useThreeJs() {
     camera,
     axesHelper,
     controls,
+    gui,
+    fpsGraph,
     onRendered(cb: () => void) {
       renderFun = cb
     },
     onAnimated(cb: () => void) {
       animateFun = cb
+    },
+    onIntersectObject,
+    onObjectClick(obj: Object3D, cb: (event: MouseEvent) => void) {
+      objClick = obj
+      objClickFun = cb
+    },
+    onObjectMouseMove(obj: Object3D, cb: (event: MouseEvent) => void) {
+      objClick = obj
+      objMouseMoveFun = cb
     },
   }
 }
