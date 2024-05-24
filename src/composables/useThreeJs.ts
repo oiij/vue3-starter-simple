@@ -39,7 +39,7 @@ export function useThreeJs() {
   scene.add(directionalLight)
   // 添加相机
   const camera = new PerspectiveCamera(45, width.value / height.value, 0.1, 1000)
-  camera.position.set(9, 4, 9)
+  camera.position.set(1, 2, 2)
   // 添加坐标轴
   const axesHelper = new AxesHelper(5)
   scene.add(axesHelper)
@@ -118,15 +118,16 @@ export function useThreeJs() {
   })
 
   // 动画循环
+  let animationId: number | null = null
   let animateFun: (() => void) | null = null
   function animate() {
     fpsGraph.begin()
     controls.update()
-    renderer.render(scene, camera)
-    fpsGraph.end()
     if (animateFun)
       animateFun()
-    requestAnimationFrame(animate)
+    renderer.render(scene, camera)
+    fpsGraph.end()
+    animationId = requestAnimationFrame(animate)
   }
   animate()
   watch([width, height], () => {
@@ -135,6 +136,27 @@ export function useThreeJs() {
   })
   render()
 
+  function destroy() {
+    try {
+      scene.clear()
+      renderer.dispose()
+      renderer.forceContextLoss()
+      const gl = renderer.domElement.getContext('webgl')
+      if (gl)
+        gl.getExtension('WEBGL_lose_context')!.loseContext()
+      if (animationId)
+        cancelAnimationFrame(animationId) // 去除animationFrame
+      canvasDom = null
+      gui.document.close()
+      gui.dispose()
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
+  onUnmounted(() => {
+    destroy()
+  })
   return {
     domRef,
     scene,
@@ -149,7 +171,7 @@ export function useThreeJs() {
     onRendered(cb: () => void) {
       renderFun = cb
     },
-    onAnimated(cb: () => void) {
+    onAnimate(cb: () => void) {
       animateFun = cb
     },
     onIntersectObject,

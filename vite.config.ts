@@ -12,12 +12,12 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import { vitePluginVersionMark } from 'vite-plugin-version-mark'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import VueRouter from 'unplugin-vue-router/vite'
 import postcssPresetEnv from 'postcss-preset-env'
 import TurboConsole from 'unplugin-turbo-console/vite'
 import Info from 'unplugin-info/vite'
 import ServerUrlCopy from 'vite-plugin-url-copy'
+import { analyzer } from 'vite-bundle-analyzer'
 import { VitePluginMock } from './plugin'
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 // https://vitejs.dev/config/
@@ -67,13 +67,14 @@ export default defineConfig(({ command, mode }) => {
         ifGlobal: true,
       }), // https://github.com/ZhongxuYang/vite-plugin-version-mark
       Info(), // https://github.com/yjl9903/unplugin-info
-      viteVueCSSVars({
-        include: [/.vue/],
-        includeCompile: ['**/**.scss'],
-        server: false,
-      }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
+      // viteVueCSSVars({
+      //   include: [/.vue/],
+      //   includeCompile: ['**/**.scss'],
+      //   server: false,
+      // }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
+      analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
       ...VitePluginI18n(),
@@ -121,7 +122,7 @@ export default defineConfig(({ command, mode }) => {
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-          // manualChunks: configManualChunk,
+          manualChunks: undefined,
         },
       },
     },
