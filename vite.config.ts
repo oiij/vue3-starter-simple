@@ -23,7 +23,7 @@ import { VitePluginMock } from './plugin'
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
+  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE, BUILD_ENV } = loadEnv(mode, process.cwd(), '')
   const debug = !!process.env.VSCODE_DEBUG
 
   return {
@@ -75,7 +75,7 @@ export default defineConfig(({ command, mode }) => {
       // }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
-      analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
+      BUILD_ENV === 'vercel' ? undefined : analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
       ...VitePluginI18n(),
