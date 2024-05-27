@@ -1,8 +1,5 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
+import process from 'node:process'
 
-export default function handler(
-  req: VercelRequest,
-  res: VercelResponse,
-) {
-  res.send('Hello World!')
+export function GET(request: Request) {
+  return new Response(`Hello from ${process.env.VERCEL_REGION} ${request.url}`)
 }

@@ -19,6 +19,7 @@ import Info from 'unplugin-info/vite'
 import ServerUrlCopy from 'vite-plugin-url-copy'
 import { analyzer } from 'vite-bundle-analyzer'
 import { VitePluginMock } from './plugin'
+
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
