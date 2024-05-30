@@ -12,7 +12,7 @@ import {
   useNotification,
 } from 'naive-ui'
 
-const { theme, locale, dateLocale } = useNaiveTheme()
+const { theme, themeOverrides, locale, dateLocale } = useNaiveTheme()
 
 // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
 function registerNaiveTools() {
@@ -37,6 +37,7 @@ const NaiveProviderContent = defineComponent({
   <n-config-provider
     abstract
     :theme="theme"
+    :theme-overrides="themeOverrides"
     :locale="locale"
     :date-locale="dateLocale"
   >

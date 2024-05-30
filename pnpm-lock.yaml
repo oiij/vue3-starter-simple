@@ -41,6 +41,9 @@ dependencies:
   echarts:
     specifier: ^5.5.0
     version: 5.5.0
+  mixte:
+    specifier: ^1.12.0
+    version: 1.12.0
   notivue:
     specifier: ^2.4.4
     version: 2.4.4
@@ -9421,6 +9424,10 @@ packages:
       for-in: 1.0.2
       is-extendable: 1.0.1
     dev: true
+
+  /mixte@1.12.0:
+    resolution: {integrity: sha512-exFuLe8CMZh4rv/GBlHmWv6xQlI2yvV1Ia5qLtz22EzBktW8bKOY0tYcVQSLv3AYvrEqvMbBQvv2A8ivXwND7Q==}
+    dev: false
 
   /mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}

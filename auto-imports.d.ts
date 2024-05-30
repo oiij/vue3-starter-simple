@@ -274,6 +274,7 @@ declare global {
   const useMousePressed: typeof import('@vueuse/core')['useMousePressed']
   const useMutationObserver: typeof import('@vueuse/core')['useMutationObserver']
   const useNProgress: typeof import('./src/composables/useNProgress')['useNProgress']
+  const useNaiveForm: typeof import('./src/composables/useNaiveForm')['useNaiveForm']
   const useNaiveTheme: typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
@@ -643,6 +644,7 @@ declare module 'vue' {
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNProgress: UnwrapRef<typeof import('./src/composables/useNProgress')['useNProgress']>
+    readonly useNaiveForm: UnwrapRef<typeof import('./src/composables/useNaiveForm')['useNaiveForm']>
     readonly useNaiveTheme: UnwrapRef<typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
@@ -1002,6 +1004,7 @@ declare module '@vue/runtime-core' {
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNProgress: UnwrapRef<typeof import('./src/composables/useNProgress')['useNProgress']>
+    readonly useNaiveForm: UnwrapRef<typeof import('./src/composables/useNaiveForm')['useNaiveForm']>
     readonly useNaiveTheme: UnwrapRef<typeof import('./src/composables/useNaiveTheme')['useNaiveTheme']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>

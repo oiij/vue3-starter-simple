@@ -5,7 +5,6 @@ import {
   dateEnUS,
   dateZhCN,
   enUS,
-  useOsTheme,
   zhCN,
 } from 'naive-ui'
 import { colord } from 'colord'
@@ -19,12 +18,7 @@ function getStatusColor(color = '#ff461f') {
   }
 }
 const { language } = useLanguage()
-const useOsDark = ref(false)
-const useDarkMode = computed(() => {
-  if (useOsDark.value)
-    return useOsTheme().value === 'dark'
-  return isDark.value
-})
+
 const themeColor = ref({
   primary: '#64748B',
   info: '#06b6d4',
@@ -38,7 +32,7 @@ const theme = computed(() => {
 const themeOverrides: Ref<GlobalThemeOverrides> = computed(() => {
   return {
     common: {
-      bodyColor: useDarkMode.value ? '#1f1f1f' : '#f5f5f5',
+      bodyColor: isDark.value ? '#1f1f1f' : '#f5f5f5',
       primaryColor: themeColor.value.primary,
       primaryColorHover: getStatusColor(themeColor.value.primary).hover,
       primaryColorPressed: getStatusColor(themeColor.value.primary).pressed,
@@ -84,7 +78,6 @@ const dateLocale = computed(() => {
 })
 export function useNaiveTheme() {
   return {
-    useDarkMode,
     theme,
     themeOverrides,
     locale,

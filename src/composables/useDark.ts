@@ -12,8 +12,8 @@ const isAppearanceTransition
  * Credit to [@hooray](https://github.com/hooray)
  * @see https://github.com/vuejs/vitepress/pull/2347
  */
-export function toggleDark(event?: MouseEvent) {
-  if (!isAppearanceTransition || !event) {
+export function toggleDark(event?: MouseEvent, effect = true) {
+  if (!isAppearanceTransition || !event || !effect) {
     isDark.value = !isDark.value
     return
   }
@@ -40,7 +40,7 @@ export function toggleDark(event?: MouseEvent) {
         clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
       },
       {
-        duration: 400,
+        duration: 300,
         easing: 'ease-in',
         pseudoElement: isDark.value
           ? '::view-transition-old(root)'

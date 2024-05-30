@@ -9,7 +9,10 @@ const props = withDefaults(defineProps<{
   borderRadius: 10,
 })
 const domRef = ref<HTMLElement>()
-const { x, y } = useMouse({ touch: false })
+const { x, y } = toRefs(reactive({
+  x: 0,
+  y: 0,
+}))
 const { left, top, width, height } = useElementBounding(domRef)
 const offset = computed(() => {
   return {
@@ -17,12 +20,22 @@ const offset = computed(() => {
     y: Number.parseFloat((y.value - top.value).toFixed(2)),
   }
 })
+function mouseMove(ev: MouseEvent) {
+  x.value = ev.x
+  y.value = ev.y
+}
+onMounted(() => {
+  window.addEventListener('mousemove', mouseMove)
+})
+onUnmounted(() => {
+  window.removeEventListener('mousemove', mouseMove)
+})
 </script>
 
 <template>
   <div
     ref="domRef"
-    class="magical"
+    class="magical flex-col"
     :style="{
       '--circle-size': `${props.circleSize}px`,
       '--inset': `${props.borderWidth}px`,
@@ -33,6 +46,7 @@ const offset = computed(() => {
     }"
   >
     <slot />
+    {{ `${x}-${y}-${left}-${top}` }}
     <div class="show" :style="{ opacity: (offset.x >= 0 && offset.x <= width && offset.y >= 0 && offset.y <= height) ? 1 : 0 }" />
   </div>
 </template>
