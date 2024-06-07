@@ -14,6 +14,7 @@ export function useRouteGuard(router: Router) {
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
     to.meta.transition = toDepth < fromDepth ? 'slide-right' : toDepth > fromDepth ? 'slide-left' : 'fade'
+
     useChangeTitle(to)
     done()
   })

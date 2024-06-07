@@ -2,21 +2,22 @@ import type { PluginOption } from 'vite'
 
 import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
-import Shiki from 'markdown-it-shiki'
+import Shiki from '@shikijs/markdown-it'
 
 export function VitePluginMarkdown(): PluginOption[] {
   return [
     Markdown({
       wrapperClasses: 'prose prose-sm m-auto text-left',
       headEnabled: true,
-      markdownItSetup(md) {
+      async markdownItSetup(md) {
         // https://prismjs.com/
-        md.use(Shiki, {
-          theme: {
+        md.use(await Shiki({
+          defaultColor: false,
+          themes: {
             light: 'vitesse-light',
             dark: 'vitesse-dark',
           },
-        })
+        }))
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {

@@ -10,14 +10,9 @@ const tabs = [
     path: '/',
   },
   {
-    name: 'ThreeJs',
+    name: '示例',
     icon: 'pixel-travel-icon-比基尼',
-    path: '/threejs',
-  },
-  {
-    name: '图表',
-    icon: 'pixel-travel-icon-游泳圈',
-    path: '/echarts',
+    path: '/example',
   },
   {
     name: '关于',
@@ -39,6 +34,8 @@ const itemRef = ref<HTMLElement[]>()
 function handleMove(path: string) {
   if (itemRef.value && Array.isArray(itemRef.value)) {
     const index = tabs.findIndex(f => f.path === path)
+    if (index === -1)
+      return
     const rect = itemRef.value[index].getBoundingClientRect()
     squareRect.value = {
       left: rect.left - wrapLeft.value,
@@ -53,12 +50,14 @@ function handleMove(path: string) {
 }
 function handleClick(e: MouseEvent, path: string) {
   router.push(path)
-  handleMove(path)
 }
 onMounted(() => {
   handleMove(route.path)
 })
 watch(width, () => {
+  handleMove(route.path)
+})
+watch(() => route.path, () => {
   handleMove(route.path)
 })
 </script>

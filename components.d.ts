@@ -7,8 +7,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppBar: typeof import('./src/components/AppBar.vue')['default']
+    BackButton: typeof import('./src/components/BackButton.vue')['default']
     BackToHome: typeof import('./src/components/BackToHome.vue')['default']
+    BaseAppBar: typeof import('./src/components/BaseAppBar.vue')['default']
+    BaseRotateTransition: typeof import('./src/components/BaseRotateTransition.vue')['default']
     Blank: typeof import('./src/layouts/blank.vue')['default']
+    Code: typeof import('./src/components/Code.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DefineInput: typeof import('./src/components/DefineInput.vue')['default']
     FullScreenTapEffects: typeof import('./src/components/FullScreenTapEffects.vue')['default']

@@ -97,6 +97,9 @@ devDependencies:
   '@plugin-web-update-notification/vite':
     specifier: ^1.7.1
     version: 1.7.1(vite@5.2.11)
+  '@shikijs/markdown-it':
+    specifier: ^1.6.2
+    version: 1.6.2
   '@tweakpane/core':
     specifier: ^2.0.3
     version: 2.0.3
@@ -184,15 +187,15 @@ devDependencies:
   markdown-it-link-attributes:
     specifier: ^4.0.1
     version: 4.0.1
-  markdown-it-shiki:
-    specifier: ^0.9.0
-    version: 0.9.0
   naive-ui:
     specifier: ^2.38.2
     version: 2.38.2(vue@3.4.27)
   postcss-preset-env:
     specifier: ^9.5.13
     version: 9.5.13(postcss@8.4.38)
+  shiki:
+    specifier: ^1.6.2
+    version: 1.6.2
   simple-git-hooks:
     specifier: ^2.11.1
     version: 2.11.1
@@ -3329,6 +3332,24 @@ packages:
     dev: true
     optional: true
 
+  /@shikijs/core@1.6.2:
+    resolution: {integrity: sha512-guW5JeDzZ7uwOjTfCOFZ2VtVXk5tmkMzBYbKGfXsmAH1qYOej49L5jQDcGmwd6/OgvpmWhzO2GNJkQIFnbwLPQ==}
+    dev: true
+
+  /@shikijs/markdown-it@1.6.2:
+    resolution: {integrity: sha512-VhY7XJepbcb7ORS7uOyK0E3cgt7Ov8yMxyhZLbTm09SjfGlWUyLULHXzzyutCEOLWW4LWnemK521xJiG7dC1HQ==}
+    dependencies:
+      '@shikijs/transformers': 1.6.2
+      markdown-it: 14.1.0
+      shiki: 1.6.2
+    dev: true
+
+  /@shikijs/transformers@1.6.2:
+    resolution: {integrity: sha512-ndqTWyHnxmsLkowhKWTam26opw8hg5a34y6FAUG/Xf6E49n3MM//nenKxXiWpPYkNPl1KZnYXB1k+Ia46wjOZg==}
+    dependencies:
+      shiki: 1.6.2
+    dev: true
+
   /@sinclair/typebox@0.25.24:
     resolution: {integrity: sha512-XJfwUVUKDHF5ugKwIcxEgc9k8b7HbznCp6eUfWgu710hMPNIO4aw4/zB5RogDQz8nd6gyCDpU9O/m6qYEWY6yQ==}
     dev: true
@@ -4794,10 +4815,6 @@ packages:
   /ansi-regex@6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
-    dev: true
-
-  /ansi-sequence-parser@1.1.1:
-    resolution: {integrity: sha512-vJXt3yiaUL4UU546s3rPXlsry/RnM730G1+HkpKE012AN0sx1eOrxSu95oKDIonskeLTijMgqWZ3uDEe3NFvyg==}
     dev: true
 
   /ansi-styles@2.2.1:
@@ -8829,10 +8846,6 @@ packages:
       semver: 7.6.2
     dev: true
 
-  /jsonc-parser@3.2.1:
-    resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
-    dev: true
-
   /jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
@@ -9170,13 +9183,6 @@ packages:
 
   /markdown-it-link-attributes@4.0.1:
     resolution: {integrity: sha512-pg5OK0jPLg62H4k7M9mRJLT61gUp9nvG0XveKYHMOOluASo9OEF13WlXrpAp2aj35LbedAy3QOCgQCw0tkLKAQ==}
-    dev: true
-
-  /markdown-it-shiki@0.9.0:
-    resolution: {integrity: sha512-TyP5YbDnFu3T7MPwC8jFs1swzAXqALy50MPPdis2tNc5MQ0UxSqhARFfMzEJN21mE0ihAngi2kqDzKR5+ZsMqg==}
-    dependencies:
-      shiki: 0.14.7
-      synckit: 0.8.8
     dev: true
 
   /markdown-it@14.1.0:
@@ -11272,13 +11278,10 @@ packages:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
     dev: true
 
-  /shiki@0.14.7:
-    resolution: {integrity: sha512-dNPAPrxSc87ua2sKJ3H5dQ/6ZaY8RNnaAqK+t0eG7p0Soi2ydiqbGOTaZCqaYvA/uZYfS1LJnemt3Q+mSfcPCg==}
+  /shiki@1.6.2:
+    resolution: {integrity: sha512-X3hSm5GzzBd/BmPmGfkueOUADLyBoZo1ojYQXhd+NU2VJn458yt4duaS0rVzC+WtqftSV7mTVvDw+OB9AHi3Eg==}
     dependencies:
-      ansi-sequence-parser: 1.1.1
-      jsonc-parser: 3.2.1
-      vscode-oniguruma: 1.7.0
-      vscode-textmate: 8.0.0
+      '@shikijs/core': 1.6.2
     dev: true
 
   /side-channel@1.0.6:
@@ -11831,14 +11834,6 @@ packages:
     resolution: {integrity: sha512-Vhf+bUa//YSTYKseDiiEuQmhGCoIF3CVBhunm3r/DQnYiGT4JssmnKQc44BIyOZRK2pKjXXAgbhfmbeoC9CJpA==}
     engines: {node: '>=12.20'}
     dependencies:
-      tslib: 2.6.2
-    dev: true
-
-  /synckit@0.8.8:
-    resolution: {integrity: sha512-HwOKAP7Wc5aRGYdKH+dw0PRRpbO841v2DENBtjnR5HFWoiNByAl7vrx3p0G/rCyYXQsrxqtX48TImFtPcIHSpQ==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    dependencies:
-      '@pkgr/core': 0.1.1
       tslib: 2.6.2
     dev: true
 
@@ -13231,14 +13226,6 @@ packages:
     dependencies:
       evtd: 0.2.4
       vue: 3.4.27(typescript@5.4.5)
-    dev: true
-
-  /vscode-oniguruma@1.7.0:
-    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
-    dev: true
-
-  /vscode-textmate@8.0.0:
-    resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
     dev: true
 
   /vue-component-type-helpers@2.0.19:
