@@ -18,6 +18,7 @@ import TurboConsole from 'unplugin-turbo-console/vite'
 import Info from 'unplugin-info/vite'
 import ServerUrlCopy from 'vite-plugin-url-copy'
 import { analyzer } from 'vite-bundle-analyzer'
+import imagemin from 'unplugin-imagemin/vite'
 import { VitePluginMock } from './plugin'
 
 import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
@@ -75,6 +76,7 @@ export default defineConfig(({ command, mode }) => {
       // }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
+      imagemin({}), // https://github.com/unplugin/unplugin-imagemin
       BUILD_ENV === 'vercel' ? undefined : analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),

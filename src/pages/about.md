@@ -5,6 +5,18 @@ name: About
 
 # Vue 3 + TypeScript + Vite
 
+## 快速开始
+
+```bash
+git clone git@github.com:Eiog/vue3-starter-simple.git
+```
+
+```bash
+cd vue3-starter-simple
+pnpm i
+pnpm dev
+```
+
 This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
 ## Recommended IDE Setup

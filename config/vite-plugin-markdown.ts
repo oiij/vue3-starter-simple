@@ -3,6 +3,10 @@ import type { PluginOption } from 'vite'
 import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from '@shikijs/markdown-it'
+import {
+  transformerTwoslash,
+} from '@shikijs/twoslash'
+// import { preWrapperPlugin } from '../plugin'
 
 export function VitePluginMarkdown(): PluginOption[] {
   return [
@@ -17,6 +21,11 @@ export function VitePluginMarkdown(): PluginOption[] {
             light: 'vitesse-light',
             dark: 'vitesse-dark',
           },
+          transformers: [
+            transformerTwoslash({
+              explicitTrigger: true,
+            }),
+          ],
         }))
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
@@ -25,6 +34,7 @@ export function VitePluginMarkdown(): PluginOption[] {
             rel: 'noopener',
           },
         })
+        // md.use(preWrapperPlugin)
       },
     }), // https://github.com/antfu/vite-plugin-vue-markdown
 
