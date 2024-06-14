@@ -23,7 +23,7 @@ export function preWrapperPlugin(md: MarkdownIt, options: Options) {
     const lang = extractLang(token.info)
 
     return (
-      `<div class="language-${lang}${getAdaptiveThemeMarker(options)}${active}">`
+      `<div class="code-block language-${lang}${getAdaptiveThemeMarker(options)}${active}">`
       + `<button title="${options.codeCopyButtonTitle}" class="copy"></button>`
       + `<span class="lang">${lang}</span>${
       fence(...args)

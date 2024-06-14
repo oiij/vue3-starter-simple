@@ -6,7 +6,7 @@ import Shiki from '@shikijs/markdown-it'
 import {
   transformerTwoslash,
 } from '@shikijs/twoslash'
-// import { preWrapperPlugin } from '../plugin'
+import { preWrapperPlugin } from '../plugin'
 
 export function VitePluginMarkdown(): PluginOption[] {
   return [
@@ -34,7 +34,7 @@ export function VitePluginMarkdown(): PluginOption[] {
             rel: 'noopener',
           },
         })
-        // md.use(preWrapperPlugin)
+        md.use(preWrapperPlugin)
       },
     }), // https://github.com/antfu/vite-plugin-vue-markdown
 

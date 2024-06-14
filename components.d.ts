@@ -9,9 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppBar: typeof import('./src/components/AppBar.vue')['default']
     BackButton: typeof import('./src/components/BackButton.vue')['default']
-    BackToHome: typeof import('./src/components/BackToHome.vue')['default']
     BaseAppBar: typeof import('./src/components/BaseAppBar.vue')['default']
-    BaseRotateTransition: typeof import('./src/components/BaseRotateTransition.vue')['default']
     Blank: typeof import('./src/layouts/blank.vue')['default']
     Code: typeof import('./src/components/Code.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
@@ -21,7 +19,6 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MagicalEffects: typeof import('./src/components/MagicalEffects.vue')['default']
     NaiveProvider: typeof import('./src/components/NaiveProvider.vue')['default']
-    NavBar: typeof import('./src/components/NavBar.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NForm: typeof import('naive-ui')['NForm']
