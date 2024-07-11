@@ -17,7 +17,7 @@ async function format() {
     })
     html.value = res
   }
-  catch (error) {
+  catch {
 
   }
 }

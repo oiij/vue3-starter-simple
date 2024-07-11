@@ -25,7 +25,7 @@ export function useLocalStorageRef<T>(key: string, defaultValue?: T): Ref<Unwrap
         else
           return setValue()
       }
-      catch (error) {
+      catch {
         return setValue()
       }
     }

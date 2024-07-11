@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-unused-expressions */
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 import type {
