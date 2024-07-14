@@ -21,7 +21,7 @@ export function VitePluginAutoImport(): PluginOption[] {
         'vue-i18n',
         VueRouterAutoImports,
       ],
-      dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
+      dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils', 'src/api'],
       vueTemplate: true,
       resolvers: [VueHooksPlusResolver()],
     }), // https://github.com/antfu/unplugin-auto-import

@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import { useRequest } from 'vue-hooks-plus'
 import { useLocalStorageRef } from '~/composables/useLocalStorageRef'
 
 defineOptions({
