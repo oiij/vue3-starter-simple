@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import NProgress from 'nprogress'
 import type {
   AxiosError,
@@ -54,25 +55,19 @@ axiosInstance.interceptors.response.use(
     NProgress.done()
     const { response, request } = error
     if (response) {
-      const code = response.status
-      if (code === 401)
-        // eslint-disable-next-line no-console
-        console.log(code, STATUS_TEXT[code] || `${code}错误`)
-      // if (code === 400) {
-      //   window.$message.error(response.data.msg)
-      // }
-      // else {
-      //   window.$notification.error({
-      //     title: STATUS_TEXT[code] || `${code}错误`,
-      //     content: response.data.msg,
-      //     duration: 3000,
-      //   })
-      // }
+      console.log(response)
 
+      const code = response.status
+      window.$notification.error({
+        title: STATUS_TEXT[code] || `${code}错误`,
+        duration: 5 * 1000,
+      })
       return Promise.reject(response.data)
     }
     if (request) {
-      // window.$notification.error({ title: '出错了~', duration: 3000 })
+      console.log(request)
+
+      window.$notification.error({ title: '出错了~', duration: 3000 })
       return Promise.reject(error)
     }
   },

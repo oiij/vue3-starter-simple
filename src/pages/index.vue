@@ -4,6 +4,13 @@ import { useLocalStorageRef } from '~/composables/useLocalStorageRef'
 defineOptions({
 
 })
+definePage({
+  meta: {
+    title: 'Super',
+    requireAuth: true,
+    icon: 'svg:super',
+  },
+})
 useHead({
   title: '首页',
 })
@@ -51,10 +58,10 @@ const localValue = useLocalStorageRef('localValue', 'str')
 }
 </style>
 
-<route lang="yaml">
+<!-- <route lang="yaml">
 name:
 meta:
   layout: default
   title: Hello World !
   keepAlive: true
-</route>
+</route> -->

@@ -20,39 +20,15 @@ useHead({
 
 <template>
   <NaiveProvider>
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <Transition appear mode="out-in" name="fade">
+        <Component :is="Component" />
+      </Transition>
+    </RouterView>
     <NotivueProvider />
   </NaiveProvider>
 </template>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html,
-body {
-  background: linear-gradient(to bottom, #d6dbdc, #ffffff);
-  color: #1a1a1a;
-}
 
-.dark html,
-.dark body {
-  background: linear-gradient(to bottom, #383838, #000000);
-  color: #dadada;
-}
-html,
-body,
-#app {
-  width: 100%;
-  height: 100%;
-}
-#app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: auto;
-}
 </style>

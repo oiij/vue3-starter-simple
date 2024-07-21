@@ -43,12 +43,14 @@ const NaiveProviderContent = defineComponent({
   >
     <NLoadingBarProvider>
       <NDialogProvider>
-        <NNotificationProvider>
-          <NMessageProvider>
-            <slot />
-            <NaiveProviderContent />
-          </NMessageProvider>
-        </NNotificationProvider>
+        <NModalProvider>
+          <NNotificationProvider>
+            <NMessageProvider>
+              <slot />
+              <NaiveProviderContent />
+            </NMessageProvider>
+          </NNotificationProvider>
+        </NModalProvider>
       </NDialogProvider>
     </NLoadingBarProvider>
     <n-global-style />

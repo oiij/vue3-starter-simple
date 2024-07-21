@@ -26,6 +26,7 @@ declare module 'vue' {
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NInput: typeof import('naive-ui')['NInput']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
+    NModalProvider: typeof import('naive-ui')['NModalProvider']
     NotivueProvider: typeof import('./src/components/NotivueProvider.vue')['default']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

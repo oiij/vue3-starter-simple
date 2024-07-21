@@ -39,7 +39,8 @@ export async function VitePluginMock(options?: Options): Promise<Plugin<any>> {
     name: 'vite-plugin-vercel-mock',
     apply: 'serve',
     configureServer: async (server) => {
-    // mount mock server, `/api` is the base url
+      server.watcher.add(localPath)
+      // mount mock server, `/api` is the base url
       server.middlewares.use(prefix, app)
       if (mockAll) {
         server.middlewares.use(prefix, (req, res) => {
