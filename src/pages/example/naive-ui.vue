@@ -1,4 +1,11 @@
 <script setup lang='ts'>
+definePage({
+  meta: {
+    layout: 'default',
+    title: 'NaiveUI Demos',
+    keepAlive: true,
+  },
+})
 const { formRef, formProps, formValue, validate, resetValidation, resetForm, reset, clear } = useNaiveForm({
   value: {
     id: undefined,
@@ -77,11 +84,3 @@ const code = `const { formRef, formProps, formValue, validate, resetValidation, 
 <style scoped lang='less'>
 
 </style>
-
-<route lang='yaml'>
-name:
-meta:
-  layout: default
-  title: NaiveUI Demos
-  keepAlive: true
-</route>

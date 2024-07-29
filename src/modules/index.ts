@@ -6,7 +6,7 @@ import { notivue } from './notivue'
 import { pinia } from './pinia'
 import { router } from './router'
 import { routerScroller } from './router-scroller'
-import { head } from './vue-use-head'
+import { head } from './head'
 
 export * from './directives'
 export * from './i18n'
@@ -14,7 +14,7 @@ export * from './notivue'
 export * from './pinia'
 export * from './router'
 export * from './router-scroller'
-export * from './vue-use-head'
+export * from './head'
 export function useModules(app: App) {
   app
     .use(directive)

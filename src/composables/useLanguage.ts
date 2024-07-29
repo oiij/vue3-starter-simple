@@ -1,15 +1,20 @@
 import { i18n } from '~/modules'
 
-const { locale: language } = i18n.global
-function toggle(lang?: 'cn' | 'en') {
-  if (lang)
-    language.value = lang
-  else
-    language.value = language.value === 'cn' ? 'en' : 'cn'
+const { locale } = i18n.global
+const language = ref('cn')
+watch(language, (lang) => {
+  locale.value = lang
+})
+function toggle() {
+  language.value = language.value === 'cn' ? 'en' : 'cn'
+}
+function setLanguage(lang: 'cn' | 'en') {
+  language.value = lang
 }
 export function useLanguage() {
   return {
     language: language as WritableComputedRef<'cn' | 'en'>,
     toggle,
+    setLanguage,
   }
 }

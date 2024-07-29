@@ -1,6 +1,9 @@
 ---
 title: About
 name: About
+meta:
+  - layout: default
+    keepAlive: false
 ---
 
 # Vue 3 + TypeScript + Vite

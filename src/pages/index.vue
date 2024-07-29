@@ -6,9 +6,9 @@ defineOptions({
 })
 definePage({
   meta: {
-    title: 'Super',
-    requireAuth: true,
-    icon: 'svg:super',
+    layout: 'default',
+    title: 'Hello World',
+    keepAlive: true,
   },
 })
 useHead({
@@ -57,11 +57,3 @@ const localValue = useLocalStorageRef('localValue', 'str')
   background-clip: content-box, border-box;
 }
 </style>
-
-<!-- <route lang="yaml">
-name:
-meta:
-  layout: default
-  title: Hello World !
-  keepAlive: true
-</route> -->

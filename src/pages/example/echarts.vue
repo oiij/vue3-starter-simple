@@ -2,6 +2,13 @@
 import * as echarts from 'echarts/core'
 import type { ECOption } from '~/composables/useEcharts'
 
+definePage({
+  meta: {
+    layout: 'default',
+    title: 'ECharts',
+    keepAlive: true,
+  },
+})
 const lineChartOptions = ref<ECOption>({
   color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
   tooltip: {
@@ -343,10 +350,3 @@ const { domRef: scatterRef } = useEcharts(
 <style scoped lang='less'>
 
 </style>
-
-<route lang='yaml'>
-name:
-meta:
-  layout: default
-  title: ECharts Demo
-</route>

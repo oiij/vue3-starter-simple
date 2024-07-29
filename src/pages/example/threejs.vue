@@ -2,6 +2,13 @@
 <script setup lang='ts'>
 import * as THREE from 'three'
 
+definePage({
+  meta: {
+    layout: 'default',
+    title: 'ThreeJs Demo',
+    keepAlive: true,
+  },
+})
 const { domRef, scene, onRendered, onAnimate, gui, controls, axesHelper } = useThreeJs()
 onRendered(() => {
   console.log('onRendered')
@@ -49,11 +56,3 @@ onMounted(() => {
 <style scoped lang='less'>
 
 </style>
-
-<route lang='yaml'>
-name:
-meta:
-  layout: default
-  title: ThreeJs
-  keepAlive: false
-</route>

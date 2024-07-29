@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePage({
+  meta: {
+    layout: 'default',
+    title: 'PageNotFound',
+    keepAlive: false,
+  },
+})
+</script>
 
 <template>
   <h1>Page Not Found</h1>

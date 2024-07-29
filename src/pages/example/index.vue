@@ -1,4 +1,11 @@
 <script setup lang='ts'>
+definePage({
+  meta: {
+    layout: 'default',
+    title: 'Example',
+    keepAlive: true,
+  },
+})
 const router = useRouter()
 const menus = [
   {
@@ -67,10 +74,3 @@ const menus = [
 <style scoped lang='less'>
 
 </style>
-
-<route lang='yaml'>
-name:
-meta:
-  layout: default
-  title: Example
-</route>
