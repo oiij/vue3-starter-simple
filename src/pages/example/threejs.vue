@@ -9,38 +9,101 @@ definePage({
     keepAlive: true,
   },
 })
-const { domRef, scene, onRendered, onAnimate, gui, controls, axesHelper } = useThreeJs()
+const { domRef, cameraTweenLookAtObj, renderer, scene, onRendered, createLoader, onIntersectObject, setSkyBox, camera, isMeshType, selectedObjectEffect } = useThreeJs()
+const { loader } = createLoader('gltf/')
+
+function createFloor() {
+  const floorMat = new THREE.MeshStandardMaterial({
+    color: '#f1f1f1', // 材质的颜色
+  })
+  const floorGeometry = new THREE.BoxGeometry(300, 300, 0.01, 1, 1, 1)
+  const floorMesh = new THREE.Mesh(floorGeometry, floorMat)
+  floorMesh.receiveShadow = true
+  floorMesh.rotation.x = -Math.PI / 2.0
+  scene.add(floorMesh)
+}
+function createSkyBox() {
+  const path = 'skybox/night/'
+  const format = '.jpg'
+  const paths = [`${path}posx${format}`, `${path}negx${format}`, `${path}posy${format}`, `${path}negy${format}`, `${path}posz${format}`, `${path}negz${format}`]
+  setSkyBox(scene, paths)
+}
+function loadSu7() {
+  loader.load('xiaomi_su7/scene.gltf', (gltf) => {
+    scene.add(gltf.scene)
+    const mesh = new THREE.MeshPhysicalMaterial({
+      color: '#22d3ee',
+      metalness: 1,
+      roughness: 0.5,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.03,
+    })
+    const meshArr = [
+      'Object_18', // 车身
+      'Object_20', // 车身下
+      // 'Object_21', // 前后玻璃
+      // 'Object_22', // 后刹车灯
+      // 'Object_23', // 前车灯
+      // 'Object_24', // 前车灯行车灯
+      'Object_25', // 风挡边框
+      // 'Object_27', // 车门内
+      // 'Object_28', // 内地板
+      // 'Object_29', // 车架内
+      'Object_31', // 主驾玻璃框
+      'Object_32', // 主驾车门
+      'Object_33', // 主驾后视镜框
+      // 'Object_34', // 主驾后视镜
+      // 'Object_35', // 主驾车门内
+      // 'Object_36', // 主驾玻璃
+      'Object_38', // 左后玻璃框
+      'Object_39', // 左后车门
+      // 'Object_40', // 左后玻璃
+      // 'Object_41', // 左后车门内
+      'Object_44', // 副驾玻璃框
+      'Object_45', // 副驾车门
+      'Object_46', // 副驾后视镜框
+      // 'Object_47', // 副驾后视镜
+      // 'Object_48', // 副驾车门内
+      // 'Object_49', // 副驾玻璃
+      'Object_51', // 右后玻璃框
+      'Object_52', // 右后车门
+      // 'Object_53', // 右后玻璃
+      // 'Object_54', // 右后车门内
+
+    ]
+    gltf.scene.traverse((obj) => {
+      obj.castShadow = true
+    })
+    gltf.scene.traverse((obj) => {
+      renderer.domElement.addEventListener('click', (ev) => {
+        gltf.scene.traverse((obj) => {
+          if (isMeshType(obj) && obj.isMesh) {
+            if (onIntersectObject(renderer, camera, obj, ev)) {
+              selectedObjectEffect(obj)
+            }
+          }
+        })
+      })
+      if (isMeshType(obj) && obj.isMesh) {
+        if (meshArr.includes(obj.name)) {
+          obj.material = mesh
+        }
+      }
+    })
+    cameraTweenLookAtObj(gltf.scene)
+  }, (xhr) => {
+    const percent = xhr.loaded / xhr.total
+    console.log(percent)
+  }, (err) => {
+    console.log(err)
+  })
+}
 onRendered(() => {
   console.log('onRendered')
-})
-onMounted(() => {
-  const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
-
-  // material
-  const pointMaterial = new THREE.PointsMaterial({
-    size: 0.02,
-    sizeAttenuation: false,
-  })
-
-  const particles = new THREE.Points(sphereGeometry, pointMaterial)
-  scene.add(particles)
-  onAnimate(() => {
-    pointMaterial.needsUpdate = true
-  })
-  controls.autoRotate = true
-  axesHelper.visible = false
-  gui.addBinding(controls, 'autoRotate')
-  gui.addBinding(controls, 'autoRotateSpeed', {
-    step: 0.01,
-    min: 0.1,
-    max: 10,
-  })
-  gui.addBinding(pointMaterial, 'size', {
-    step: 0.001,
-    min: 0.01,
-    max: 1,
-  })
-  gui.addBinding(pointMaterial, 'sizeAttenuation')
+  camera.position.set(10, 100, 100)
+  createFloor()
+  createSkyBox()
+  loadSu7()
 })
 </script>
 
@@ -49,7 +112,7 @@ onMounted(() => {
     <h1 class="text-2xl font-bold">
       ThreeJs Demo
     </h1>
-    <div ref="domRef" class="h-[400px] w-full bg-black" />
+    <div ref="domRef" class="h-[600px] w-full bg-black" />
   </div>
 </template>
 

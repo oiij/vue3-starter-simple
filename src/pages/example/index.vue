@@ -42,6 +42,14 @@ const menus = [
         name: 'useNumberAnimation',
         path: '/example/use-number-animation',
       },
+      {
+        name: 'useAudioContext',
+        path: '/example/audio-context',
+      },
+      {
+        name: 'usePixiJs',
+        path: '/example/pixi-js',
+      },
     ],
   },
 ]
