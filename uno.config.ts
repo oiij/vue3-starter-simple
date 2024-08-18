@@ -13,6 +13,7 @@ import {
 import { presetExtra } from 'unocss-preset-extra'
 import { presetScrollbar } from 'unocss-preset-scrollbar'
 import { presetDaisy } from '@unscatty/unocss-preset-daisy'
+import { presetAnimations } from 'unocss-preset-animations'
 
 export default defineConfig({
   shortcuts: {
@@ -72,6 +73,7 @@ export default defineConfig({
     presetExtra(),
     presetScrollbar(),
     presetDaisy(),
+    presetAnimations(),
   ],
   transformers: [
     transformerDirectives(),

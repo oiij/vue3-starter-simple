@@ -310,6 +310,7 @@ declare global {
   const useServerSeoMeta: typeof import('@unhead/vue')['useServerSeoMeta']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
+  const useSheets: typeof import('./src/composables/useSheets')['useSheets']
   const useSlots: typeof import('vue')['useSlots']
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
@@ -675,6 +676,7 @@ declare module 'vue' {
     readonly useRefGet: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRefPost: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefPost']>
+    readonly useRequest: UnwrapRef<typeof import('vue-hooks-plus')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteGuard: UnwrapRef<typeof import('./src/composables/useRouteGuard')['useRouteGuard']>
@@ -690,6 +692,7 @@ declare module 'vue' {
     readonly useServerSeoMeta: UnwrapRef<typeof import('@unhead/vue')['useServerSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
+    readonly useSheets: UnwrapRef<typeof import('./src/composables/useSheets')['useSheets']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
@@ -1045,6 +1048,7 @@ declare module '@vue/runtime-core' {
     readonly useRefGet: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRefPost: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefPost']>
+    readonly useRequest: UnwrapRef<typeof import('vue-hooks-plus')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteGuard: UnwrapRef<typeof import('./src/composables/useRouteGuard')['useRouteGuard']>
@@ -1060,6 +1064,7 @@ declare module '@vue/runtime-core' {
     readonly useServerSeoMeta: UnwrapRef<typeof import('@unhead/vue')['useServerSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
+    readonly useSheets: UnwrapRef<typeof import('./src/composables/useSheets')['useSheets']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>

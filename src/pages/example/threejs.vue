@@ -9,9 +9,8 @@ definePage({
     keepAlive: true,
   },
 })
-const { domRef, cameraTweenLookAtObj, renderer, scene, onRendered, createLoader, onIntersectObject, setSkyBox, camera, isMeshType, selectedObjectEffect } = useThreeJs()
-const { loader } = createLoader('gltf/')
-
+const { domRef, renderer, scene, onRendered, gltfLoader, cubeTextureLoader, setOutLine, onIntersectObject, setSkyBox, camera, isMeshType } = useThreeJs()
+gltfLoader.setPath('gltf/')
 function createFloor() {
   const floorMat = new THREE.MeshStandardMaterial({
     color: '#f1f1f1', // 材质的颜色
@@ -26,10 +25,10 @@ function createSkyBox() {
   const path = 'skybox/night/'
   const format = '.jpg'
   const paths = [`${path}posx${format}`, `${path}negx${format}`, `${path}posy${format}`, `${path}negy${format}`, `${path}posz${format}`, `${path}negz${format}`]
-  setSkyBox(scene, paths)
+  setSkyBox(scene, cubeTextureLoader.load(paths))
 }
 function loadSu7() {
-  loader.load('xiaomi_su7/scene.gltf', (gltf) => {
+  gltfLoader.load('xiaomi_su7/scene.gltf', (gltf) => {
     scene.add(gltf.scene)
     const mesh = new THREE.MeshPhysicalMaterial({
       color: '#22d3ee',
@@ -72,25 +71,25 @@ function loadSu7() {
 
     ]
     gltf.scene.traverse((obj) => {
-      obj.castShadow = true
-    })
-    gltf.scene.traverse((obj) => {
-      renderer.domElement.addEventListener('click', (ev) => {
-        gltf.scene.traverse((obj) => {
-          if (isMeshType(obj) && obj.isMesh) {
-            if (onIntersectObject(renderer, camera, obj, ev)) {
-              selectedObjectEffect(obj)
-            }
-          }
-        })
-      })
       if (isMeshType(obj) && obj.isMesh) {
+        obj.castShadow = true
         if (meshArr.includes(obj.name)) {
           obj.material = mesh
         }
       }
     })
-    cameraTweenLookAtObj(gltf.scene)
+    renderer.domElement.addEventListener('click', (ev) => {
+      gltf.scene.traverse((obj) => {
+        if (isMeshType(obj) && obj.isMesh) {
+          if (onIntersectObject(renderer, camera, obj, ev)) {
+            console.log(obj.name)
+
+            setOutLine([obj])
+          }
+        }
+      })
+    })
+    // cameraTweenLookAtObj(gltf.scene)
   }, (xhr) => {
     const percent = xhr.loaded / xhr.total
     console.log(percent)
@@ -100,7 +99,7 @@ function loadSu7() {
 }
 onRendered(() => {
   console.log('onRendered')
-  camera.position.set(10, 100, 100)
+  camera.position.set(0, 5, 0)
   createFloor()
   createSkyBox()
   loadSu7()

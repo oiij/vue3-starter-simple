@@ -1,11 +1,5 @@
-import { ACESFilmicToneMapping, AmbientLight, AxesHelper, CameraHelper, Color, CubeTextureLoader, DirectionalLight, DirectionalLightHelper, EdgesGeometry, Fog, LineBasicMaterial, LineSegments, Mesh, MeshStandardMaterial, PerspectiveCamera, Raycaster, SRGBColorSpace, Scene, SphereGeometry, Vector2, Vector3, WebGLRenderer } from 'three'
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
-import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js'
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
-import { GammaCorrectionShader } from 'three/examples/jsm/shaders/GammaCorrectionShader.js'
-import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js'
-import type { Camera, MeshStandardMaterialParameters, Object3D } from 'three'
+import { ACESFilmicToneMapping, AmbientLight, ArrowHelper, AxesHelper, CameraHelper, Color, CubeTextureLoader, DirectionalLight, DirectionalLightHelper, EdgesGeometry, Fog, Group, HalfFloatType, LineBasicMaterial, LineSegments, LoadingManager, Mesh, MeshStandardMaterial, PerspectiveCamera, Raycaster, SRGBColorSpace, Scene, SphereGeometry, TextureLoader, VSMShadowMap, Vector2, Vector3, WebGLRenderer } from 'three'
+import type { Camera, ColorRepresentation, CubeTexture, MeshStandardMaterialParameters, Object3D } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js'
@@ -15,7 +9,9 @@ import { Pane } from 'tweakpane'
 import * as EssentialsPlugin from '@tweakpane/plugin-essentials'
 import type { BladeController, View } from '@tweakpane/core'
 import Stats from 'three/addons/libs/stats.module.js'
-import { Easing, Group, Tween } from '@tweenjs/tween.js'
+import { Easing, Tween, Group as TweenGroup } from '@tweenjs/tween.js'
+import { Vec3, World } from 'cannon-es'
+import { BlendFunction, CopyMaterial, EdgeDetectionMode, EffectComposer, EffectPass, OutlineEffect, PredicationMode, RenderPass, SMAAEffect, SMAAPreset, ShaderPass, TextureEffect } from 'postprocessing'
 
 interface FPSGraph extends BladeApi<BladeController<View>> {
   begin: () => void
@@ -25,10 +21,16 @@ interface FPSGraph extends BladeApi<BladeController<View>> {
 // private
 function createWebGLRender() {
   const renderer = new WebGLRenderer({
+    powerPreference: 'high-performance',
     alpha: true,
-    antialias: true,
+    antialias: false,
+    stencil: false,
+    depth: false,
   })
   renderer.shadowMap.enabled = true // 启用阴影
+  renderer.shadowMap.type = VSMShadowMap
+  renderer.shadowMap.autoUpdate = false
+  renderer.shadowMap.needsUpdate = true
   renderer.toneMapping = ACESFilmicToneMapping
   return {
     renderer,
@@ -78,6 +80,7 @@ function createCamera(fov?: number, aspect?: number, near?: number, far?: number
 }
 function createCameraHelper(scene: Scene, directionalLight: DirectionalLight) {
   const cameraHelper = new CameraHelper(directionalLight.shadow.camera)
+  cameraHelper.visible = false
   scene.add(cameraHelper)
   return {
     cameraHelper,
@@ -94,20 +97,21 @@ function createAmbientLight(scene: Scene) {
 }
 function createDirectionalLight(scene: Scene) {
   const directionalLight = new DirectionalLight('#FFF', 1)
-  directionalLight.position.set(50, 60, 50)
+  directionalLight.position.set(20, 30, 20)
   directionalLight.castShadow = true // 启用阴影
-  directionalLight.shadow.mapSize.set(1024, 1024)
-  directionalLight.shadow.radius = 3
+  directionalLight.shadow.mapSize.set(512 * 2, 512 * 2)
+  directionalLight.shadow.radius = 5
 
-  directionalLight.shadow.camera.left = -20
-  directionalLight.shadow.camera.right = 20
-  directionalLight.shadow.camera.top = 20
-  directionalLight.shadow.camera.bottom = -20
-  directionalLight.shadow.camera.near = 1
-  directionalLight.shadow.camera.far = 120
+  // directionalLight.shadow.camera.left = -5
+  // directionalLight.shadow.camera.right = 5
+  // directionalLight.shadow.camera.top = 5
+  // directionalLight.shadow.camera.bottom = -5
+  // directionalLight.shadow.camera.near = 1
+  // directionalLight.shadow.camera.far = 120
 
   scene.add(directionalLight)
   const dirHelper = new DirectionalLightHelper(directionalLight, 5)
+  dirHelper.visible = false
   scene.add(dirHelper)
 
   return {
@@ -117,7 +121,7 @@ function createDirectionalLight(scene: Scene) {
 }
 function createAxesHelper(scene: Scene) {
 // 添加坐标轴
-  const axesHelper = new AxesHelper(5)
+  const axesHelper = new AxesHelper(10)
   scene.add(axesHelper)
   return {
     axesHelper,
@@ -146,12 +150,21 @@ function createGui() {
   }
 }
 function createTweenGroup() {
-  const group = new Group()
+  const tweenGroup = new TweenGroup()
   return {
-    group,
+    tweenGroup,
   }
 }
-function createTween(group: Group, camera: Camera, controls: OrbitControls) {
+function createTween(group: TweenGroup) {
+  function tween(from: Record<string, any>) {
+    return new Tween(from, group).easing(Easing.Linear.None)
+  }
+
+  return {
+    tween,
+  }
+}
+function createCameraTween(group: TweenGroup, camera: Camera, controls: OrbitControls) {
   function cameraTween(endPos: { x: number, y: number, z: number }, endTarget: { x: number, y: number, z: number }, duration = 1000) {
     const tween = new Tween({
       x: camera.position.x,
@@ -160,7 +173,7 @@ function createTween(group: Group, camera: Camera, controls: OrbitControls) {
       tx: controls.target.x,
       ty: controls.target.y,
       tz: controls.target.z,
-    })
+    }, group)
       .to({
       // 动画结束相机位置坐标
         x: endPos.x,
@@ -181,7 +194,6 @@ function createTween(group: Group, camera: Camera, controls: OrbitControls) {
       })
       .easing(Easing.Quadratic.InOut)
       .start()
-    group.add(tween)
     return {
       tween,
     }
@@ -212,7 +224,9 @@ function createStats() {
 }
 // 创建后处理
 function createComposer(renderer: WebGLRenderer, scene: Scene, camera: Camera) {
-  const composer = new EffectComposer(renderer)
+  const composer = new EffectComposer(renderer, {
+    frameBufferType: HalfFloatType,
+  })
   const renderPass = new RenderPass(scene, camera)
   composer.addPass(renderPass)
 
@@ -222,57 +236,119 @@ function createComposer(renderer: WebGLRenderer, scene: Scene, camera: Camera) {
   }
 }
 // Composer伽马矫正抗锯齿优化
-function optimizeComposer(composer: EffectComposer, width: number, height: number) {
-  // 保持outputEncoding = sRGBEncoding，自定义着色器通道作为参数
-  const effectCopy = new ShaderPass(GammaCorrectionShader)
-  effectCopy.renderToScreen = true
-  composer.addPass(effectCopy)
-  const smaaPass = new SMAAPass(width, height)
-  composer.addPass(smaaPass)
 
+function createAntialiasing(composer: EffectComposer, camera: Camera) {
+  // 抗锯齿
+  const smaaEffect = new SMAAEffect({
+    preset: SMAAPreset.HIGH,
+    edgeDetectionMode: EdgeDetectionMode.COLOR,
+    predicationMode: PredicationMode.DEPTH,
+  })
+  smaaEffect.edgeDetectionMaterial.edgeDetectionThreshold = 0.02
+  smaaEffect.edgeDetectionMaterial.predicationThreshold = 0.002
+  smaaEffect.edgeDetectionMaterial.predicationScale = 1
+  const edgesTextureEffect = new TextureEffect({
+    blendFunction: BlendFunction.SKIP,
+    texture: smaaEffect.edgesTexture,
+  })
+  const weightsTextureEffect = new TextureEffect({
+    blendFunction: BlendFunction.SKIP,
+    texture: smaaEffect.edgesTexture,
+  })
+  const copyPass = new ShaderPass(new CopyMaterial())
+  copyPass.enabled = false
+  copyPass.renderToScreen = true
+  const effectPass = new EffectPass(
+    camera,
+    smaaEffect,
+    edgesTextureEffect,
+    weightsTextureEffect,
+  )
+  effectPass.enabled = false
+  effectPass.renderToScreen = true
+  composer.addPass(copyPass)
+  composer.addPass(effectPass)
   return {
-    effectCopy,
-    smaaPass,
+    smaaEffect,
+    edgesTextureEffect,
+    weightsTextureEffect,
+    copyPass,
+    effectPass,
   }
 }
-function createOutLinePass(composer: EffectComposer, scene: Scene, camera: Camera, width: number, height: number) {
-  const outlinePass = new OutlinePass(new Vector2(width, height), scene, camera)
-  outlinePass.visibleEdgeColor.set('#00FF00') // 呼吸显示颜色
-  outlinePass.hiddenEdgeColor.set('#00FF00')// 呼吸消失颜色
-  outlinePass.edgeStrength = 5 // 边框的亮度强度
-  outlinePass.edgeGlow = 0.5 // 光晕[0,1]
-  outlinePass.edgeThickness = 1// 边缘宽度
-  outlinePass.pulsePeriod = 2 // 呼吸闪烁速度
-  outlinePass.renderToScreen = true // 设置这个参数的目的是马上将当前的内容输出
+function createOutLinePass(composer: EffectComposer, renderer: WebGLRenderer, scene: Scene, camera: Camera) {
+  const outlineEffect = new OutlineEffect(scene, camera, {
+    blendFunction: BlendFunction.SCREEN,
+    multisampling: Math.min(4, renderer.capabilities.maxSamples),
+    edgeStrength: 2.5, // 边框的亮度强度
+    pulseSpeed: 0.0,
+    visibleEdgeColor: 0x55EFC4, // 呼吸显示颜色
+    hiddenEdgeColor: 0x55EFC4, // 呼吸消失颜色
+    blur: false,
+    xRay: true,
+  })
+  const outlinePass = new EffectPass(camera, outlineEffect)
+  outlinePass.renderToScreen = true
   composer.addPass(outlinePass)
-  function selectedObjectEffect(obj?: Object3D) {
-    const selectedObjects: Object3D[] = []
-    if (obj) {
-      selectedObjects.push(obj)
-    }
-    outlinePass.selectedObjects = selectedObjects
+
+  function setOutLine(objs: Object3D[]) {
+    outlineEffect.selection.set(objs)
+    return objs
   }
   return {
     outlinePass,
-    selectedObjectEffect,
+    outlineEffect,
+    setOutLine,
   }
 }
-
+function createArrowHelperGroup(scene: Scene) {
+  const arrowGroup = new Group()
+  arrowGroup.name = 'arrow-helper-group'
+  function createArrowHelper(dir?: Vector3, origin?: Vector3, length?: number, color?: ColorRepresentation, headLength?: number, headWidth?: number) {
+    const arrowHelper = new ArrowHelper(dir, origin, length, color, headLength, headWidth)
+    arrowGroup.add(arrowHelper)
+    return {
+      arrowHelper,
+      arrowGroup,
+    }
+  }
+  scene.add(arrowGroup)
+  return {
+    arrowGroup,
+    createArrowHelper,
+  }
+}
+function createWorld() {
+  const world = new World({
+    gravity: new Vec3(0, -9.82, 0), // m/s²
+  })
+  return {
+    world,
+  }
+}
 // expose
 function isMeshType(object?: Object3D): object is Mesh {
   return object?.type === 'Mesh'
 }
-function createLoader(path = '') {
-  const loader = new GLTFLoader().setPath(path)
+function createLoadingManager() {
+  const manager = new LoadingManager()
   return {
-    loader,
+    manager,
   }
 }
-function setSkyBox(scene: Scene, paths: string[], fog?: boolean) {
+function createLoader(manager: LoadingManager) {
+  const gltfLoader = new GLTFLoader(manager)
+  const textureLoader = new TextureLoader(manager)
+  const cubeTextureLoader = new CubeTextureLoader(manager)
+  return {
+    gltfLoader,
+    textureLoader,
+    cubeTextureLoader,
+  }
+}
+function setSkyBox(scene: Scene, cubeTexture: CubeTexture, fog?: boolean) {
   if (fog)
     scene.fog = new Fog(new Color('#a0a0a0'), 500, 2000)
-  const loaderBox = new CubeTextureLoader()
-  const cubeTexture = loaderBox.load(paths)
   cubeTexture.colorSpace = SRGBColorSpace
   scene.background = cubeTexture
 }
@@ -335,6 +411,18 @@ function createBall(geometry: {
     ballMesh,
   }
 }
+function lon2xyz(R: number, longitude: number, latitude: number, offset = 1) {
+  let lon = longitude * Math.PI / 180 // 转弧度值
+  const lat = latitude * Math.PI / 180 // 转弧度值
+  lon = -lon // js坐标系z坐标轴对应经度-90度，而不是90度
+
+  // 经纬度坐标转球面坐标计算公式
+  const x = R * offset * Math.cos(lat) * Math.cos(lon)
+  const y = R * offset * Math.sin(lat)
+  const z = R * offset * Math.cos(lat) * Math.sin(lon)
+
+  return new Vector3(x, y, z)
+}
 
 export function useThreeJs() {
   const domRef = ref<HTMLElement>()
@@ -346,6 +434,8 @@ export function useThreeJs() {
     pixelRatioWidth: computed(() => pixelRatio * width.value),
     pixelRatioHeight: computed(() => pixelRatio * height.value),
   }
+  const { manager } = createLoadingManager()
+  const { gltfLoader, textureLoader, cubeTextureLoader } = createLoader(manager)
   const { renderer } = createWebGLRender()
   const { css2Renderer, createCss2DObject } = createCss2dRender()
   const { css3Renderer, createCss3DObject, createCss3DSprite } = createCss3dRender()
@@ -353,20 +443,25 @@ export function useThreeJs() {
   const { camera } = createCamera(45, aspect.value, 0.1, 1000)
   const { stats } = createStats()
   const useComposer = ref(true)
-  const { composer } = createComposer(renderer, scene, camera)
-  const { effectCopy, smaaPass } = optimizeComposer(composer, pixelRatioWidth.value, pixelRatioHeight.value)
-  const { outlinePass, selectedObjectEffect } = createOutLinePass(composer, scene, camera, pixelRatioWidth.value, pixelRatioHeight.value)
+  const { composer, renderPass } = createComposer(renderer, scene, camera)
+  const { copyPass, smaaEffect, effectPass } = createAntialiasing(composer, camera)
+  const { outlineEffect, outlinePass, setOutLine } = createOutLinePass(composer, renderer, scene, camera)
   const { ambientLight } = createAmbientLight(scene)
-  const { directionalLight } = createDirectionalLight(scene)
+  const { directionalLight, dirHelper } = createDirectionalLight(scene)
   const { cameraHelper } = createCameraHelper(scene, directionalLight)
   const { axesHelper } = createAxesHelper(scene)
   const { controls } = createControls(renderer, camera)
   const { gui, fpsGraph } = createGui()
-  const { group } = createTweenGroup()
-  const { cameraTween, cameraTweenLookAtObj } = createTween(group, camera, controls)
+  const { tweenGroup } = createTweenGroup()
+  const { tween } = createTween(tweenGroup)
+  const { cameraTween, cameraTweenLookAtObj } = createCameraTween(tweenGroup, camera, controls)
+  const { createArrowHelper } = createArrowHelperGroup(scene)
+  const { world } = createWorld()
   gui.addBinding(axesHelper, 'visible', {
     label: 'AxesHelper',
   })
+  gui.addBinding(dirHelper, 'visible')
+  gui.addBinding(cameraHelper, 'visible')
   gui.addBinding(controls, 'autoRotate')
   gui.addBinding(controls, 'autoRotateSpeed', {
     step: 0.1,
@@ -391,10 +486,12 @@ export function useThreeJs() {
     css3Renderer.setSize(width.value, height.value)
 
     if (useComposer.value && composer) {
-      composer.setPixelRatio(pixelRatio)
-      composer.setSize(width.value, height.value)
-      effectCopy.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
-      smaaPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      composer.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      renderPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      copyPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      smaaEffect.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      effectPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      outlineEffect.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
       outlinePass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
     }
     camera.aspect = aspect.value
@@ -430,13 +527,16 @@ export function useThreeJs() {
 
   // 动画循环
   let animationId: number | null = null
-  let animatedFun: (() => void) | null = null
-  let beforeAnimateFun: (() => void) | null = null
+  const animatedFuns: (() => void)[] = []
+  const beforeAnimateFuns: (() => void)[] = []
   function animate() {
     fpsGraph.begin()
-    if (beforeAnimateFun) {
-      beforeAnimateFun()
-    }
+    beforeAnimateFuns.forEach((f) => {
+      f()
+    })
+    world.fixedStep()
+    tweenGroup.update()
+
     if (useComposer.value && composer) {
       composer.render()
     }
@@ -445,13 +545,13 @@ export function useThreeJs() {
     }
     css2Renderer.render(scene, camera)
     css3Renderer.render(scene, camera)
-    if (animatedFun) {
-      animatedFun()
-    }
-    group.update()
+
     stats.update()
     controls.update()
     fpsGraph.end()
+    animatedFuns.forEach((f) => {
+      f()
+    })
     animationId = requestAnimationFrame(animate)
   }
   animate()
@@ -479,6 +579,7 @@ export function useThreeJs() {
       css2Dom = null
       gui.document.close()
       gui.dispose()
+      tweenGroup.removeAll()
     }
     catch (error) {
       console.error(error)
@@ -495,6 +596,10 @@ export function useThreeJs() {
     pixelRatio,
     pixelRatioWidth,
     pixelRatioHeight,
+    manager,
+    gltfLoader,
+    textureLoader,
+    cubeTextureLoader,
     renderer,
     css2Renderer,
     css3Renderer,
@@ -503,9 +608,13 @@ export function useThreeJs() {
     stats,
     useComposer,
     composer,
-    effectCopy,
-    smaaPass,
+    renderPass,
+    copyPass,
+    smaaEffect,
+    effectPass,
+    outlineEffect,
     outlinePass,
+    setOutLine,
     ambientLight,
     directionalLight,
     cameraHelper,
@@ -513,7 +622,9 @@ export function useThreeJs() {
     controls,
     gui,
     fpsGraph,
-    group,
+    tweenGroup,
+    tween,
+    createArrowHelper,
     onRendered(cb: () => void) {
       renderFun = cb
     },
@@ -521,15 +632,14 @@ export function useThreeJs() {
       refreshFun = cb
     },
     onAnimated(cb: () => void) {
-      animatedFun = cb
+      animatedFuns.push(cb)
     },
     onBeforeAnimate(cb: () => void) {
-      beforeAnimateFun = cb
+      beforeAnimateFuns.push(cb)
     },
     createCss2DObject,
     createCss3DObject,
     createCss3DSprite,
-    selectedObjectEffect,
     cameraTween,
     cameraTweenLookAtObj,
     destroy,
@@ -538,7 +648,7 @@ export function useThreeJs() {
     setSkyBox,
     setObjLine,
     removeObjLine,
-    createLoader,
     createBall,
+    lon2xyz,
   }
 }
