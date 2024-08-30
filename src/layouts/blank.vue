@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <RouterEntry />
+  <div class="wh-full">
+    <RouterEntry />
+  </div>
 </template>
 
 <style scoped lang="less"></style>

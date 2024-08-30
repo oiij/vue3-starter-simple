@@ -239,6 +239,7 @@ declare global {
   const useHead: typeof import('@unhead/vue')['useHead']
   const useHeadSafe: typeof import('@unhead/vue')['useHeadSafe']
   const useI18n: typeof import('vue-i18n')['useI18n']
+  const useISpeechSynthesis: typeof import('./src/composables/useSpeechSynthesis')['useISpeechSynthesis']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
   const useImageVerify: typeof import('./src/composables/useImageVerify')['default']
@@ -277,6 +278,7 @@ declare global {
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParam: typeof import('./src/composables/useParam')['useParam']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
+  const usePdf: typeof import('./src/composables/usePdf')['usePdf']
   const usePerformanceObserver: typeof import('@vueuse/core')['usePerformanceObserver']
   const usePermission: typeof import('@vueuse/core')['usePermission']
   const usePixiJs: typeof import('./src/composables/usePixiJs')['usePixiJs']
@@ -342,6 +344,7 @@ declare global {
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useTyped: typeof import('./src/composables/useTyped')['default']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
+  const useUserDisplayMedia: typeof import('./src/composables/useUserDisplayMedia')['useUserDisplayMedia']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
@@ -350,7 +353,11 @@ declare global {
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
   const useWebNotification: typeof import('@vueuse/core')['useWebNotification']
+  const useWebRTC: typeof import('./src/composables/useWebRTC')['useWebRTC']
+  const useWebRtcAnswer: typeof import('./src/composables/useWebRTC')['useWebRtcAnswer']
+  const useWebRtcOffer: typeof import('./src/composables/useWebRTC')['useWebRtcOffer']
   const useWebSocket: typeof import('@vueuse/core')['useWebSocket']
+  const useWebSockets: typeof import('./src/composables/useWebSockets')['useWebSockets']
   const useWebWorker: typeof import('@vueuse/core')['useWebWorker']
   const useWebWorkerFn: typeof import('@vueuse/core')['useWebWorkerFn']
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
@@ -621,6 +628,7 @@ declare module 'vue' {
     readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useHeadSafe']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useISpeechSynthesis: UnwrapRef<typeof import('./src/composables/useSpeechSynthesis')['useISpeechSynthesis']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useImageVerify: UnwrapRef<typeof import('./src/composables/useImageVerify')['default']>
@@ -659,6 +667,7 @@ declare module 'vue' {
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParam: UnwrapRef<typeof import('./src/composables/useParam')['useParam']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
+    readonly usePdf: UnwrapRef<typeof import('./src/composables/usePdf')['usePdf']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
     readonly usePixiJs: UnwrapRef<typeof import('./src/composables/usePixiJs')['usePixiJs']>
@@ -724,6 +733,7 @@ declare module 'vue' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTyped: UnwrapRef<typeof import('./src/composables/useTyped')['default']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
+    readonly useUserDisplayMedia: UnwrapRef<typeof import('./src/composables/useUserDisplayMedia')['useUserDisplayMedia']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
@@ -732,7 +742,10 @@ declare module 'vue' {
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
+    readonly useWebRtcAnswer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcAnswer']>
+    readonly useWebRtcOffer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcOffer']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
+    readonly useWebSockets: UnwrapRef<typeof import('./src/composables/useWebSockets')['useWebSockets']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
     readonly useWebWorkerFn: UnwrapRef<typeof import('@vueuse/core')['useWebWorkerFn']>
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
@@ -993,6 +1006,7 @@ declare module '@vue/runtime-core' {
     readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useHeadSafe']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useISpeechSynthesis: UnwrapRef<typeof import('./src/composables/useSpeechSynthesis')['useISpeechSynthesis']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useImageVerify: UnwrapRef<typeof import('./src/composables/useImageVerify')['default']>
@@ -1031,6 +1045,7 @@ declare module '@vue/runtime-core' {
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParam: UnwrapRef<typeof import('./src/composables/useParam')['useParam']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
+    readonly usePdf: UnwrapRef<typeof import('./src/composables/usePdf')['usePdf']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
     readonly usePixiJs: UnwrapRef<typeof import('./src/composables/usePixiJs')['usePixiJs']>
@@ -1096,6 +1111,7 @@ declare module '@vue/runtime-core' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTyped: UnwrapRef<typeof import('./src/composables/useTyped')['default']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
+    readonly useUserDisplayMedia: UnwrapRef<typeof import('./src/composables/useUserDisplayMedia')['useUserDisplayMedia']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
@@ -1104,7 +1120,10 @@ declare module '@vue/runtime-core' {
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
+    readonly useWebRtcAnswer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcAnswer']>
+    readonly useWebRtcOffer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcOffer']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
+    readonly useWebSockets: UnwrapRef<typeof import('./src/composables/useWebSockets')['useWebSockets']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
     readonly useWebWorkerFn: UnwrapRef<typeof import('@vueuse/core')['useWebWorkerFn']>
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>

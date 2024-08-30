@@ -50,6 +50,22 @@ const menus = [
         name: 'usePixiJs',
         path: '/example/pixi-js',
       },
+      {
+        name: 'usePdfJs',
+        path: '/example/use-pdf-js',
+      },
+      {
+        name: 'useUserMedia',
+        path: '/example/use-user-media',
+      },
+      {
+        name: 'useWebRTC',
+        path: '/example/use-web-rtc',
+      },
+      {
+        name: 'useISpeechSynthesis',
+        path: '/example/use-i-speech-synthesis',
+      },
     ],
   },
 ]
@@ -60,11 +76,11 @@ const menus = [
     <div class="p-[10px] text-center text-4xl">
       Example
     </div>
-    <div v-for="(group, index) in menus" :key="index" class="flex-col gap-[10px] rounded-xl bg-white/80 p-[10px]">
-      <div class="p-x-[10px] text-xl">
+    <div v-for="(group, index) in menus" :key="index" class="w-full flex-col gap-[10px] rounded-xl bg-white/80 p-[10px]">
+      <div class="w-full p-x-[10px] text-xl">
         {{ group.name }}
       </div>
-      <div class="flex gap-[10px]">
+      <div class="w-full flex flex-wrap gap-[10px]">
         <button
           v-for="item in group.children"
           :key="item.path"

@@ -84,7 +84,7 @@ function loadSu7() {
           if (onIntersectObject(renderer, camera, obj, ev)) {
             console.log(obj.name)
 
-            setOutLine([obj])
+            setOutLine(obj)
           }
         }
       })

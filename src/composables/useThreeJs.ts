@@ -238,7 +238,6 @@ function createComposer(renderer: WebGLRenderer, scene: Scene, camera: Camera) {
 // Composer伽马矫正抗锯齿优化
 
 function createAntialiasing(composer: EffectComposer, camera: Camera) {
-  // 抗锯齿
   const smaaEffect = new SMAAEffect({
     preset: SMAAPreset.HIGH,
     edgeDetectionMode: EdgeDetectionMode.COLOR,
@@ -264,7 +263,6 @@ function createAntialiasing(composer: EffectComposer, camera: Camera) {
     edgesTextureEffect,
     weightsTextureEffect,
   )
-  effectPass.enabled = false
   effectPass.renderToScreen = true
   composer.addPass(copyPass)
   composer.addPass(effectPass)
@@ -282,18 +280,20 @@ function createOutLinePass(composer: EffectComposer, renderer: WebGLRenderer, sc
     multisampling: Math.min(4, renderer.capabilities.maxSamples),
     edgeStrength: 2.5, // 边框的亮度强度
     pulseSpeed: 0.0,
-    visibleEdgeColor: 0x55EFC4, // 呼吸显示颜色
-    hiddenEdgeColor: 0x55EFC4, // 呼吸消失颜色
+    visibleEdgeColor: 0xFFFFFF, // 呼吸显示颜色
+    hiddenEdgeColor: 0x22090A, // 呼吸消失颜色
     blur: false,
     xRay: true,
   })
   const outlinePass = new EffectPass(camera, outlineEffect)
-  outlinePass.renderToScreen = true
   composer.addPass(outlinePass)
 
-  function setOutLine(objs: Object3D[]) {
-    outlineEffect.selection.set(objs)
-    return objs
+  function setOutLine(obj?: Object3D) {
+    const selectedObjects: Object3D[] = []
+    if (obj) {
+      selectedObjects.push(obj)
+    }
+    outlineEffect.selection.set(selectedObjects)
   }
   return {
     outlinePass,
@@ -443,7 +443,7 @@ export function useThreeJs() {
   const { camera } = createCamera(45, aspect.value, 0.1, 1000)
   const { stats } = createStats()
   const useComposer = ref(true)
-  const { composer, renderPass } = createComposer(renderer, scene, camera)
+  const { composer } = createComposer(renderer, scene, camera)
   const { copyPass, smaaEffect, effectPass } = createAntialiasing(composer, camera)
   const { outlineEffect, outlinePass, setOutLine } = createOutLinePass(composer, renderer, scene, camera)
   const { ambientLight } = createAmbientLight(scene)
@@ -487,12 +487,10 @@ export function useThreeJs() {
 
     if (useComposer.value && composer) {
       composer.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
-      renderPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
       copyPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
-      smaaEffect.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
       effectPass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
-      outlineEffect.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
-      outlinePass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      smaaEffect.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
+      // outlinePass.setSize(pixelRatioWidth.value, pixelRatioHeight.value)
     }
     camera.aspect = aspect.value
     camera.updateProjectionMatrix()
@@ -579,7 +577,6 @@ export function useThreeJs() {
       css2Dom = null
       gui.document.close()
       gui.dispose()
-      tweenGroup.removeAll()
     }
     catch (error) {
       console.error(error)
@@ -608,7 +605,6 @@ export function useThreeJs() {
     stats,
     useComposer,
     composer,
-    renderPass,
     copyPass,
     smaaEffect,
     effectPass,
