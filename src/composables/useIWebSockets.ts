@@ -1,59 +1,85 @@
+type State = 'CONNECTING' | 'OPEN' | 'CLOSING' | 'CLOSED' | 'PENDING'
 const ReadyState: {
-  [key: number]: 'CONNECTING' | 'OPEN' | 'CLOSING' | 'CLOSED'
+  [key: number]: State
 } = {
   0: 'CONNECTING',
   1: 'OPEN',
   2: 'CLOSING',
   3: 'CLOSED',
 }
+interface Options {
+  protocols?: string | string[]
+  manual?: boolean
+}
 type DataType = string | ArrayBufferLike | Blob | ArrayBufferView
-export function useIWebSockets<T extends DataType>(url: string | URL) {
-  const socket = new WebSocket(url)
-  const status = computed(() => ReadyState[socket.readyState])
+export function useIWebSockets<T extends DataType>(url: string | URL, options?: Options) {
+  const { protocols, manual = false } = options ?? {}
+  let socket: WebSocket | null = null
+  const status = ref<State>('PENDING')
   const error = ref<Event>()
   const data = ref<T>()
+  function setStatus() {
+    if (socket) {
+      status.value = ReadyState[socket.readyState]
+    }
+  }
+  function connect() {
+    socket = new WebSocket(url, protocols)
+    socket.addEventListener('open', onOpen)
+    socket.addEventListener('message', onMessage)
+    socket.addEventListener('close', onClose)
+    socket.addEventListener('error', onError)
+  }
+  if (!manual) {
+    connect()
+  }
   function send(data: DataType) {
-    socket.send(data)
+    if (socket) {
+      socket.send(data)
+    }
   }
   function close() {
-    socket.close()
+    if (socket) {
+      socket.close()
+    }
   }
   let onOpenFn: ((ev: Event) => void) | null = null
   function onOpen(ev: Event) {
+    setStatus()
     if (onOpenFn) {
       onOpenFn(ev)
     }
   }
-  socket.addEventListener('open', onOpen)
   let onMessageFn: ((ev: MessageEvent<T>) => void) | null = null
   function onMessage(ev: MessageEvent<T>) {
+    setStatus()
     data.value = ev.data
     if (onMessageFn) {
       onMessageFn(ev)
     }
   }
-  socket.addEventListener('message', onMessage)
   let onCloseFn: ((ev: CloseEvent) => void) | null = null
   function onClose(ev: CloseEvent) {
+    setStatus()
     if (onCloseFn) {
       onCloseFn(ev)
     }
   }
-  socket.addEventListener('close', onClose)
   let onErrorFn: ((ev: Event) => void) | null = null
   function onError(ev: Event) {
+    setStatus()
     error.value = ev
     if (onErrorFn) {
       onErrorFn(ev)
     }
   }
-  socket.addEventListener('error', onError)
   function destroy() {
     close()
-    socket.removeEventListener('open', onOpen)
-    socket.removeEventListener('message', onMessage)
-    socket.removeEventListener('close', onClose)
-    socket.removeEventListener('error', onError)
+    socket?.removeEventListener('open', onOpen)
+    socket?.removeEventListener('message', onMessage)
+    socket?.removeEventListener('close', onClose)
+    socket?.removeEventListener('error', onError)
+    socket = null
     onOpenFn = null
     onMessageFn = null
     onCloseFn = null
@@ -65,8 +91,11 @@ export function useIWebSockets<T extends DataType>(url: string | URL) {
   return {
     socket,
     status,
+    data,
+    connect,
     send,
     close,
+    destroy,
     onOpen(fn: (ev: Event) => void) {
       onOpenFn = fn
     },

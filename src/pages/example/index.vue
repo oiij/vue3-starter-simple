@@ -66,6 +66,10 @@ const menus = [
         name: 'useISpeechSynthesis',
         path: '/example/use-i-speech-synthesis',
       },
+      {
+        name: 'useIWebSockets',
+        path: '/example/use-i-web-sockets',
+      },
     ],
   },
 ]
