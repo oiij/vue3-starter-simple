@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import axios from 'axios'
 import NProgress from 'nprogress'
 import type {
   AxiosError,
@@ -6,7 +7,6 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
-import axios from 'axios'
 
 const BASE_PREFIX = import.meta.env.VITE_API_BASE_PREFIX || ''
 const STATUS_TEXT: { [key: number]: string } = {

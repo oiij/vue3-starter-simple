@@ -1,10 +1,10 @@
-import type { PluginOption } from 'vite'
-import Components from 'unplugin-vue-components/vite'
 import {
   NaiveUiResolver,
   VueUseComponentsResolver,
   VueUseDirectiveResolver,
 } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import type { PluginOption } from 'vite'
 
 export function VitePluginComponents(): PluginOption[] {
   return [

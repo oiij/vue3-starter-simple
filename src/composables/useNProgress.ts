@@ -1,5 +1,6 @@
-import '~/assets/style/nprogress.css'
+/* eslint-disable unicorn/consistent-function-scoping */
 import NProgress from 'nprogress'
+import '~/assets/style/nprogress.css'
 
 export function useNProgress() {
   function start() {

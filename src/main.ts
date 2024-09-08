@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import App from './App.vue'
 import { useModules } from '~/modules'
+import App from './App.vue'
 import '~/assets'
 
 const app = createApp(App)

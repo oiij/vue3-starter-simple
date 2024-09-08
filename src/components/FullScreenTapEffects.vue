@@ -1,3 +1,4 @@
+<!-- eslint-disable unicorn/consistent-function-scoping -->
 <!-- eslint-disable no-console -->
 <script setup lang='ts'>
 import anime from 'animejs/lib/anime.es.js'
@@ -115,21 +116,20 @@ onRender((canvas, ctx) => {
       duration: anime.random(1200, 1800),
       easing: 'easeOutExpo',
       update: renderParticule,
+    }).add({
+      targets: circle,
+      radius: anime.random(80, 160),
+      lineWidth: 0,
+      alpha: {
+        value: 0,
+        easing: 'linear',
+        duration: anime.random(600, 800),
+      },
+      duration: anime.random(1200, 1800),
+      easing: 'easeOutExpo',
+      update: renderParticule,
+      offset: 0,
     })
-      .add({
-        targets: circle,
-        radius: anime.random(80, 160),
-        lineWidth: 0,
-        alpha: {
-          value: 0,
-          easing: 'linear',
-          duration: anime.random(600, 800),
-        },
-        duration: anime.random(1200, 1800),
-        easing: 'easeOutExpo',
-        update: renderParticule,
-        offset: 0,
-      })
   }
   // 动画渲染控制器
   const render = anime({

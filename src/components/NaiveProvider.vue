@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineComponent, h } from 'vue'
-
 import {
   NDialogProvider,
   NLoadingBarProvider,
@@ -11,6 +9,8 @@ import {
   useMessage,
   useNotification,
 } from 'naive-ui'
+
+import { defineComponent, h } from 'vue'
 
 const { theme, themeOverrides, locale, dateLocale } = useNaiveTheme()
 

@@ -1,17 +1,18 @@
-import { ACESFilmicToneMapping, AmbientLight, ArrowHelper, AxesHelper, CameraHelper, Color, CubeTextureLoader, DirectionalLight, DirectionalLightHelper, EdgesGeometry, Fog, Group, HalfFloatType, LineBasicMaterial, LineSegments, LoadingManager, Mesh, MeshStandardMaterial, PerspectiveCamera, Raycaster, SRGBColorSpace, Scene, SphereGeometry, TextureLoader, VSMShadowMap, Vector2, Vector3, WebGLRenderer } from 'three'
-import type { Camera, ColorRepresentation, CubeTexture, MeshStandardMaterialParameters, Object3D } from 'three'
+/* eslint-disable unicorn/consistent-function-scoping */
+import * as EssentialsPlugin from '@tweakpane/plugin-essentials'
+import { Easing, Tween, Group as TweenGroup } from '@tweenjs/tween.js'
+import { Vec3, World } from 'cannon-es'
+import { BlendFunction, CopyMaterial, EdgeDetectionMode, EffectComposer, EffectPass, OutlineEffect, PredicationMode, RenderPass, ShaderPass, SMAAEffect, SMAAPreset, TextureEffect } from 'postprocessing'
+import { ACESFilmicToneMapping, AmbientLight, ArrowHelper, AxesHelper, CameraHelper, Color, CubeTextureLoader, DirectionalLight, DirectionalLightHelper, EdgesGeometry, Fog, Group, HalfFloatType, LineBasicMaterial, LineSegments, LoadingManager, Mesh, MeshStandardMaterial, PerspectiveCamera, Raycaster, Scene, SphereGeometry, SRGBColorSpace, TextureLoader, Vector2, Vector3, VSMShadowMap, WebGLRenderer } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import Stats from 'three/addons/libs/stats.module.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js'
 import { CSS3DObject, CSS3DRenderer, CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js'
-import type { BladeApi } from 'tweakpane'
 import { Pane } from 'tweakpane'
-import * as EssentialsPlugin from '@tweakpane/plugin-essentials'
 import type { BladeController, View } from '@tweakpane/core'
-import Stats from 'three/addons/libs/stats.module.js'
-import { Easing, Tween, Group as TweenGroup } from '@tweenjs/tween.js'
-import { Vec3, World } from 'cannon-es'
-import { BlendFunction, CopyMaterial, EdgeDetectionMode, EffectComposer, EffectPass, OutlineEffect, PredicationMode, RenderPass, SMAAEffect, SMAAPreset, ShaderPass, TextureEffect } from 'postprocessing'
+import type { Camera, ColorRepresentation, CubeTexture, MeshStandardMaterialParameters, Object3D } from 'three'
+import type { BladeApi } from 'tweakpane'
 
 interface FPSGraph extends BladeApi<BladeController<View>> {
   begin: () => void

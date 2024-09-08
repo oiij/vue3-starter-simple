@@ -90,20 +90,12 @@ onUnmounted(() => {
 }
 
 .magical::after {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.1) 20%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.2) 100%);
   /* border */
   z-index: -2;
 }
 .dark .magical::after {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 20%,
-    rgba(255, 255, 255, 0.3) 100%
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 20%, rgba(255, 255, 255, 0.3) 100%);
   /* border */
 }
 .magical .show {

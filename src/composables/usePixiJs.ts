@@ -1,5 +1,5 @@
-import type { ApplicationOptions } from 'pixi.js'
 import { Application } from 'pixi.js'
+import type { ApplicationOptions } from 'pixi.js'
 
 export function usePixiJs(options?: Partial<ApplicationOptions>) {
   const domRef = ref<HTMLElement>()

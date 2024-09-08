@@ -1,6 +1,6 @@
+import Typed from 'typed.js'
 import { onMounted, ref } from 'vue'
 import type { TypedOptions } from 'typed.js'
-import Typed from 'typed.js'
 
 /**
  * 绘制图形验证码

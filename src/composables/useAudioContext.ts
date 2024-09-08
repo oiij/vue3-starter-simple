@@ -22,7 +22,8 @@ export function useAudioContext() {
           const bufferSource = audioCtx!.createBufferSource()
           bufferSource.buffer = audioBuffer
           return resolve(bufferSource)
-        }).catch((err) => {
+        })
+        .catch((err) => {
           return reject(err)
         })
     })

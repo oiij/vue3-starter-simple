@@ -1,8 +1,8 @@
 import { readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import type { Plugin } from 'vite'
 import express, { Router } from 'express'
+import type { Plugin } from 'vite'
 
 interface Options {
   prefix?: string

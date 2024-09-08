@@ -1,6 +1,6 @@
+import { deepClone, deepMerge, onceRun } from 'mixte'
 import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import type { MaybeRefOrGetter } from 'vue'
-import { deepClone, deepMerge, onceRun } from 'mixte'
 
 interface Options<T extends object> {
   value?: MaybeRefOrGetter<T>

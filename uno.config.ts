@@ -1,3 +1,4 @@
+import { presetDaisy } from '@unscatty/unocss-preset-daisy'
 import {
   defineConfig,
   presetAttributify,
@@ -10,12 +11,14 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { presetAnimations } from 'unocss-preset-animations'
 import { presetExtra } from 'unocss-preset-extra'
 import { presetScrollbar } from 'unocss-preset-scrollbar'
-import { presetDaisy } from '@unscatty/unocss-preset-daisy'
-import { presetAnimations } from 'unocss-preset-animations'
 
 export default defineConfig({
+  rules: [
+    [/^line-clamp-(\d+)$/, ([, d]) => ({ 'line-clamp': `${d}`, '-webkit-line-clamp': `${d}`, 'display': '-webkit-box', '-webkit-box-orient': 'vertical', 'overflow': 'hidden', 'text-overflow': 'ellipsis' })],
+  ],
   shortcuts: {
     'wh-full': 'w-full h-full',
     'flex-center': 'flex justify-center items-center',

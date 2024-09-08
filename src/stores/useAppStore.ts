@@ -12,7 +12,7 @@ export const useAppStore = defineStore(
   {
     persist: {
       key: '__APP_STORE_PERSIST__',
-      paths: [''],
+      pick: [''],
     },
   },
 )

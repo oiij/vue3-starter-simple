@@ -1,5 +1,3 @@
-import type { UnwrapRef } from 'vue'
-
 /**
  * localStorage Reactive Functions
  * @param key - localStorage key
@@ -7,8 +5,8 @@ import type { UnwrapRef } from 'vue'
  * @returns Ref Value
  */
 
-export function useLocalStorageRef<T>(key: string, defaultValue: T): Ref<UnwrapRef<T> >
-export function useLocalStorageRef<T>(key: string, defaultValue?: T): Ref<UnwrapRef<T> | undefined> {
+export function useLocalStorageRef<T>(key: string, defaultValue: T): Ref<T>
+export function useLocalStorageRef<T>(key: string, defaultValue?: T): Ref<T | undefined> {
   function setValue() {
     localStorage.setItem(key, JSON.stringify(defaultValue))
     return defaultValue
@@ -41,7 +39,7 @@ export function useLocalStorageRef<T>(key: string, defaultValue?: T): Ref<Unwrap
   })
   function handleStorageEvent(ev: StorageEvent) {
     if (ev.key === key)
-      value.value = loadValue() as UnwrapRef<T | undefined>
+      value.value = loadValue()
   }
   onMounted(() => {
     window.addEventListener('storage', handleStorageEvent)
@@ -49,5 +47,5 @@ export function useLocalStorageRef<T>(key: string, defaultValue?: T): Ref<Unwrap
   onUnmounted(() => {
     window.removeEventListener('storage', handleStorageEvent)
   })
-  return value
+  return value as Ref<T | undefined>
 }

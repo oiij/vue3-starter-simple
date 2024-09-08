@@ -23,7 +23,7 @@ const { status, data, connect, send, close, destroy } = useIWebSockets('http://1
       <n-button @click="connect">
         连接
       </n-button>
-      <n-button @click="send">
+      <n-button @click="() => send('message')">
         发送
       </n-button>
       <n-button @click="close">

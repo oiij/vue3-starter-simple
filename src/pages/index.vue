@@ -51,8 +51,7 @@ const localValue = useLocalStorageRef('localValue', 'str')
 .i-border {
   border: solid 4px transparent;
   border-radius: 10px;
-  background-image: linear-gradient(#fff, #fff),
-    linear-gradient(135deg, rgba(183, 40, 255, 1), rgba(40, 112, 255, 1));
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, rgba(183, 40, 255, 1), rgba(40, 112, 255, 1));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }

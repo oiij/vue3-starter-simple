@@ -26,7 +26,7 @@ export function preWrapperPlugin(md: MarkdownIt, options: Options) {
       `<div class="code-block language-${lang}${getAdaptiveThemeMarker(options)}${active}">`
       + `<button title="${options.codeCopyButtonTitle}" class="copy"></button>`
       + `<span class="lang">${lang}</span>${
-      fence(...args)
+        fence(...args)
       }</div>`
     )
   }
