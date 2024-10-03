@@ -1,7 +1,7 @@
+import type { ConfigEnv, PluginOption } from 'vite'
 import process from 'node:process'
 import { loadEnv } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import type { ConfigEnv, PluginOption } from 'vite'
 
 export function VitePluginPWA({ mode }: ConfigEnv): PluginOption[] {
   const { VITE_APP_NAME, VITE_APP_DESCRIPTION } = loadEnv(mode, process.cwd(), '')

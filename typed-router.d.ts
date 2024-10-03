@@ -33,5 +33,6 @@ declare module 'vue-router/auto-routes' {
     '/example/use-pdf-js': RouteRecordInfo<'/example/use-pdf-js', '/example/use-pdf-js', Record<never, never>, Record<never, never>>,
     '/example/use-user-media': RouteRecordInfo<'/example/use-user-media', '/example/use-user-media', Record<never, never>, Record<never, never>>,
     '/example/use-web-rtc': RouteRecordInfo<'/example/use-web-rtc', '/example/use-web-rtc', Record<never, never>, Record<never, never>>,
+    '/example/vue-data-ui': RouteRecordInfo<'/example/vue-data-ui', '/example/vue-data-ui', Record<never, never>, Record<never, never>>,
   }
 }

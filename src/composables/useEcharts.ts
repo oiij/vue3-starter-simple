@@ -1,3 +1,17 @@
+import type {
+  BarSeriesOption,
+  LineSeriesOption,
+  PieSeriesOption,
+} from 'echarts/charts'
+import type {
+  DatasetComponentOption,
+  GridComponentOption,
+  LegendComponentOption,
+  TitleComponentOption,
+  ToolboxComponentOption,
+  TooltipComponentOption,
+} from 'echarts/components'
+import type { ComputedRef, Ref } from 'vue'
 import { useElementSize } from '@vueuse/core'
 import { BarChart, LineChart, PieChart } from 'echarts/charts'
 import {
@@ -13,20 +27,6 @@ import * as echarts from 'echarts/core'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
-import type {
-  BarSeriesOption,
-  LineSeriesOption,
-  PieSeriesOption,
-} from 'echarts/charts'
-import type {
-  DatasetComponentOption,
-  GridComponentOption,
-  LegendComponentOption,
-  TitleComponentOption,
-  ToolboxComponentOption,
-  TooltipComponentOption,
-} from 'echarts/components'
-import type { ComputedRef, Ref } from 'vue'
 
 export type ECOption = echarts.ComposeOption<
   | BarSeriesOption

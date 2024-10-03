@@ -1,4 +1,6 @@
-/* eslint-disable unicorn/consistent-function-scoping */
+import type { BladeController, View } from '@tweakpane/core'
+import type { Camera, ColorRepresentation, CubeTexture, MeshStandardMaterialParameters, Object3D } from 'three'
+import type { BladeApi } from 'tweakpane'
 import * as EssentialsPlugin from '@tweakpane/plugin-essentials'
 import { Easing, Tween, Group as TweenGroup } from '@tweenjs/tween.js'
 import { Vec3, World } from 'cannon-es'
@@ -10,9 +12,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js'
 import { CSS3DObject, CSS3DRenderer, CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js'
 import { Pane } from 'tweakpane'
-import type { BladeController, View } from '@tweakpane/core'
-import type { Camera, ColorRepresentation, CubeTexture, MeshStandardMaterialParameters, Object3D } from 'three'
-import type { BladeApi } from 'tweakpane'
 
 interface FPSGraph extends BladeApi<BladeController<View>> {
   begin: () => void

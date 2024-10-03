@@ -1,6 +1,3 @@
-/* eslint-disable ts/no-unused-expressions */
-import axios from 'axios'
-import { ref } from 'vue'
 import type {
   AxiosError,
   AxiosRequestConfig,
@@ -9,6 +6,8 @@ import type {
   Method,
 } from 'axios'
 import type { Ref } from 'vue'
+import axios from 'axios'
+import { ref } from 'vue'
 
 export interface ProgressEvent {
   loaded: number

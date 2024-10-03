@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
 import NProgress from 'nprogress'
 import '~/assets/style/nprogress.css'
 

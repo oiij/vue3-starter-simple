@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
 import { saveAs } from 'file-saver'
 import { utils, write } from 'xlsx'
 

@@ -1,6 +1,6 @@
-import BScroll from '@better-scroll/core'
 import type { Options } from '@better-scroll/core'
 import type { Ref } from 'vue'
+import BScroll from '@better-scroll/core'
 
 export function useBScroll(option?: Options) {
   const bsOption: Options = {

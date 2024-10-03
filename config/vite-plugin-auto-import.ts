@@ -1,8 +1,8 @@
+import type { PluginOption } from 'vite'
 import { unheadVueComposablesImports } from '@unhead/vue'
 import { VueHooksPlusResolver } from '@vue-hooks-plus/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import type { PluginOption } from 'vite'
 
 export function VitePluginAutoImport(): PluginOption[] {
   return [

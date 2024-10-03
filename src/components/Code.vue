@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { codeToHtml } from 'shiki'
 import type { BundledLanguage, BundledTheme } from 'shiki'
+import { codeToHtml } from 'shiki'
 
 const props = defineProps<{
   code?: string

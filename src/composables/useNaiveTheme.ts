@@ -1,3 +1,5 @@
+import type { GlobalThemeOverrides } from 'naive-ui'
+import type { Ref } from 'vue'
 import { colord } from 'colord'
 import {
   darkTheme,
@@ -6,8 +8,6 @@ import {
   enUS,
   zhCN,
 } from 'naive-ui'
-import type { GlobalThemeOverrides } from 'naive-ui'
-import type { Ref } from 'vue'
 
 interface Color {
   primary: string

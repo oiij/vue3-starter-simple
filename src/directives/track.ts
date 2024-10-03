@@ -1,4 +1,3 @@
-/* eslint-disable ts/no-unused-expressions */
 import type { DirectiveBinding } from 'vue'
 
 interface BindingValue {

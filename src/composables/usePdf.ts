@@ -1,10 +1,11 @@
 /// <reference types="@types/wicg-file-system-access" />
+
+import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 import { saveAs } from 'file-saver'
 import { jsPDF as JsPDF } from 'jspdf'
 import JsZip from 'jszip'
 import { nanoid } from 'nanoid'
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist'
-import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 
 GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${`4.5.136`}/build/pdf.worker.min.mjs`
 function openFileAsBuffer(): Promise<ArrayBuffer> {

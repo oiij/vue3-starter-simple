@@ -24,7 +24,8 @@ export function toggleDark(event?: MouseEvent, effect = true) {
     Math.max(x, innerWidth - x),
     Math.max(y, innerHeight - y),
   )
-  // @ts-expect-error: Transition API
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore
   const transition = document.startViewTransition(async () => {
     isDark.value = !isDark.value
     await nextTick()
