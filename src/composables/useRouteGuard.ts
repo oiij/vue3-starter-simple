@@ -4,8 +4,8 @@ import type { Router } from 'vue-router/auto'
 export function useRouteGuard(router: Router) {
   const { start, done } = useNProgress()
   router.beforeEach((to, from, next) => {
-    const { language } = useLanguage()
-    console.log(language.value)
+    const { locale } = useLanguage()
+    console.log(locale.value)
 
     start()
     next()

@@ -1,4 +1,4 @@
-import type { GlobalThemeOverrides } from 'naive-ui'
+import type { GlobalThemeOverrides, NDateLocale } from 'naive-ui'
 import type { Ref } from 'vue'
 import { colord } from 'colord'
 import {
@@ -24,7 +24,25 @@ function getStatusColor(color = '#ff461f') {
     suppl: colord(color).lighten(0.1).toHex(),
   }
 }
-const { language } = useLanguage()
+const naiveLocaleMap: {
+  [key: string]: {
+    name: string
+    dateLocale: NDateLocale
+    locale: typeof zhCN
+  }
+} = {
+  'zh-CN': {
+    name: '简体中文',
+    dateLocale: dateZhCN,
+    locale: zhCN,
+  },
+  'en-US': {
+    name: 'English',
+    dateLocale: dateEnUS,
+    locale: enUS,
+  },
+}
+const { locale: _locale } = useLanguage()
 
 const color = ref<Color>({
   primary: '#64748B',
@@ -66,26 +84,8 @@ const themeOverrides: Ref<GlobalThemeOverrides> = computed(() => {
     },
   }
 })
-const locale = computed(() => {
-  switch (language.value as 'en' | 'cn') {
-    case 'en':
-      return enUS
-    case 'cn':
-      return zhCN
-    default:
-      return undefined
-  }
-})
-const dateLocale = computed(() => {
-  switch (language.value as 'en' | 'cn') {
-    case 'en':
-      return dateEnUS
-    case 'cn':
-      return dateZhCN
-    default:
-      return undefined
-  }
-})
+const locale = computed(() => naiveLocaleMap[_locale.value].locale)
+const dateLocale = computed(() => naiveLocaleMap[_locale.value].dateLocale)
 export function useNaiveTheme() {
   return {
     theme,
