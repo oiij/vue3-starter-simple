@@ -42,7 +42,7 @@ const naiveLocaleMap: {
     locale: enUS,
   },
 }
-const { locale: _locale } = useLanguage()
+const { locale: _locale } = useLocale()
 
 const color = ref<Color>({
   primary: '#64748B',

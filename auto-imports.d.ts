@@ -257,6 +257,7 @@ declare global {
   const useLoading: typeof import('./src/composables/useLoading')['useLoading']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLocalStorageRef: typeof import('./src/composables/useLocalStorageRef')['useLocalStorageRef']
+  const useLocale: typeof import('./src/composables/useLocale')['useLocale']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -648,11 +649,11 @@ declare module 'vue' {
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
-    readonly useLanguage: UnwrapRef<typeof import('./src/composables/useLanguage')['useLanguage']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLoading: UnwrapRef<typeof import('./src/composables/useLoading')['useLoading']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLocalStorageRef: UnwrapRef<typeof import('./src/composables/useLocalStorageRef')['useLocalStorageRef']>
+    readonly useLocale: UnwrapRef<typeof import('./src/composables/useLocale')['useLocale']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -698,7 +699,6 @@ declare module 'vue' {
     readonly useRefGet: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRefPost: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefPost']>
-    readonly useRequest: UnwrapRef<typeof import('vue-hooks-plus')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteGuard: UnwrapRef<typeof import('./src/composables/useRouteGuard')['useRouteGuard']>
