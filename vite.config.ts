@@ -23,7 +23,7 @@ import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginM
 import { VitePluginMock } from './plugin'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE, BUILD_ENV } = loadEnv(mode, process.cwd(), '')
+  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
   const debug = !!process.env.VSCODE_DEBUG
 
   return {
@@ -76,7 +76,9 @@ export default defineConfig(({ command, mode }) => {
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
       Sitemap(),
-      BUILD_ENV === 'vercel' ? undefined : analyzer(), // https://github.com/nonzzz/vite-bundle-analyzer
+      analyzer({
+        analyzerMode: 'json',
+      }), // https://github.com/nonzzz/vite-bundle-analyzer
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
       ...VitePluginI18n(),
@@ -87,19 +89,17 @@ export default defineConfig(({ command, mode }) => {
     base: VITE_BASE ?? '/',
     server: {
       port: Number(VITE_DEV_PORT),
-      host: true, // host设置为true才可以使用network的形式，以ip访问项目
-      open: false, // 自动打开浏览器
-      cors: true, // 跨域设置允许
-      strictPort: true, // 如果端口已占用直接退出
-      proxy: VITE_API_BASE_URL === ''
-        ? undefined
-        : {
-            [VITE_API_BASE_PREFIX]: {
-              target: VITE_API_BASE_URL,
-              changeOrigin: true,
-              rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
-            },
-          },
+      host: true,
+      open: false,
+      cors: true,
+      strictPort: true,
+      proxy: {
+        [VITE_API_BASE_PREFIX]: {
+          target: VITE_API_BASE_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
+        },
+      },
     },
     preview: {
       host: true,
@@ -110,15 +110,13 @@ export default defineConfig(({ command, mode }) => {
       sourcemap: debug,
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
-      // 在生产环境移除console.log
-      // terserOptions: {
-      //   compress: {
-      //     drop_console: true,
-      //     drop_debugger: true,
-      //   },
-      // },
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       assetsDir: 'static/assets',
-      // 静态资源打包到dist下的不同目录
       rollupOptions: {
         output: {
           chunkFileNames: 'static/js/[name]-[hash].js',
@@ -130,7 +128,7 @@ export default defineConfig(({ command, mode }) => {
     },
     resolve: {
       alias: {
-        '~': resolve(__dirname, './src'), // 路径别名
+        '~': resolve(__dirname, './src'),
       },
     },
     css: {

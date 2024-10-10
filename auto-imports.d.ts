@@ -453,7 +453,6 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getLocal: UnwrapRef<typeof import('./src/utils/useStorage')['getLocal']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
     readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -699,6 +698,7 @@ declare module 'vue' {
     readonly useRefGet: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRefPost: UnwrapRef<typeof import('./src/composables/useReactiveAxios')['useRefPost']>
+    readonly useRequest: UnwrapRef<typeof import('vue-hooks-plus')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteGuard: UnwrapRef<typeof import('./src/composables/useRouteGuard')['useRouteGuard']>
