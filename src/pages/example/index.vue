@@ -5,6 +5,8 @@ definePage({
     title: 'Example',
     keepAlive: true,
   },
+  name: '/example/index',
+
 })
 const router = useRouter()
 const menus = [

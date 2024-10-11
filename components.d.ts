@@ -29,6 +29,7 @@ declare module 'vue' {
     NModalProvider: typeof import('naive-ui')['NModalProvider']
     NotivueProvider: typeof import('./src/components/NotivueProvider.vue')['default']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
+    RouterEntryBlank: typeof import('./src/components/RouterEntryBlank.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']

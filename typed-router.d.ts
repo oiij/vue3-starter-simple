@@ -21,7 +21,8 @@ declare module 'vue-router/auto-routes' {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
-    '/example/': RouteRecordInfo<'/example/', '/example', Record<never, never>, Record<never, never>>,
+    '/example': RouteRecordInfo<'/example', '/example', Record<never, never>, Record<never, never>>,
+    '/example/index': RouteRecordInfo<'/example/index', '/example', Record<never, never>, Record<never, never>>,
     '/example/audio-context': RouteRecordInfo<'/example/audio-context', '/example/audio-context', Record<never, never>, Record<never, never>>,
     '/example/echarts': RouteRecordInfo<'/example/echarts', '/example/echarts', Record<never, never>, Record<never, never>>,
     '/example/naive-ui': RouteRecordInfo<'/example/naive-ui', '/example/naive-ui', Record<never, never>, Record<never, never>>,
@@ -34,5 +35,6 @@ declare module 'vue-router/auto-routes' {
     '/example/use-user-media': RouteRecordInfo<'/example/use-user-media', '/example/use-user-media', Record<never, never>, Record<never, never>>,
     '/example/use-web-rtc': RouteRecordInfo<'/example/use-web-rtc', '/example/use-web-rtc', Record<never, never>, Record<never, never>>,
     '/example/vue-data-ui': RouteRecordInfo<'/example/vue-data-ui', '/example/vue-data-ui', Record<never, never>, Record<never, never>>,
+    '/setting': RouteRecordInfo<'/setting', '/setting', Record<never, never>, Record<never, never>>,
   }
 }

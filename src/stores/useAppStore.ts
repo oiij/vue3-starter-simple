@@ -1,12 +1,18 @@
 import { defineStore } from 'pinia'
+import { colorMode } from '~/composables/useColorMode'
 
 export const useAppStore = defineStore(
   'appStore',
   () => {
-    const { locale, toggle } = useLocale()
+    const { language, setLanguage } = useLanguage()
+    const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
+
     return {
-      locale,
-      toggle,
+      language,
+      setLanguage,
+      colorMode,
+      collapsed,
+      toggleCollapsed,
     }
   },
   {

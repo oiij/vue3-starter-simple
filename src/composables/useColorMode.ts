@@ -1,6 +1,8 @@
 // these APIs are auto-imported from @vueuse/core
-export const isDark = useDark()
+const storageKey = 'color-mode'
+export const isDark = useDark({ storageKey })
 export const preferredDark = usePreferredDark()
+export const { store: colorMode } = useColorMode({ emitAuto: true, storageKey })
 
 const isAppearanceTransition
   = typeof document !== 'undefined'
