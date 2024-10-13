@@ -1,6 +1,6 @@
 import { i18n } from '~/modules'
 
-export function useLocale() {
+export function useLanguage() {
   const { locale } = i18n.global
   const language = useLocalStorage('language', 'auto')
   const { language: navigatorLanguage } = useNavigatorLanguage()

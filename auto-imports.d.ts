@@ -651,11 +651,11 @@ declare module 'vue' {
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
+    readonly useLanguage: UnwrapRef<typeof import('./src/composables/useLanguage')['useLanguage']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLoading: UnwrapRef<typeof import('./src/composables/useLoading')['useLoading']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLocalStorageRef: UnwrapRef<typeof import('./src/composables/useLocalStorageRef')['useLocalStorageRef']>
-    readonly useLocale: UnwrapRef<typeof import('./src/composables/useLanguage')['useLocale']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>

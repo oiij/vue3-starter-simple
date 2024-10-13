@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-const { toggle } = useLocale()
+const { toggle } = useLanguage()
 </script>
 
 <template>
