@@ -368,7 +368,7 @@ declare global {
   const useWebRtcAnswer: typeof import('./src/composables/useWebRTC')['useWebRtcAnswer']
   const useWebRtcOffer: typeof import('./src/composables/useWebRTC')['useWebRtcOffer']
   const useWebSocket: typeof import('@vueuse/core')['useWebSocket']
-  const useWebSockets: typeof import('./src/composables/useWebSockets')['useWebSockets']
+  const useWebSockets: typeof import('./src/composables/useIWebSockets')['useWebSockets']
   const useWebWorker: typeof import('@vueuse/core')['useWebWorker']
   const useWebWorkerFn: typeof import('@vueuse/core')['useWebWorkerFn']
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
@@ -641,7 +641,6 @@ declare module 'vue' {
     readonly useHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useHeadSafe']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useISpeechSynthesis: UnwrapRef<typeof import('./src/composables/useISpeechSynthesis')['useISpeechSynthesis']>
-    readonly useIWebSockets: UnwrapRef<typeof import('./src/composables/useIWebSockets')['useIWebSockets']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
@@ -763,6 +762,7 @@ declare module 'vue' {
     readonly useWebRtcAnswer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcAnswer']>
     readonly useWebRtcOffer: UnwrapRef<typeof import('./src/composables/useWebRTC')['useWebRtcOffer']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
+    readonly useWebSockets: UnwrapRef<typeof import('./src/composables/useIWebSockets')['useWebSockets']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
     readonly useWebWorkerFn: UnwrapRef<typeof import('@vueuse/core')['useWebWorkerFn']>
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>

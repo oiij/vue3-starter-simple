@@ -12,8 +12,10 @@ interface Options {
   manual?: boolean
 }
 type DataType = string | ArrayBufferLike | Blob | ArrayBufferView
-export function useIWebSockets<T extends DataType>(url: string | URL, options?: Options) {
-  const { protocols, manual = false } = options ?? {}
+export function useWebSockets<T extends DataType>(url: string | URL, options?: Options) {
+  const _options = Object.assign({
+    manual: false,
+  }, options)
   let socket: WebSocket | null = null
   const status = ref<State>('PENDING')
   const error = ref<Event>()
@@ -23,15 +25,21 @@ export function useIWebSockets<T extends DataType>(url: string | URL, options?: 
       status.value = ReadyState[socket.readyState]
     }
   }
-  function connect() {
-    socket = new WebSocket(url, protocols)
+  function connect(protocols?: string | string[]) {
+    if (protocols) {
+      _options.protocols = protocols
+    }
+    socket = new WebSocket(url, _options.protocols)
     socket.addEventListener('open', onOpen)
     socket.addEventListener('message', onMessage)
     socket.addEventListener('close', onClose)
     socket.addEventListener('error', onError)
   }
-  if (!manual) {
-    connect()
+  function refresh() {
+    connect(_options.protocols)
+  }
+  if (!_options.manual) {
+    connect(_options.protocols)
   }
   function send(data: DataType) {
     if (socket) {
@@ -93,6 +101,7 @@ export function useIWebSockets<T extends DataType>(url: string | URL, options?: 
     status,
     data,
     connect,
+    refresh,
     send,
     close,
     destroy,
