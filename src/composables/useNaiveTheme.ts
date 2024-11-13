@@ -43,7 +43,7 @@ const naiveLocaleMap: {
   },
 }
 const { locale: _locale } = useLanguage()
-
+const { isDark } = useTheme()
 const color = ref<Color>({
   primary: '#64748B',
   info: '#06b6d4',

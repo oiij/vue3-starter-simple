@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+const { isDark, toggleDark } = useTheme()
 </script>
 
 <template>

@@ -1,20 +1,20 @@
 // these APIs are auto-imported from @vueuse/core
 const storageKey = 'color-mode'
-export const isDark = useDark({ storageKey })
-export const preferredDark = usePreferredDark()
-export const { store: colorMode } = useColorMode({ emitAuto: true, storageKey })
+const isDark = useDark({ storageKey })
+const preferredDark = usePreferredDark()
+const { store: colorMode, system: systemColorMode } = useColorMode({ emitAuto: true, storageKey })
 
-const isAppearanceTransition
+function toggleDark(event?: MouseEvent, effect = true) {
+  const isAppearanceTransition
   = typeof document !== 'undefined'
   // @ts-expect-error: Transition API
   && document.startViewTransition
   && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/**
- * Credit to [@hooray](https://github.com/hooray)
- * @see https://github.com/vuejs/vitepress/pull/2347
- */
-export function toggleDark(event?: MouseEvent, effect = true) {
+  /**
+   * Credit to [@hooray](https://github.com/hooray)
+   * @see https://github.com/vuejs/vitepress/pull/2347
+   */
   if (!isAppearanceTransition || !event || !effect) {
     isDark.value = !isDark.value
     return
@@ -51,4 +51,13 @@ export function toggleDark(event?: MouseEvent, effect = true) {
       },
     )
   })
+}
+export function useTheme() {
+  return {
+    isDark,
+    preferredDark,
+    colorMode,
+    systemColorMode,
+    toggleDark,
+  }
 }

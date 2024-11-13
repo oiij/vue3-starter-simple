@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { isDark, preferredDark } = useTheme()
 useHead({
   title: import.meta.env.VITE_APP_NAME,
   meta: [

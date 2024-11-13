@@ -72,6 +72,10 @@ const menus = [
         name: 'useIWebSockets',
         path: '/example/use-i-web-sockets',
       },
+      {
+        name: 'AiEditor',
+        path: '/example/ai-editor',
+      },
     ],
   },
 ]
