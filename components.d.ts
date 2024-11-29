@@ -7,7 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AiEditor: typeof import('./src/components/AiEditor.vue')['default']
     AppBar: typeof import('./src/components/AppBar.vue')['default']
     BackButton: typeof import('./src/components/BackButton.vue')['default']
     BaseAppBar: typeof import('./src/components/BaseAppBar.vue')['default']
@@ -22,9 +21,14 @@ declare module 'vue' {
     NaiveProvider: typeof import('./src/components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NForm: typeof import('naive-ui')['NForm']
+    NFormItem: typeof import('naive-ui')['NFormItem']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
+    NInput: typeof import('naive-ui')['NInput']
+    NInputNumber: typeof import('naive-ui')['NInputNumber']
     NModalProvider: typeof import('naive-ui')['NModalProvider']
     NotivueProvider: typeof import('./src/components/NotivueProvider.vue')['default']
+    NSelect: typeof import('naive-ui')['NSelect']
     NSwitch: typeof import('naive-ui')['NSwitch']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
     RouterEntryBlank: typeof import('./src/components/RouterEntryBlank.vue')['default']

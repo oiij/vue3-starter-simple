@@ -8,19 +8,16 @@ const app = express()
 const port = process.env.PORT || 3300
 
 /* 代理配置 start */
-const proxyOptions = {
-  target: 'http://sys1.lfqqd.com', // 后端服务器地址
-  changeOrigin: true, // 处理跨域
-  pathRewrite: {
-    '^/api': '/api',
-  },
-}
-const exampleProxy = createProxyMiddleware(['/api'], proxyOptions) // api前缀的请求都走代理
-app.use(exampleProxy)
+
+const exampleProxy = createProxyMiddleware({
+  target: 'http://www.example.org/api',
+  changeOrigin: true,
+}) // api前缀的请求都走代理
+app.use('/api', exampleProxy)
 /* 代理配置 end */
 
 app.use('/', express.static('./dist'))
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
   const indexHtml = fs.readFileSync('./dist/index.html', 'utf-8')
   res.send(indexHtml)
 })

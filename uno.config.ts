@@ -1,4 +1,4 @@
-import { presetDaisy } from '@unscatty/unocss-preset-daisy'
+// import { presetDaisy } from '@unscatty/unocss-preset-daisy'
 import {
   defineConfig,
   presetAttributify,
@@ -75,7 +75,7 @@ export default defineConfig({
     }),
     presetExtra(),
     presetScrollbar(),
-    presetDaisy(),
+    // presetDaisy(),
     presetAnimations(),
   ],
   transformers: [

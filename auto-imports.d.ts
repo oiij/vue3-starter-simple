@@ -403,6 +403,7 @@ declare global {
   export type { EnumContentType, EnumDataType } from './src/utils/useEnum'
   import('./src/utils/useEnum')
 }
+
 // for vue template auto import
 import { UnwrapRef } from 'vue'
 declare module 'vue' {
