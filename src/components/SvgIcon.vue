@@ -1,16 +1,22 @@
 <script setup lang='ts'>
-const props = withDefaults(defineProps<{ prefix?: string, name: string, color?: string, width?: number, height?: number }>(), {
-  prefix: 'icon',
-  color: '#333',
-  width: 1,
-  height: 1,
+import { is } from '@oiij/utils'
+import { computed } from 'vue'
+
+const { prefix = 'icon-', name, color = '#000', size = 1 } = defineProps<{
+  prefix?: string
+  name: string
+  color?: string
+  size?: number | string
+}>()
+const symbolId = computed(() => `#${prefix}${name}`)
+const _size = computed(() => {
+  return is.isNumber(size) ? `${size}em` : size
 })
-const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <svg aria-hidden="true" v-bind="$attrs" :style="{ width: `${props.width}em`, height: `${props.height}em` }">
-    <use :xlink:href="symbolId" :fill="props.color" />
+  <svg aria-hidden="true" :style="{ width: _size, height: _size }">
+    <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>
 

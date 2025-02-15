@@ -31,7 +31,7 @@ function formatComponentInstance(component: Component, route: RouteLocationNorma
 
 <template>
   <RouterView v-slot="{ Component, route }">
-    <Transition appear mode="out-in" :name="route.meta.transition">
+    <Transition appear mode="out-in" name="fade">
       <KeepAlive :include="keepAliveName">
         <Suspense>
           <component :is="formatComponentInstance(Component, route)" :key="route.path" />

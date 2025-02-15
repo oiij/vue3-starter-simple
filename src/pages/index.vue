@@ -8,7 +8,8 @@ definePage({
     title: 'HOME',
     requireAuth: true,
     keepAlive: true,
-    icon: 'svg:pixel-travel-icon-民宿',
+    icon: 'i-mage-home',
+
   },
 })
 useHead({
@@ -17,21 +18,11 @@ useHead({
 </script>
 
 <template>
-  <div class="flex-col-center gap-10">
-    <HelloWorld />
-    <div class="flex items-center justify-center gap-1">
-      <NButton v-track:exposure>
-        ExposureTrack
-      </NButton>
-      <NButton v-track:click>
-        ClickTrack
-      </NButton>
-      <NButton v-track:long-press>
-        LongPressTrack
-      </NButton>
-    </div>
+  <div class="wh-full flex-col-center gap-10">
+    <h1>首页</h1>
   </div>
 </template>
 
 <style scoped lang='less'>
+
 </style>

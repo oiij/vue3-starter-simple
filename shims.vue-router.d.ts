@@ -5,14 +5,16 @@ import 'vue-router'
 
 // 为了确保这个文件被当作一个模块，添加至少一个 `export` 声明
 export {}
-
 declare module 'vue-router' {
   interface RouteMeta {
     layout?: string
     title?: string
+    hide?: boolean
     keepAlive?: boolean
-    layout?: string
     transition?: string
+    requireAuth?: boolean
+    isLayout?: boolean
     icon?: string
+    sort?: number
   }
 }

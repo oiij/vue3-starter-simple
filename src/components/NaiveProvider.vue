@@ -1,24 +1,64 @@
 <script setup lang="ts">
+import type {
+  ConfigProviderProps,
+  DialogProviderInst,
+  DialogProviderProps,
+  LoadingBarProviderInst,
+  LoadingBarProviderProps,
+  MessageProviderInst,
+  MessageProviderProps,
+  ModalProviderInst,
+  ModalProviderProps,
+  NotificationProviderInst,
+  NotificationProviderProps,
+} from 'naive-ui'
+
 import {
+  NConfigProvider,
   NDialogProvider,
+  NGlobalStyle,
   NLoadingBarProvider,
   NMessageProvider,
+  NModalProvider,
   NNotificationProvider,
   useDialog,
   useLoadingBar,
   useMessage,
+  useModal,
   useNotification,
 } from 'naive-ui'
+import { defineComponent, onMounted } from 'vue'
 
-import { defineComponent, h } from 'vue'
-
-const { theme, themeOverrides, locale, dateLocale } = useNaiveTheme()
-
+const {
+  configProviderProps,
+  loadingBarProps,
+  dialogProviderProps,
+  modalProviderProps,
+  notificationProviderProps,
+  messageProviderProps,
+} = defineProps<{
+  configProviderProps?: ConfigProviderProps
+  loadingBarProps?: LoadingBarProviderProps
+  dialogProviderProps?: DialogProviderProps
+  modalProviderProps?: ModalProviderProps
+  notificationProviderProps?: NotificationProviderProps
+  messageProviderProps?: MessageProviderProps
+}>()
+declare global {
+  interface Window {
+    $dialog: DialogProviderInst
+    $loadingBar: LoadingBarProviderInst
+    $message: MessageProviderInst
+    $modal: ModalProviderInst
+    $notification: NotificationProviderInst
+  }
+}
 // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
 function registerNaiveTools() {
-  window.$loadingBar = useLoadingBar()
   window.$dialog = useDialog()
+  window.$loadingBar = useLoadingBar()
   window.$message = useMessage()
+  window.$modal = useModal()
   window.$notification = useNotification()
 }
 const NaiveProviderContent = defineComponent({
@@ -28,24 +68,21 @@ const NaiveProviderContent = defineComponent({
     })
   },
   render() {
-    return h('div')
+    return null
   },
 })
 </script>
 
 <template>
-  <n-config-provider
+  <NConfigProvider
     abstract
-    :theme="theme"
-    :theme-overrides="themeOverrides"
-    :locale="locale"
-    :date-locale="dateLocale"
+    v-bind="configProviderProps"
   >
-    <NLoadingBarProvider>
-      <NDialogProvider>
-        <NModalProvider>
-          <NNotificationProvider>
-            <NMessageProvider>
+    <NLoadingBarProvider v-bind="loadingBarProps">
+      <NDialogProvider v-bind="dialogProviderProps">
+        <NModalProvider v-bind="modalProviderProps">
+          <NNotificationProvider v-bind="notificationProviderProps">
+            <NMessageProvider v-bind="messageProviderProps">
               <slot />
               <NaiveProviderContent />
             </NMessageProvider>
@@ -53,8 +90,8 @@ const NaiveProviderContent = defineComponent({
         </NModalProvider>
       </NDialogProvider>
     </NLoadingBarProvider>
-    <n-global-style />
-  </n-config-provider>
+    <NGlobalStyle />
+  </NConfigProvider>
 </template>
 
 <style scoped></style>

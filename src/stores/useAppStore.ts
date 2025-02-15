@@ -1,16 +1,27 @@
+import { useNaiveTheme } from '@oiij/naive-ui'
+import { useBoolean } from '@oiij/use'
 import { defineStore } from 'pinia'
+import { useLanguage } from '~/modules'
 
 export const useAppStore = defineStore(
   'appStore',
   () => {
-    const { language, setLanguage } = useLanguage()
-    const { colorMode } = useTheme()
+    const { locale, language } = useLanguage()
+    const { isDark, preferredDark, colorMode } = useTheme()
+    const { color, theme, themeOverrides, locale: naiveLocal, dateLocale } = useNaiveTheme(isDark, locale)
     const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
 
     return {
+      locale,
       language,
-      setLanguage,
+      isDark,
+      preferredDark,
       colorMode,
+      color,
+      theme,
+      themeOverrides,
+      naiveLocal,
+      dateLocale,
       collapsed,
       toggleCollapsed,
     }

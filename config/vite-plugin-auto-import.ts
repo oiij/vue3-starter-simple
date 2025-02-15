@@ -13,6 +13,11 @@ export function VitePluginAutoImport(): PluginOption[] {
         /\.vue$/,
         /\.vue\?vue/, // .vue
       ],
+      exclude: [
+        /[\\/]node_modules[\\/]/,
+        /[\\/]packages[\\/]/,
+        /[\\/]\.git[\\/]/,
+      ],
       imports: [
         'vue',
         '@vueuse/core',
@@ -20,6 +25,7 @@ export function VitePluginAutoImport(): PluginOption[] {
         'vue-i18n',
         unheadVueComposablesImports,
         VueRouterAutoImports,
+        { from: 'await-to-js', imports: ['to'] },
       ],
       dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils', 'src/api'],
       vueTemplate: true,

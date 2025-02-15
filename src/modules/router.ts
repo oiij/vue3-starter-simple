@@ -1,6 +1,7 @@
 import type { Router } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
+
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 export const router: Router = createRouter({
@@ -8,6 +9,7 @@ export const router: Router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_BASE as string),
   routes: setupLayouts(routes),
 })
+
 useRouteGuard(router)
 
 if (import.meta.hot) {
