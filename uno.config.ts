@@ -4,8 +4,8 @@ import {
   presetAttributify,
   presetIcons,
   presetTypography,
-  presetUno,
   presetWebFonts,
+  presetWind3,
   transformerAttributifyJsx,
   transformerCompileClass,
   transformerDirectives,
@@ -27,7 +27,7 @@ export default defineConfig({
 
   },
   presets: [
-    presetUno(),
+    presetWind3 (),
     presetAttributify({}),
     presetIcons({
       scale: 1.2,

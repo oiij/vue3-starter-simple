@@ -8,7 +8,7 @@ definePage({
     title: 'HOME',
     requireAuth: true,
     keepAlive: true,
-    icon: 'i-mage-home',
+    icon: 'svg:icon-pixel-travel-icon-比基尼',
 
   },
 })
