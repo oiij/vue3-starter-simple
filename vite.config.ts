@@ -57,7 +57,7 @@ export default defineConfig(({ command, mode }) => {
             nameArr.unshift(prefix)
           return nameArr.join('-').replace(/\.svg$/, '')
         },
-      }),
+      }), // https://github.com/jevon617/unplugin-svg-component
       svgSfc(),
       webUpdateNotice({
         logVersion: true,
