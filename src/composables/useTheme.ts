@@ -5,14 +5,14 @@ export function useTheme() {
   const isDark = useDark({ storageKey })
   const preferredDark = usePreferredDark()
   const { store: colorMode, system: systemColorMode } = useColorMode({ emitAuto: true, storageKey })
-
-  function toggleDark(ev?: MouseEvent) {
-    useViewTransition(() => {
+  const { run } = useViewTransition()
+  function toggleDark(ev: MouseEvent) {
+    run(() => {
       isDark.value = !isDark.value
     }, {
       x: ev?.clientX,
       y: ev?.clientY,
-      reverse: isDark,
+      reverse: isDark.value,
     })
   }
   return {

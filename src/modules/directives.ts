@@ -1,5 +1,5 @@
-import { directive } from '@oiij/directives'
+import { useDirective } from '@oiij/directives'
 
 export {
-  directive,
+  useDirective,
 }

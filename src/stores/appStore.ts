@@ -8,7 +8,10 @@ export const useAppStore = defineStore(
   () => {
     const { locale, language } = useLanguage()
     const { isDark, preferredDark, colorMode } = useTheme()
-    const { color, theme, themeOverrides, locale: naiveLocal, dateLocale } = useNaiveTheme(isDark, locale)
+    const { color, theme, themeOverrides, locale: naiveLocal, dateLocale } = useNaiveTheme({
+      darkMode: isDark,
+      language: locale,
+    })
     const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
 
     return {
