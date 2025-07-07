@@ -63,12 +63,12 @@ const colorModeOptions: SelectOption[] = [
 <template>
   <div class="flex-col gap-[10px] p-[20px]">
     <CardItem title="通用">
-      <n-form-item label="语言">
-        <n-select v-model:value="language" class="w-[260px]!" :options="localesOptions" />
-      </n-form-item>
-      <n-form-item label="颜色模式">
-        <n-select v-model:value="colorMode" class="w-[260px]!" :options="colorModeOptions" />
-      </n-form-item>
+      <NFormItem label="语言">
+        <NSelect v-model:value="language" class="w-[260px]!" :options="localesOptions" />
+      </NFormItem>
+      <NFormItem label="颜色模式">
+        <NSelect v-model:value="colorMode" class="w-[260px]!" :options="colorModeOptions" />
+      </NFormItem>
     </CardItem>
     <CardItem title="关于">
       <div class="w-full flex">
