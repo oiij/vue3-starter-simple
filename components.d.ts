@@ -11,7 +11,6 @@ declare module 'vue' {
     Blank: typeof import('./src/layouts/blank.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     GitHub: typeof import('./src/components/GitHub.vue')['default']
-    NaiveProvider: typeof import('./src/components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NLayout: typeof import('naive-ui')['NLayout']

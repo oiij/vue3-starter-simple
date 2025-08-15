@@ -19,7 +19,9 @@ useHead({
 
 <template>
   <div class="wh-full flex-col-center gap-10">
-    <h1>首页</h1>
+    <h1 v-copy="'copy'">
+      首页
+    </h1>
   </div>
 </template>
 

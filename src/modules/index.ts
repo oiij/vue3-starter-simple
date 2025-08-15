@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 
-import { useDirective } from './directives'
+import { setupDirective } from './directives'
 import { head } from './head'
 import { i18n } from './i18n'
 import { notivue } from './notivue'
@@ -17,7 +17,7 @@ export * from './router'
 export * from './router-scroller'
 export function useModules(app: App) {
   app
-    .use(useDirective)
+    .use(setupDirective)
     .use(i18n)
     .use(notivue)
     .use(pinia)
