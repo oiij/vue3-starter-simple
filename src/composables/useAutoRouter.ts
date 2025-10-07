@@ -1,78 +1,43 @@
-import type { IMenuOption as MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
-import type { SvgName } from '~virtual/svg-component'
+import { useBoolean } from '@oiij/use'
+import { cloneDeep } from 'lodash-es'
 import { routes as _routes } from 'vue-router/auto-routes'
-import SvgIcon from '~virtual/svg-component'
 import { router } from '~/modules'
 
-function renderIcon(iconName?: string) {
-  if (iconName?.startsWith('svg:')) {
-    return () => h(SvgIcon, { name: iconName?.replace('svg:', '') as SvgName, style: { width: `16px`, height: `16px` } })
-  }
-  if (iconName?.startsWith('i-')) {
-    return () => h('i', { class: iconName, style: { width: `16px`, height: `16px` } })
-  }
-  return undefined
-}
-
-export function applyMeta(routes: RouteRecordRaw[]) {
-  const _routes: RouteRecordRaw[] = []
-  routes.forEach((route) => {
-    if (route.path === '_')
-      return
-    const _route = { ...route }
-    if (_route.children && _route.children.length > 0) {
-      _route.meta = {
-        ..._route.meta,
-        ..._route.children.find(f => f.path === '_')?.meta,
-      }
-      _route.children = applyMeta(_route.children).map((m) => {
+function parseRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
+  return routes.map((route) => {
+    const indexMeta = route.children?.find(f => f.path === ``)?.meta?.group
+    return {
+      ...route,
+      meta: {
+        ...route.meta,
+        ...indexMeta,
+        sort: route.meta?.sort,
+      },
+      children: route.children?.map((m) => {
         return {
           ...m,
-          path: `${_route.path}/${m.path}`,
+          path: m.path === '' ? route.path : m.path,
         }
-      })
-    }
-    _routes.push(_route)
-  })
-  return _routes
+      }).toSorted((a, b) => (a.meta?.sort ?? Infinity) - (b.meta?.sort ?? Infinity)),
+    } as RouteRecordRaw
+  }).toSorted((a, b) => (a.meta?.sort ?? Infinity) - (b.meta?.sort ?? Infinity))
 }
-function routesToNaiveMenu(routes: RouteRecordRaw[]) {
-  const _menus: MenuOption[] = []
-  routes.forEach((route) => {
-    const menu: MenuOption = {
-      label: route.meta?.title ?? route.name ?? route.path,
-      key: route.path ?? route.name?.toString(),
-      icon: renderIcon(route.meta?.icon),
-      show: !route.meta?.hideOnMenu,
-      meta: route.meta,
-    }
-    if (route.children) {
-      menu.children = routesToNaiveMenu(route.children)
-    }
-
-    _menus.push(menu)
-  })
-  return _menus.sort((a, b) => {
-    if (a.meta?.sort && b.meta?.sort)
-      return a.meta.sort - b.meta.sort
-    return 0
-  })
-}
-
-const routes = applyMeta(_routes)
-const naiveMenu = computed(() => routesToNaiveMenu(routes))
+const { value: loading } = useBoolean(false)
 const currentRoute = computed(() => router.currentRoute.value)
-const currentPath = computed(() => currentRoute.value.path)
-function setPath(path: string) {
-  return router.push(path)
-}
-export function useAutoRouter() {
+const currentRoutePath = computed(() => currentRoute.value.path)
+const routes = parseRoutes(cloneDeep(_routes))
+
+const flattenRoutes = cloneDeep(routes).flatMap(f => f.children ?? f)
+const keepAlivePath = computed(() => flattenRoutes.filter(f => f.meta?.keepAlive).map(m => m.path))
+
+export function useAutoRoutes() {
   return {
-    routes,
-    naiveMenu,
+    loading,
     currentRoute,
-    currentPath,
-    setPath,
+    currentRoutePath,
+    routes,
+    flattenRoutes,
+    keepAlivePath,
   }
 }

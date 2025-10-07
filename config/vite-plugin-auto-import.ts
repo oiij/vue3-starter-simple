@@ -26,7 +26,8 @@ export function VitePluginAutoImport(): PluginOption {
       VueRouterAutoImports,
       { from: 'await-to-js', imports: ['to'] },
     ],
-    dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils', 'src/api'],
+    dirs: ['src/composables', 'src/stores', 'src/utils', 'src/api'],
+    dtsMode: 'overwrite',
     vueTemplate: true,
     resolvers: [VueHooksPlusResolver()],
   }) // https://github.com/antfu/unplugin-auto-import

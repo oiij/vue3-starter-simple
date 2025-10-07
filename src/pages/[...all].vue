@@ -3,7 +3,7 @@ definePage({
   meta: {
     layout: 'default',
     title: 'PageNotFound',
-    hideOnMenu: true,
+    hide: true,
   },
 })
 </script>

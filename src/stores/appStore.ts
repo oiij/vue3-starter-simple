@@ -13,7 +13,20 @@ export const useAppStore = defineStore(
       language: locale,
     })
     const { value: collapsed, toggle: toggleCollapsed } = useBoolean(false)
-
+    const transitionName = ref('fade')
+    const reloadFlag = ref(false)
+    async function reload(delay = 300) {
+      reloadFlag.value = true
+      await nextTick()
+      if (delay) {
+        setTimeout(() => {
+          reloadFlag.value = false
+        }, delay)
+      }
+      else {
+        reloadFlag.value = false
+      }
+    }
     return {
       locale,
       language,
@@ -27,6 +40,9 @@ export const useAppStore = defineStore(
       dateLocale,
       collapsed,
       toggleCollapsed,
+      transitionName,
+      reloadFlag,
+      reload,
     }
   },
   {

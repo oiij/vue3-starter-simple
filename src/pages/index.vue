@@ -9,7 +9,6 @@ definePage({
     requireAuth: true,
     keepAlive: true,
     icon: 'svg:icon-pixel-travel-icon-比基尼',
-
   },
 })
 useHead({

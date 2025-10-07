@@ -8,13 +8,23 @@ export {}
 declare module 'vue-router' {
   interface RouteMeta {
     layout?: string
-    title?: string
-    hide?: boolean
-    keepAlive?: boolean
-    transition?: string
-    requireAuth?: boolean
     isLayout?: boolean
+    title?: string
+    description?: string
     icon?: string
+    iconColor?: string
+    transitionName?: string
     sort?: number
+
+    keepAlive?: boolean
+    requireAuth?: boolean
+    root?: boolean
+    hide?: boolean | ['menu' | 'tab' | 'shortcut' | 'index']
+    group?: {
+      title?: string
+      icon?: string
+      description?: string
+      hide?: boolean | ['menu' | 'tab' | 'shortcut' | 'index']
+    }
   }
 }

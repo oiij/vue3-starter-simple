@@ -8,6 +8,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseLayout: typeof import('./src/layouts/BaseLayout.vue')['default']
+    BaseLayoutAside: typeof import('./src/layouts/BaseLayoutAside.vue')['default']
     Blank: typeof import('./src/layouts/blank.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     GitHub: typeof import('./src/components/GitHub.vue')['default']
@@ -18,6 +20,7 @@ declare module 'vue' {
     NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NMenu: typeof import('naive-ui')['NMenu']
     NotivueProvider: typeof import('./src/components/NotivueProvider.vue')['default']
+    NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSelect: typeof import('naive-ui')['NSelect']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

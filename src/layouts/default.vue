@@ -1,55 +1,52 @@
 <script setup lang="ts">
-import type { MenuGroupOption, MenuOption } from 'naive-ui'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import BaseLayout from './BaseLayout.vue'
 
-const { t } = useI18n()
-const { collapsed } = storeToRefs(useAppStore())
-const { toggleCollapsed } = useAppStore()
-const { naiveMenu, currentPath, setPath } = useAutoRouter()
-function renderLabel(option: MenuOption | MenuGroupOption) {
-  return t(`GLOBAL.MENU.${option.label}`)
+const { reloadFlag, transitionName } = storeToRefs(useAppStore())
+const { keepAlivePath, currentRoutePath } = useAutoRoutes()
+
+// 用来存已经创建的组件
+const wrapperMap = new Map()
+// 将router传个我们的组件重新换一个新的组件，原组件包里面
+function formatComponentInstance(component: Component, route: RouteLocationNormalizedLoaded) {
+  let wrapper
+  if (component) {
+    const wrapperName = route.path
+    if (wrapperMap.has(wrapperName)) {
+      wrapper = wrapperMap.get(wrapperName)
+    }
+    else {
+      wrapper = {
+        name: wrapperName,
+        render() {
+          return h(component)
+        },
+      }
+      wrapperMap.set(wrapperName, wrapper)
+    }
+    return h(wrapper)
+  }
 }
 </script>
 
 <template>
-  <div class="wh-full flex-col">
-    <NLayout has-sider class="min-h-0 flex-1">
-      <NLayoutSider
-        :width="160"
-        :collapsed-width="60"
-        collapse-mode="width"
-        :collapsed="collapsed"
-        bordered
-        content-class="flex flex-col"
-      >
-        <div class="w-full flex-1">
-          <NMenu
-            :collapsed="collapsed"
-            :collapsed-width="60"
-            :collapsed-icon-size="24"
-            :root-indent="20"
-            :value="currentPath"
-            :options="naiveMenu"
-            :render-label="renderLabel"
-            @update:value="setPath"
-          />
-        </div>
-        <div class="flex items-center justify-center p-y-[10px]">
-          <NButton quaternary @click="toggleCollapsed">
-            <template #icon>
-              <Transition name="fade" mode="out-in">
-                <i v-if="collapsed" class="i-mage-dots-menu" />
-                <i v-else class="i-mage-dash-menu" />
-              </Transition>
-            </template>
-          </NButton>
-        </div>
-      </NLayoutSider>
-      <NLayoutContent>
-        <main class="wh-full">
-          <RouterEntry />
-        </main>
-      </NLayoutContent>
-    </NLayout>
+  <div class="h-[100vh] w-[100vw]">
+    <BaseLayout>
+      <RouterView v-slot="{ Component, route }">
+        <Transition appear mode="out-in" :name="transitionName">
+          <KeepAlive :include="keepAlivePath" :exclude="reloadFlag ? currentRoutePath : undefined">
+            <Suspense>
+              <component :is="formatComponentInstance(Component, route)" v-if="!reloadFlag" :key="route.path" />
+              <template #fallback>
+                <slot name="fallback">
+                  Component Fallback
+                </slot>
+              </template>
+            </Suspense>
+          </KeepAlive>
+        </Transition>
+      </RouterView>
+    </BaseLayout>
   </div>
 </template>
 
