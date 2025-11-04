@@ -1,4 +1,4 @@
-import type { Router } from 'vue-router/auto'
+import type { Router } from 'vue-router'
 
 export function useRouteGuard(router: Router) {
   const { start, done } = useNProgress()

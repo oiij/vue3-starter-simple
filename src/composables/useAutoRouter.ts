@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash-es'
 import { routes as _routes } from 'vue-router/auto-routes'
 import { router } from '~/modules'
 
-function parseRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
+function parseRoutes(routes: RouteRecordRaw[] | readonly RouteRecordRaw[]): RouteRecordRaw[] {
   return routes.map((route) => {
     const indexMeta = route.children?.find(f => f.path === ``)?.meta?.group
     return {

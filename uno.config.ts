@@ -1,3 +1,4 @@
+import { presetDaisy } from '@ameinhardt/unocss-preset-daisy'
 import { oiijPreset } from '@oiij/unocss-preset'
 import {
   defineConfig,
@@ -44,6 +45,7 @@ export default defineConfig({
         mono: 'DM Mono',
       },
     }),
+    presetDaisy(),
     presetExtra(),
     presetScrollbar(),
     oiijPreset(),

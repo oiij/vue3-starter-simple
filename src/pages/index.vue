@@ -18,9 +18,11 @@ useHead({
 
 <template>
   <div class="wh-full flex-col-center gap-10">
-    <h1 v-copy="'copy'">
-      首页
-    </h1>
+    <div class="h-[300px] w-[600px] border bg-white mockup-window">
+      <div class="wh-full flex-col-center">
+        Hello!
+      </div>
+    </div>
   </div>
 </template>
 
