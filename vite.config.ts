@@ -112,7 +112,7 @@ export default defineConfig(({ command, mode }) => {
         [VITE_API_BASE_PREFIX]: {
           target: VITE_API_BASE_URL,
           changeOrigin: true,
-          rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
+          secure: true,
         },
       },
       watch: {
@@ -143,6 +143,7 @@ export default defineConfig(({ command, mode }) => {
           manualChunks: {},
         },
       },
+      license: true,
     },
     resolve: {
       alias: {
