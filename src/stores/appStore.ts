@@ -50,6 +50,9 @@ export const useAppStore = defineStore(
       key: '__APP_STORE_PERSIST__',
       pick: [''],
     },
+    undo: {
+      disable: true,
+    },
   },
 )
 

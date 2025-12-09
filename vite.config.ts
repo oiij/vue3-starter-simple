@@ -45,9 +45,9 @@ export default defineConfig(({ command, mode }) => {
         },
       }), // https://github.com/posva/unplugin-vue-router
       vue({
-        include: [/\.vue$/, /\.md$/, /\.tsx$/],
+        include: [/\.vue$/, /\.md$/],
       }), // https://github.com/vitejs/vite-plugin-vue
-      vueJsx(), // https://github.com/vitejs/vite-plugin-vue
+      vueJsx(), // https://github.com/vitejs/vite-plugin-vue/blob/main/packages/plugin-vue-jsx/README.md
       Unocss(), // https://github.com/antfu/unocss
       Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
       Layouts(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts

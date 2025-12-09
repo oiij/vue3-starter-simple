@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import Foo from '~/components/Foo'
+
 defineOptions({
 
 })
@@ -21,6 +23,7 @@ useHead({
     <div class="h-[300px] w-[600px] border bg-white mockup-window">
       <div class="wh-full flex-col-center">
         Hello!
+        <Foo />
       </div>
     </div>
   </div>
