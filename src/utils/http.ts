@@ -8,9 +8,8 @@ import type {
 import axios from 'axios'
 import NProgress from 'nprogress'
 
-const BASE_PREFIX = import.meta.env.VITE_API_BASE_PREFIX
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: BASE_PREFIX,
+  baseURL: '/api',
   timeout: 1000 * 30,
   headers: {
     'Content-Type': 'application/json',

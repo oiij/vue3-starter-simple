@@ -20,12 +20,8 @@ useHead({
 
 <template>
   <div class="wh-full flex-col-center gap-10">
-    <div class="h-[300px] w-[600px] border bg-white mockup-window">
-      <div class="wh-full flex-col-center">
-        Hello!
-        <Foo />
-      </div>
-    </div>
+    Hello!
+    <Foo />
   </div>
 </template>
 

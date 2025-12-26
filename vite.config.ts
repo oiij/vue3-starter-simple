@@ -1,16 +1,14 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
-import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import postcssPresetEnv from 'postcss-preset-env'
 import Unocss from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
 import Info from 'unplugin-info/vite'
-import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 import TurboConsole from 'unplugin-turbo-console/vite'
-import VueRouter from 'unplugin-vue-router/vite'
-import { defineConfig, loadEnv } from 'vite'
+import Vue from 'unplugin-vue/vite'
+import { defineConfig } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
 import Sitemap from 'vite-plugin-sitemap'
 import svgSfc from 'vite-plugin-svg-sfc'
@@ -20,31 +18,17 @@ import virtual from 'vite-plugin-virtual'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
-import { VitePluginAutoImport, VitePluginComponents, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
-// https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
-  const debug = !!process.env.VSCODE_DEBUG
+import { DEV_PORT, DEV_PROXY } from './config'
+import { AutoImport, Components, Markdown, Pwa, SvgComponent, VueI18n, VueRouter } from './plugins'
 
+const DEBUG = !!process.env.VSCODE_DEBUG
+
+// https://vitejs.dev/config/
+export default defineConfig(() => {
   return {
     plugins: [
-      VueRouter({
-        extensions: ['.vue', '.md', '.tsx'],
-        exclude: ['**/components'],
-        extendRoute: (route) => {
-          const sortNum = Number.isNaN(Number(route.path.match(/(\d+)_/)?.[1])) ? null : Number(route.path.match(/(\d+)_/)?.[1])
-          route.addToMeta({ sort: sortNum })
-
-          if (route.name) {
-            const newName = `${route.name.replace(/\d+_/g, '')}`
-            route.name = newName.startsWith('/') ? newName : `/${newName}`
-            if (route.path !== '') {
-              route.path = route.name
-            }
-          }
-        },
-      }), // https://github.com/posva/unplugin-vue-router
-      vue({
+      VueRouter,
+      Vue({
         include: [/\.vue$/, /\.md$/],
       }), // https://github.com/vitejs/vite-plugin-vue
       vueJsx(), // https://github.com/vitejs/vite-plugin-vue/blob/main/packages/plugin-vue-jsx/README.md
@@ -58,19 +42,6 @@ export default defineConfig(({ command, mode }) => {
           color: 'white',
         },
       }), // https://github.com/XioDone/vite-plugin-url-copy
-      UnpluginSvgComponent({
-        iconDir: resolve(__dirname, 'src/assets/icons'),
-        preserveColor: resolve(__dirname, 'src/assets/icons'),
-        dts: true,
-        prefix: 'icon',
-        domInsertionStrategy: 'dynamic',
-        symbolIdFormatter: (svgName: string, prefix: string): string => {
-          const nameArr = svgName.split('/')
-          if (prefix)
-            nameArr.unshift(prefix)
-          return nameArr.join('-').replace(/\.svg$/, '')
-        },
-      }), // https://github.com/jevon617/unplugin-svg-component
       svgSfc(),
       webUpdateNotice({
         logVersion: true,
@@ -94,26 +65,23 @@ export default defineConfig(({ command, mode }) => {
       }), // https://github.com/nonzzz/vite-bundle-analyzer
       virtual({}), // https://github.com/patak-dev/vite-plugin-virtual
 
-      VitePluginAutoImport(),
-      VitePluginComponents(),
-      VitePluginI18n(),
-      VitePluginMarkdown(),
-      VitePluginPWA({ command, mode }),
+      AutoImport,
+      Components,
+      Markdown,
+      Pwa,
+      SvgComponent,
+      VueI18n,
+
     ],
     clearScreen: true,
-    base: VITE_BASE ?? '/',
     server: {
-      port: Number(VITE_DEV_PORT),
+      port: DEV_PORT,
       host: true, // host设置为true才可以使用network的形式，以ip访问项目
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
       proxy: {
-        [VITE_API_BASE_PREFIX]: {
-          target: VITE_API_BASE_URL,
-          changeOrigin: true,
-          secure: true,
-        },
+        ...DEV_PROXY,
       },
       watch: {
         ignored: ['**/**.d.ts'],
@@ -124,7 +92,7 @@ export default defineConfig(({ command, mode }) => {
     },
     envPrefix: ['VITE_'],
     build: {
-      minify: debug ? false : 'esbuild',
+      minify: DEBUG ? false : 'esbuild',
       sourcemap: true,
       brotliSize: false,
       chunkSizeWarningLimit: 2000,

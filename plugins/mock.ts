@@ -52,4 +52,4 @@ export async function VitePluginMock(options?: Options): Promise<Plugin<any>> {
   }
 }
 
-export default VitePluginMock
+export default VitePluginMock()

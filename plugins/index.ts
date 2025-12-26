@@ -1,0 +1,7 @@
+export { default as AutoImport } from './auto-import'
+export { default as Components } from './components'
+export { default as Markdown } from './markdown'
+export { default as Pwa } from './pwa'
+export { default as SvgComponent } from './svg-component'
+export { default as VueI18n } from './vue-i18n'
+export { default as VueRouter } from './vue-router'
