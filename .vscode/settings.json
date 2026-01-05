@@ -152,5 +152,8 @@
     "*.w": "$(capture).*.w, I$(capture).w",
     "*.wat": "$(capture).wasm",
     "*.xaml": "$(capture).xaml.cs"
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ]
 }
