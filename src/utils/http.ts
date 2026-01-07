@@ -2,9 +2,10 @@
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import NProgress from 'nprogress'
+import { API_BASE_PREFIX } from '../../config'
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_PREFIX,
   timeout: 1000 * 30,
   headers: {
     'Content-Type': 'application/json',
