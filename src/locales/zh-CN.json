@@ -2,7 +2,9 @@
   "GLOBAL": {
     "MENU": {
       "HOME": "首页",
-      "SETTING": "设置"
+      "SETTING": "设置",
+      "SUB": "子菜单",
+      "SUB-PAGE": "子页面"
     }
   }
 }

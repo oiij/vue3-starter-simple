@@ -3,8 +3,8 @@ import { resolve } from 'node:path'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 
 export default UnpluginSvgComponent({
-  iconDir: resolve(__dirname, 'src/assets/icons'),
-  preserveColor: resolve(__dirname, 'src/assets/icons'),
+  iconDir: resolve(__dirname, '../src/assets/icons'),
+  preserveColor: resolve(__dirname, '../src/assets/icons'),
   dts: true,
   prefix: 'icon',
   domInsertionStrategy: 'dynamic',

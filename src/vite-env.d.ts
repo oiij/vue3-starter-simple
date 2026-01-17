@@ -1,3 +1,9 @@
+/* eslint-disable */
+/* prettier-ignore */
+// biome-ignore format: off
+// biome-ignore lint: off
+// @ts-nocheck
+
 /// <reference types="vite/client" />
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'

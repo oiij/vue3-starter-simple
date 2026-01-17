@@ -1,12 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { useBoolean } from '@oiij/use'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'es-toolkit'
 import { routes as _routes } from 'vue-router/auto-routes'
 import { router } from '~/modules'
 
 function parseRoutes(routes: RouteRecordRaw[] | readonly RouteRecordRaw[]): RouteRecordRaw[] {
   return routes.map((route) => {
     const indexMeta = route.children?.find(f => f.path === ``)?.meta?.group
+
     return {
       ...route,
       meta: {

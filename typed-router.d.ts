@@ -44,6 +44,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/sub-page/': RouteRecordInfo<
+      '/sub-page/',
+      '/sub-page',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
   }
 
   /**
@@ -72,6 +79,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/setting.vue': {
       routes:
         | '/setting'
+      views:
+        | never
+    }
+    'src/pages/sub-page/index.vue': {
+      routes:
+        | '/sub-page/'
       views:
         | never
     }

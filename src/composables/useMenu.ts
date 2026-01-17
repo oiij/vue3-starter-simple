@@ -1,6 +1,6 @@
 import type { IMenuOption as MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'es-toolkit'
 import { getRouteMetaHide } from '~/utils/route-meta-utils'
 
 function routes2menu(routes: RouteRecordRaw[]): MenuOption[] {

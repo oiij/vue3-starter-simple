@@ -2,7 +2,9 @@
   "GLOBAL": {
     "MENU": {
       "HOME": "Home",
-      "SETTING": "Setting"
+      "SETTING": "Setting",
+      "SUB": "Sub",
+      "SUB-PAGE": "Sub Page"
     }
   }
 }
