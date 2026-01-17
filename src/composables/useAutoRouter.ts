@@ -13,7 +13,6 @@ function parseRoutes(routes: RouteRecordRaw[] | readonly RouteRecordRaw[]): Rout
       meta: {
         ...route.meta,
         ...indexMeta,
-        sort: route.meta?.sort,
       },
       children: route.children?.map((m) => {
         return {

@@ -30,6 +30,8 @@ declare module 'vue-router' {
       icon?: string
       description?: string
       hide?: boolean | ['menu' | 'tab' | 'shortcut' | 'index']
+      sort?: number
+      rootOnOne?: boolean
     }
   }
 }

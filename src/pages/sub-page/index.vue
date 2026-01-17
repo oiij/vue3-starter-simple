@@ -14,6 +14,7 @@ definePage({
     group: {
       title: 'SUB',
       icon: 'i-mage-dashboard-check',
+      rootOnOne: false,
     },
   },
 })
