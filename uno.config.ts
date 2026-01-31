@@ -3,8 +3,6 @@ import { defineConfig, presetAttributify, presetIcons, presetTypography, presetW
 import { presetAnimateCSS } from 'unocss-preset-animatecss'
 import { presetAnimations } from 'unocss-preset-animations'
 import { presetExtra } from 'unocss-preset-extra'
-import { presetMagicss } from 'unocss-preset-magicss'
-import { presetNaiveUi } from 'unocss-preset-naive-ui'
 import { presetScrollbar } from 'unocss-preset-scrollbar'
 import presetTheme from 'unocss-preset-theme'
 
@@ -42,8 +40,6 @@ export default defineConfig({
 
       },
     }),
-    presetNaiveUi(),
-    presetMagicss(),
     presetAnimations(),
     presetAnimateCSS(),
   ],

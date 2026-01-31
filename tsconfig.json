@@ -15,7 +15,6 @@
       "unplugin-icons/types/vue",
       "vite-plugin-vue-layouts/client",
       "@intlify/unplugin-vue-i18n/messages",
-      "unplugin-vue-router/client",
       "unplugin-info/client"
     ],
     "plugins": [
