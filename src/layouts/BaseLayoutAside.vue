@@ -34,6 +34,9 @@ function handleUpdateValue(key: string) {
         />
       </NScrollbar>
     </div>
+    <div class="flex-center">
+      <GitHub />
+    </div>
     <div class="flex items-center justify-center p-y-[10px]">
       <NButton quaternary @click="toggleCollapsed">
         <template #icon>

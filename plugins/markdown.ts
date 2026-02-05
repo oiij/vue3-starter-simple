@@ -5,7 +5,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Markdown from 'unplugin-vue-markdown/vite'
 
 export default Markdown({
-  wrapperClasses: 'prose prose-sm m-auto text-left',
+  wrapperClasses: 'prose',
   headEnabled: true,
   async markdownItSetup(md) {
     // https://prismjs.com/

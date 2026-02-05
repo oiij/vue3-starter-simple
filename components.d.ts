@@ -12,10 +12,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    BaseLayout: typeof import('./src/layouts/BaseLayout.vue')['default']
-    BaseLayoutAside: typeof import('./src/layouts/BaseLayoutAside.vue')['default']
-    Blank: typeof import('./src/layouts/blank.vue')['default']
-    Default: typeof import('./src/layouts/default.vue')['default']
     GitHub: typeof import('./src/components/GitHub.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NFormItem: typeof import('naive-ui')['NFormItem']
@@ -34,10 +30,6 @@ declare module 'vue' {
 
 // For TSX support
 declare global {
-  const BaseLayout: typeof import('./src/layouts/BaseLayout.vue')['default']
-  const BaseLayoutAside: typeof import('./src/layouts/BaseLayoutAside.vue')['default']
-  const Blank: typeof import('./src/layouts/blank.vue')['default']
-  const Default: typeof import('./src/layouts/default.vue')['default']
   const GitHub: typeof import('./src/components/GitHub.vue')['default']
   const NButton: typeof import('naive-ui')['NButton']
   const NFormItem: typeof import('naive-ui')['NFormItem']

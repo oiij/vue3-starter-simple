@@ -1,3 +1,4 @@
+import type { UserConfig } from 'vite'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
@@ -129,5 +130,5 @@ export default defineConfig(() => {
         ],
       },
     },
-  }
+  } as UserConfig
 })
