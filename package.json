@@ -19,7 +19,7 @@
     "cz": "czg",
     "commit": "git pull && git add -A && pnpm cz && git push",
     "pull": "git checkout -- . && git pull origin main",
-    "release": "pnpm pull && pnpm build && pm2 restart 0",
+    "release": "pnpm pull && pnpm build",
     "awe": "pnpx are-we-esm",
     "nmi": "pnpx node-modules-inspector",
     "preinstall": "npx only-allow pnpm",
