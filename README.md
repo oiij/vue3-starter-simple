@@ -1,18 +1,26 @@
 # Vue3 Starter Simple
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Vue.js-3.5.27-4FC08D?style=flat&logo=vue.js&logoColor=white" alt="Vue 3" />
-  <img src="https://img.shields.io/badge/Vite-7.3.1-646CFF?style=flat&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Pinia-3.0.4-FFD859?style=flat&logo=pinia&logoColor=white" alt="Pinia" />
-  <img src="https://img.shields.io/badge/UnoCSS-66.6.0-4B5563?style=flat&logo=unocss&logoColor=white" alt="UnoCSS" />
-  <img src="https://img.shields.io/badge/Naive_UI-2.43.2-5396EF?style=flat&logoColor=white" alt="Naive UI" />
-  <img src="https://img.shields.io/badge/Vue_Router-5.0.2-4FC08D?style=flat&logoColor=white" alt="Vue Router" />
-  <img src="https://img.shields.io/badge/Vitest-4.0.18-6E9F18?style=flat&logo=vitest&logoColor=white" alt="Vitest" />
-  <img src="https://img.shields.io/badge/ESLint-9.39.2-4B32C3?style=flat&logo=eslint&logoColor=white" alt="ESLint" />
-  <img src="https://img.shields.io/badge/pnpm-latest-F69220?style=flat&logo=pnpm&logoColor=white" alt="pnpm" />
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat" alt="License" />
-</p>
+<div align="center">
+
+[![Vue.js](https://img.shields.io/badge/Vue.js-3.5.27-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Pinia](https://img.shields.io/badge/Pinia-3.0.4-FFD859?style=flat&logo=pinia&logoColor=white)](https://pinia.vuejs.org/)
+[![UnoCSS](https://img.shields.io/badge/UnoCSS-66.6.0-4B5563?style=flat&logo=unocss&logoColor=white)](https://unocss.dev/)
+[![Naive UI](https://img.shields.io/badge/Naive_UI-2.43.2-5396EF?style=flat&logoColor=white)](https://www.naiveui.com/)
+[![Vue Router](https://img.shields.io/badge/Vue_Router-5.0.2-4FC08D?style=flat&logoColor=white)](https://router.vuejs.org/)
+[![Vitest](https://img.shields.io/badge/Vitest-4.0.18-6E9F18?style=flat&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-9.39.2-4B32C3?style=flat&logo=eslint&logoColor=white)](https://eslint.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-latest-F69220?style=flat&logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat)](https://github.com/oiij/vue3-starter-simple/blob/main/LICENSE)
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/oiij/vue3-starter-simple/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/oiij/vue3-starter-simple?style=flat&logo=github)](https://github.com/oiij/vue3-starter-simple/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/oiij/vue3-starter-simple?style=flat&logo=github)](https://github.com/oiij/vue3-starter-simple/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/oiij/vue3-starter-simple?style=flat&logo=github)](https://github.com/oiij/vue3-starter-simple/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/oiij/vue3-starter-simple?style=flat&logo=github)](https://github.com/oiij/vue3-starter-simple/commits/main)
+
+</div>
 
 一个现代化的 Vue 3 + Vite + TypeScript 项目启动模板，集成了最佳实践和丰富的功能特性。
 
