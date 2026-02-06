@@ -1,6 +1,7 @@
 import type { IMenuOption as MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
 import { cloneDeep } from 'es-toolkit'
+import { autoRouter } from '~/modules/auto-router'
 import { getRouteMetaHide } from '~/utils/route-meta-utils'
 
 function routes2menu(routes: RouteRecordRaw[]): MenuOption[] {
@@ -46,7 +47,7 @@ function routes2menu(routes: RouteRecordRaw[]): MenuOption[] {
 
   return options
 }
-const { routes } = useAutoRoutes()
+const { routes } = autoRouter
 const menuOptions = computed(() => routes2menu(cloneDeep(routes)))
 const flattenMenuOptions = computed(() => cloneDeep(menuOptions).value.flatMap<MenuOption>(f => f.children ?? f))
 

@@ -26,6 +26,7 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@oiij/auto-router": "^0.0.3",
     "@oiij/directives": "^0.0.16",
     "@oiij/naive-ui": "^0.0.74",
     "@oiij/use": "^0.0.44",

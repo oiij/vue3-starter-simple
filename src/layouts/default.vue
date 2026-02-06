@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { useAutoRouter } from '@oiij/auto-router'
 import BaseLayout from './BaseLayout.vue'
 
 const { reloadFlag, transitionName } = storeToRefs(useAppStore())
-const { keepAlivePath, currentRoutePath } = useAutoRoutes()
+const { keepAlivePath, currentRoutePath } = useAutoRouter()
 
 // 用来存已经创建的组件
 const wrapperMap = new Map()

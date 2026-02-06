@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@oiij/auto-router':
+        specifier: ^0.0.3
+        version: 0.0.3(vue-router@5.0.2(@vue/compiler-sfc@3.5.27)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@oiij/directives':
         specifier: ^0.0.16
         version: 0.0.16(@oiij/utils@0.0.6)(vue@3.5.27(typescript@5.9.3))
@@ -1907,6 +1910,12 @@ packages:
   '@nuxt/schema@3.16.2':
     resolution: {integrity: sha512-2HZPM372kuI/uw9VU/hOoYuzv803oZAtyoEKC5dQCQTKAQ293AjypF3WljMXUSReFS/hcbBSgGzYUPHr3Qo+pg==}
     engines: {node: ^14.18.0 || >=16.10.0}
+
+  '@oiij/auto-router@0.0.3':
+    resolution: {integrity: sha512-7X/FyDk00qMbufjL5CqfjF5ivC6LQdr3EP3GX3qOam0KVJZ2izMjMpZZsYcgRpO56DrBZPWIL834iGX2ULn9Fw==}
+    peerDependencies:
+      vue: ^3.5.27
+      vue-router: ^5.0.2
 
   '@oiij/css-render@0.0.1':
     resolution: {integrity: sha512-Zb/r+fUgMYijpScbB55/NDac8CUrBvm1sfJA2oeXNriyG3BwYmP7f1KCACHXjHWNvqbB/aRzWHBOsn7VlioGWQ==}
@@ -8788,6 +8797,12 @@ snapshots:
       defu: 6.1.4
       pathe: 2.0.3
       std-env: 3.10.0
+
+  '@oiij/auto-router@0.0.3(vue-router@5.0.2(@vue/compiler-sfc@3.5.27)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      es-toolkit: 1.44.0
+      vue: 3.5.27(typescript@5.9.3)
+      vue-router: 5.0.2(@vue/compiler-sfc@3.5.27)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
 
   '@oiij/css-render@0.0.1(@css-render/plugin-bem@0.15.14(css-render@0.15.14))(@css-render/vue3-ssr@0.15.14(vue@3.5.27(typescript@5.9.3)))(css-render@0.15.14)(vue@3.5.27(typescript@5.9.3))':
     dependencies:

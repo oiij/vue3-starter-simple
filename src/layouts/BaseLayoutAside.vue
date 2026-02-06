@@ -1,10 +1,11 @@
 <script setup lang='ts'>
 import type { MenuGroupOption, MenuOption } from 'naive-ui'
+import { useAutoRouter } from '@oiij/auto-router'
 import { useMenu } from '~/composables/useMenu'
 
 const { t } = useI18n()
 const { collapsed } = storeToRefs(useAppStore())
-const { currentRoutePath } = useAutoRoutes()
+const { currentRoutePath } = useAutoRouter()
 const { menuOptions } = useMenu()
 const router = useRouter()
 const { toggleCollapsed } = useAppStore()

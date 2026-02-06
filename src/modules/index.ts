@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 
+import { autoRouter } from './auto-router'
 import { setupDirective } from './directives'
 import { head } from './head'
 import { i18n } from './i18n'
@@ -22,6 +23,7 @@ export function useModules(app: App) {
     .use(notivue)
     .use(pinia)
     .use(router)
+    .use(autoRouter)
     .use(routerScroller)
     .use(head)
 }
