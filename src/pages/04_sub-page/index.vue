@@ -8,13 +8,11 @@ definePage({
   meta: {
     layout: 'default',
     title: 'SUB-PAGE',
-    requireAuth: true,
     keepAlive: true,
     icon: 'i-mage-dots-menu',
-    group: {
+    parent: {
       title: 'SUB',
       icon: 'i-mage-dashboard-check',
-      rootOnOne: false,
     },
   },
 })

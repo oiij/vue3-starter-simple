@@ -48,6 +48,7 @@
 ## 📦 技术栈
 
 ### 核心框架
+
 - Vue 3.5.27
 - Vite 7.3.1
 - TypeScript 5.9.3
@@ -55,15 +56,18 @@
 - Vue Router 5.0.2
 
 ### UI 组件库
+
 - Naive UI 2.43.2
 - @oiij/naive-ui 0.0.74
 
 ### 样式方案
+
 - UnoCSS 66.6.0
 - UnoCSS 预设集合（animatecss、animations、extra、scrollbar、theme）
 - PostCSS + Less
 
 ### 工具库
+
 - @vueuse/core 14.2.0
 - vue-hooks-plus 2.4.1
 - es-toolkit 1.44.0
@@ -73,6 +77,7 @@
 - colord 2.9.3
 
 ### 开发工具
+
 - unplugin-auto-import - API 自动导入
 - unplugin-vue-components - 组件自动导入
 - unplugin-icons - 图标自动导入
@@ -82,6 +87,7 @@
 - @intlify/unplugin-vue-i18n - i18n 支持
 
 ### 代码规范
+
 - ESLint 9 + @antfu/eslint-config
 - simple-git-hooks + lint-staged
 - commitlint + cz-git
@@ -253,6 +259,7 @@ pnpm commit
 ```
 
 提交类型：
+
 - `feat`: 新功能
 - `fix`: 修复 bug
 - `docs`: 文档更新

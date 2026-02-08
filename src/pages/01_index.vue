@@ -8,8 +8,6 @@ definePage({
   meta: {
     layout: 'default',
     title: 'HOME',
-    requireAuth: true,
-    keepAlive: true,
     icon: 'svg:icon-home',
   },
 })

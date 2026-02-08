@@ -2,7 +2,7 @@ import type { CSSProperties } from 'vue'
 import type { SvgName } from '~virtual/svg-component'
 import SvgIcon from '~virtual/svg-component'
 
-export function useRenderIcon(icon?: string, size?: number | string) {
+export function renderIcon(icon?: string, size?: number | string) {
   const iconSize = typeof size === 'number' ? `${size}px` : size ?? '1em'
   const style: CSSProperties = {
     width: iconSize,

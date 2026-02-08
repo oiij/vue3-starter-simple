@@ -8,7 +8,6 @@ definePage({
   meta: {
     layout: 'default',
     title: 'ABOUT',
-    keepAlive: true,
     icon: 'i-mage-information-circle',
   },
 })

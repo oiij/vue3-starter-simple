@@ -1,5 +1,5 @@
 import { useNaiveTheme } from '@oiij/naive-ui'
-import { useBoolean } from '@oiij/use'
+import { useBoolean, useTheme } from '@oiij/use'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useLanguage } from '~/modules'
 

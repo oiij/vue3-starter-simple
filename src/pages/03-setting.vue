@@ -10,7 +10,6 @@ definePage({
   meta: {
     layout: 'default',
     title: 'SETTING',
-    requireAuth: true,
     keepAlive: true,
     icon: 'i-mage-settings',
   },
