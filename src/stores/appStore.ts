@@ -1,12 +1,12 @@
 import { useNaiveTheme } from '@oiij/naive-ui'
 import { useBoolean, useTheme } from '@oiij/use'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { useLanguage } from '~/modules'
+import { autoI18n } from '~/modules/i18n'
 
 export const useAppStore = defineStore(
   'appStore',
   () => {
-    const { locale, language } = useLanguage()
+    const { locale, language } = autoI18n
     const { isDark, preferredDark, colorMode } = useTheme()
     const { colors, theme, themeOverrides, locale: naiveLocal } = useNaiveTheme({
       darkMode: isDark,
