@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@oiij/auto-i18n": "^0.0.3",
-    "@oiij/auto-router": "^0.0.5",
+    "@oiij/auto-router": "^0.0.6",
     "@oiij/directives": "^0.0.17",
     "@oiij/naive-ui": "^0.0.77",
     "@oiij/use": "^0.0.46",

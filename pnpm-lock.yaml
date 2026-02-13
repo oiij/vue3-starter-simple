@@ -12,8 +12,8 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3(@vueuse/core@14.2.1(vue@3.5.28(typescript@5.9.3)))(vue-i18n@11.2.8(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
       '@oiij/auto-router':
-        specifier: ^0.0.5
-        version: 0.0.5(vue-router@5.0.2(@vue/compiler-sfc@3.5.28)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
+        specifier: ^0.0.6
+        version: 0.0.6(vue-router@5.0.2(@vue/compiler-sfc@3.5.28)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
       '@oiij/directives':
         specifier: ^0.0.17
         version: 0.0.17(@oiij/utils@0.0.7)(vue@3.5.28(typescript@5.9.3))
@@ -1898,8 +1898,8 @@ packages:
       vue: ^3.5.27
       vue-i18n: ^11.2.8
 
-  '@oiij/auto-router@0.0.5':
-    resolution: {integrity: sha512-E6UuMaqc6JBQP2GVD/N4Wer7iMP5clNCCrxX0atRnr1+z2dz8B4tS2RYEWrpRlmvRTidVuz3thnryKaQKuaTAQ==}
+  '@oiij/auto-router@0.0.6':
+    resolution: {integrity: sha512-0VqD+47QonpvgxejUwudZA7OAdu31P6GqF5NQsG441U1fAjUXnY7/U1DGbh2pSJPuFweay9rh587tQjbb1elMQ==}
     peerDependencies:
       vue: ^3.5.27
       vue-router: ^5.0.2
@@ -8734,7 +8734,7 @@ snapshots:
       vue: 3.5.28(typescript@5.9.3)
       vue-i18n: 11.2.8(vue@3.5.28(typescript@5.9.3))
 
-  '@oiij/auto-router@0.0.5(vue-router@5.0.2(@vue/compiler-sfc@3.5.28)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))':
+  '@oiij/auto-router@0.0.6(vue-router@5.0.2(@vue/compiler-sfc@3.5.28)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))':
     dependencies:
       es-toolkit: 1.44.0
       vue: 3.5.28(typescript@5.9.3)
