@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
-import NProgress from 'nprogress'
 import { API_BASE_PREFIX } from '../../config'
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -12,11 +11,11 @@ const axiosInstance: AxiosInstance = axios.create({
   },
 })
 const isDev = import.meta.env.DEV
+const { start, done } = useNProgress()
+
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    if (!NProgress.isStarted())
-      NProgress.start()
-
+    start()
     return config
   },
   (error: AxiosError) => {
@@ -27,13 +26,13 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    NProgress.done()
+    done()
     if (isDev)
       console.log(`${response.config.url}`, response)
     return response.data
   },
   (error: AxiosError) => {
-    NProgress.done()
+    done()
     console.error('response-error', error)
     window.$message.error(error.message)
     return Promise.reject(error)

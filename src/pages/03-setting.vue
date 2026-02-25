@@ -1,6 +1,5 @@
 <!-- eslint-disable no-console -->
 <script setup lang='ts'>
-import type { SelectOption } from 'naive-ui'
 import { NDivider } from 'naive-ui'
 
 defineOptions({
@@ -14,6 +13,7 @@ definePage({
     icon: 'i-mage-settings',
   },
 })
+const { t } = useI18n()
 const { language, colorMode } = storeToRefs(useAppStore())
 const CardItem = defineComponent((props: { title?: string }, { slots }) => {
   return () => h('div', {
@@ -28,44 +28,44 @@ const CardItem = defineComponent((props: { title?: string }, { slots }) => {
 }, {
   props: ['title'],
 })
-const localesOptions: SelectOption[] = [
+const localesOptions = computed(() => [
   {
-    label: '跟随系统',
+    label: t('GLOBAL.auto-language'),
     value: 'auto',
   },
   {
-    label: '简体中文',
+    label: t('GLOBAL.zh-CN'),
     value: 'zh-CN',
   },
   {
-    label: '英文',
+    label: t('GLOBAL.en-US'),
     value: 'en-US',
   },
-]
-const colorModeOptions: SelectOption[] = [
+])
+const colorModeOptions = computed(() => [
   {
-    label: '跟随系统',
+    label: t('GLOBAL.auto-mode'),
     value: 'auto',
 
   },
   {
-    label: '浅色',
+    label: t('GLOBAL.light-mode'),
     value: 'light',
   },
   {
-    label: '深色',
+    label: t('GLOBAL.dark-mode'),
     value: 'dark',
   },
-]
+])
 </script>
 
 <template>
   <div class="flex-col gap-[10px] p-[20px]">
     <CardItem title="通用">
-      <NFormItem label="语言">
+      <NFormItem :label="t('GLOBAL.language')">
         <NSelect v-model:value="language" class="w-[260px]!" :options="localesOptions" />
       </NFormItem>
-      <NFormItem label="颜色模式">
+      <NFormItem :label="t('GLOBAL.color-mode')">
         <NSelect v-model:value="colorMode" class="w-[260px]!" :options="colorModeOptions" />
       </NFormItem>
     </CardItem>

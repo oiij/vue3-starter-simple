@@ -145,7 +145,7 @@ pnpm preview
 
 ## 📁 项目结构
 
-```
+```bash
 vue3-starter-simple/
 ├── api/                    # API 接口定义
 ├── config/                 # 配置文件

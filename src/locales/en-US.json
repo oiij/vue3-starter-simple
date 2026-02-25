@@ -6,6 +6,15 @@
       "ABOUT": "About",
       "SUB": "Sub",
       "SUB-PAGE": "Sub Page"
-    }
+    },
+    "theme-color": "Theme Color",
+    "color-mode": "Color Mode",
+    "dark-mode": "Dark Mode",
+    "light-mode": "Light Mode",
+    "auto-mode": "Follow System",
+    "language": "Language",
+    "zh-CN": "Simplified Chinese",
+    "en-US": "English",
+    "auto-language": "Auto"
   }
 }

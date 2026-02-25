@@ -6,6 +6,15 @@
       "ABOUT": "关于",
       "SUB": "子菜单",
       "SUB-PAGE": "子页面"
-    }
+    },
+    "theme-color": "主题颜色",
+    "color-mode": "颜色模式",
+    "dark-mode": "深色模式",
+    "light-mode": "浅色模式",
+    "auto-mode": "跟随系统",
+    "language": "语言",
+    "zh-CN": "简体中文",
+    "en-US": "英文",
+    "auto-language": "自动"
   }
 }
