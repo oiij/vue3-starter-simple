@@ -8,6 +8,8 @@ export default antfu({
   },
   rules: {
     'ts/consistent-type-definitions': ['error', 'type'],
+    'e18e/ban-dependencies': ['off'],
+    'e18e/prefer-static-regex': ['off'],
   },
   ignores: ['src/assets', 'public'],
 })
