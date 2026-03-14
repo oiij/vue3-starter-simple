@@ -1,5 +1,4 @@
 import type { UserConfig } from 'vite'
-import { resolve } from 'node:path'
 import process from 'node:process'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -107,12 +106,9 @@ export default defineConfig(() => {
         },
       },
       license: true,
-      outDir: '.output/public', // 解决nitro打包后unocss不生效
     },
     resolve: {
-      alias: {
-        '~': resolve(__dirname, './src'),
-      },
+      tsconfigPaths: true,
     },
     css: {
       modules: {
