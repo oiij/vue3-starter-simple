@@ -58,7 +58,9 @@ export default defineConfig(() => {
       Info(), // https://github.com/yjl9903/unplugin-info
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
-      Sitemap(),
+      Sitemap({
+        outDir: '.output/public',
+      }),
       analyzer({
         analyzerMode: 'static',
       }), // https://github.com/nonzzz/vite-bundle-analyzer
