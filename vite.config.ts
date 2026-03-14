@@ -48,9 +48,6 @@ export default defineConfig(() => {
         logVersion: true,
       }), // https://github.com/GreatAuk/plugin-web-update-notification
       vitePluginVersionMark({
-        // name: 'test-app',
-        // version: '0.0.1',
-        // command: 'git describe --tags',
         ifGitSHA: true,
         ifShortSHA: true,
         ifMeta: true,
@@ -65,22 +62,20 @@ export default defineConfig(() => {
         analyzerMode: 'static',
       }), // https://github.com/nonzzz/vite-bundle-analyzer
       virtual({}), // https://github.com/patak-dev/vite-plugin-virtual
-
       AutoImport,
       Components,
       Markdown,
       Pwa,
       SvgComponent,
       VueI18n,
-
     ],
     clearScreen: true,
     server: {
       port: DEV_PORT,
-      host: true, // host设置为true才可以使用network的形式，以ip访问项目
-      open: false, // 自动打开浏览器
-      cors: true, // 跨域设置允许
-      strictPort: true, // 如果端口已占用直接退出
+      host: true,
+      open: false,
+      cors: true,
+      strictPort: true,
       proxy: {
         ...DEV_PROXY,
       },
@@ -109,7 +104,6 @@ export default defineConfig(() => {
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-          manualChunks: {},
         },
       },
       license: true,
