@@ -32,7 +32,9 @@ export default defineConfig(() => {
         include: [/\.vue$/, /\.md$/],
       }), // https://github.com/vitejs/vite-plugin-vue
       vueJsx(), // https://github.com/vitejs/vite-plugin-vue/blob/main/packages/plugin-vue-jsx/README.md
-      Unocss(), // https://github.com/antfu/unocss
+      Unocss({
+
+      }), // https://github.com/antfu/unocss
       Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
       Layouts(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       VueDevTools(), // https://devtools-next.vuejs.org/
@@ -106,6 +108,7 @@ export default defineConfig(() => {
         },
       },
       license: true,
+      outDir: '.vercel/output/static', // 必须与nitro输出目录一致，否则unocss会报错
     },
     resolve: {
       tsconfigPaths: true,
