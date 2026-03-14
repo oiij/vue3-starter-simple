@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 
+import { useRequestDevToolsPlugin } from 'vue-hooks-plus'
 import { setupDirective } from './directives'
 import { head } from './head'
 import { autoI18n, i18n } from './i18n'
@@ -24,4 +25,5 @@ export function useModules(app: App) {
     .use(autoRouter)
     .use(routerScroller)
     .use(head)
+    .use(useRequestDevToolsPlugin)
 }

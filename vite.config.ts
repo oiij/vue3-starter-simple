@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import process from 'node:process'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { nitro } from 'nitro/vite'
 import postcssPresetEnv from 'postcss-preset-env'
 import Unocss from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
@@ -62,6 +63,7 @@ export default defineConfig(() => {
         analyzerMode: 'static',
       }), // https://github.com/nonzzz/vite-bundle-analyzer
       virtual({}), // https://github.com/patak-dev/vite-plugin-virtual
+      nitro(), // https://nitro.build/
       AutoImport,
       Components,
       Markdown,
@@ -107,6 +109,7 @@ export default defineConfig(() => {
         },
       },
       license: true,
+      outDir: '.output/public', // 解决nitro打包后unocss不生效
     },
     resolve: {
       alias: {
