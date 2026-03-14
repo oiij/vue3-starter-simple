@@ -12,7 +12,6 @@ import TurboConsole from 'unplugin-turbo-console/vite'
 import Vue from 'unplugin-vue/vite'
 import { defineConfig } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
-import Sitemap from 'vite-plugin-sitemap'
 import svgSfc from 'vite-plugin-svg-sfc'
 import ServerUrlCopy from 'vite-plugin-url-copy'
 import { vitePluginVersionMark } from 'vite-plugin-version-mark'
@@ -58,9 +57,6 @@ export default defineConfig(() => {
       Info(), // https://github.com/yjl9903/unplugin-info
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
       TurboConsole(), // https://github.com/unplugin/unplugin-turbo-console
-      Sitemap({
-        outDir: '.output/public',
-      }),
       analyzer({
         analyzerMode: 'static',
       }), // https://github.com/nonzzz/vite-bundle-analyzer
