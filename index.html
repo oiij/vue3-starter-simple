@@ -25,16 +25,6 @@
   <body>
     <div id="app">
       <style>
-        @keyframes fade-in {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 100;
-          }
-        }
-      </style>
-      <style>
         .line-rotation-spinner {
           position: relative;
         }
@@ -64,6 +54,15 @@
 
         .loader:after {
           animation: after6 var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes fade-in {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 100;
+          }
         }
 
         @keyframes before8 {
@@ -148,7 +147,7 @@
             --duration: 2s;
           "
         >
-          <div class="loader" />
+          <div class="loader"></div>
         </div>
       </div>
     </div>

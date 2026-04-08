@@ -3,11 +3,10 @@
   "extends": "@oiij/tsconfig/tsconfig.json",
   "compilerOptions": {
     "jsxImportSource": "vue",
-    "baseUrl": ".",
     "moduleResolution": "Bundler",
     "paths": {
       "~/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "types": [

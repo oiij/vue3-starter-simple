@@ -11,5 +11,7 @@ export default antfu({
     'e18e/ban-dependencies': ['off'],
     'e18e/prefer-static-regex': ['off'],
   },
-  ignores: ['src/assets', 'public'],
+  ignores: [
+    '.agents',
+  ],
 })

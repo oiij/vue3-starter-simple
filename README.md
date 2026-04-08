@@ -1,6 +1,6 @@
 # Vue3 Starter Simple
 
-<div align="center">
+<div align="center" style="display:flex;justify-content: center;">
 
 [![Vue.js](https://img.shields.io/badge/Vue.js-3.5.27-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)

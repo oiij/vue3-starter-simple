@@ -6,21 +6,20 @@
   font-family: 'DM Mono', monospace;
   font-size: 1.2em;
   line-height: 1.4;
-  padding:10px;
-  margin:5px 0;
+  padding: 10px;
+  margin: 5px 0;
   border-radius: 8px;
   position: relative;
-  overflow-x:auto;
+  overflow-x: auto;
 }
 
 .prose img {
-  width: 100%;
+  width: auto;
 }
-.prose .code-block{
+.prose .code-block {
   --vp-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
   --vp-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
   position: relative;
-
 }
 .prose [class*='language-'] > button.copy {
   /*rtl:ignore*/
@@ -119,49 +118,53 @@ html.dark .shiki span {
   color: var(--shiki-dark);
   background: var(--shiki-dark-bg);
 }
-.prose h1,h2,h3,h4,h5,h6 {
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   display: block;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-
 }
-.prose h1{
+.prose h1 {
   font-size: 2em;
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
   font-weight: bold;
 }
-.prose h2{
+.prose h2 {
   font-size: 1.5em;
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
   font-weight: bold;
 }
-.prose h3{
+.prose h3 {
   font-size: 1.17em;
   margin-block-start: 1em;
   margin-block-end: 1em;
   font-weight: bold;
 }
-.prose h4{
+.prose h4 {
   font-size: 1em;
   margin-block-start: 1.33em;
   margin-block-end: 1.33em;
   font-weight: bold;
 }
-.prose h5{
+.prose h5 {
   font-size: 0.83em;
   margin-block-start: 1.67em;
   margin-block-end: 1.67em;
   font-weight: bold;
 }
-.prose h6{
+.prose h6 {
   font-size: 0.67em;
   margin-block-start: 2.33em;
   margin-block-end: 2.33em;
   font-weight: bold;
 }
-.prose p{
+.prose p {
   margin-block-start: 1em;
   margin-block-end: 1em;
 }
