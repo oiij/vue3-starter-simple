@@ -4,7 +4,11 @@ export default antfu({
   unocss: true,
   formatters: true,
   vue: {
-    componentNameCasing: 'PascalCase',
+    overrides: {
+      'vue/component-name-in-template-casing': ['error', 'PascalCase', {
+        registeredComponentsOnly: false,
+      }],
+    },
   },
   rules: {
     'ts/consistent-type-definitions': ['error', 'type'],
