@@ -2,15 +2,15 @@
 
 <div align="center" style="display:flex;justify-content: center;">
 
-[![Vue.js](https://img.shields.io/badge/Vue.js-3.5.27-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org/)
-[![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vue.js](https://img.shields.io/badge/Vue.js-3.5.34-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.0.11-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Pinia](https://img.shields.io/badge/Pinia-3.0.4-FFD859?style=flat&logo=pinia&logoColor=white)](https://pinia.vuejs.org/)
-[![UnoCSS](https://img.shields.io/badge/UnoCSS-66.6.0-4B5563?style=flat&logo=unocss&logoColor=white)](https://unocss.dev/)
-[![Naive UI](https://img.shields.io/badge/Naive_UI-2.43.2-5396EF?style=flat&logoColor=white)](https://www.naiveui.com/)
-[![Vue Router](https://img.shields.io/badge/Vue_Router-5.0.2-4FC08D?style=flat&logoColor=white)](https://router.vuejs.org/)
-[![Vitest](https://img.shields.io/badge/Vitest-4.0.18-6E9F18?style=flat&logo=vitest&logoColor=white)](https://vitest.dev/)
-[![ESLint](https://img.shields.io/badge/ESLint-9.39.2-4B32C3?style=flat&logo=eslint&logoColor=white)](https://eslint.org/)
+[![UnoCSS](https://img.shields.io/badge/UnoCSS-66.6.8-4B5563?style=flat&logo=unocss&logoColor=white)](https://unocss.dev/)
+[![Naive UI](https://img.shields.io/badge/Naive_UI-2.44.1-5396EF?style=flat&logoColor=white)](https://www.naiveui.com/)
+[![Vue Router](https://img.shields.io/badge/Vue_Router-5.0.6-4FC08D?style=flat&logoColor=white)](https://router.vuejs.org/)
+[![Vitest](https://img.shields.io/badge/Vitest-4.1.5-6E9F18?style=flat&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-10.3.0-4B32C3?style=flat&logo=eslint&logoColor=white)](https://eslint.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-latest-F69220?style=flat&logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat)](https://github.com/oiij/vue3-starter-simple/blob/main/LICENSE)
 
@@ -44,37 +44,39 @@
 - 🔄 **Git Hooks** - 代码提交前检查
 - 🎬 **动画** - 内置多种动画预设
 - 🔌 **插件系统** - 模块化的插件架构
+- 📦 **Nitro** - 轻量级服务器引擎（支持 Vercel 部署）
 
 ## 📦 技术栈
 
 ### 核心框架
 
-- Vue 3.5.27
-- Vite 7.3.1
-- TypeScript 5.9.3
+- Vue 3.5.34
+- Vite 8.0.11
+- TypeScript 6.0.3
 - Pinia 3.0.4
-- Vue Router 5.0.2
+- Vue Router 5.0.6
 
 ### UI 组件库
 
-- Naive UI 2.43.2
-- @oiij/naive-ui 0.0.74
+- Naive UI 2.44.1
+- @oiij/naive-ui 0.0.82
 
 ### 样式方案
 
-- UnoCSS 66.6.0
+- UnoCSS 66.6.8
 - UnoCSS 预设集合（animatecss、animations、extra、scrollbar、theme）
 - PostCSS + Less
 
 ### 工具库
 
-- @vueuse/core 14.2.0
-- vue-hooks-plus 2.4.1
-- es-toolkit 1.44.0
-- axios 1.13.4
+- @vueuse/core 14.3.0
+- vue-hooks-plus 2.4.3
+- es-toolkit 1.46.1
+- axios 1.16.0
 - await-to-js 3.0.0
-- nanoid 5.1.6
+- nanoid 5.1.11
 - colord 2.9.3
+- notivue 2.4.5
 
 ### 开发工具
 
@@ -85,10 +87,11 @@
 - vite-plugin-vue-layouts - 布局系统
 - vite-plugin-vue-devtools - Vue 开发者工具
 - @intlify/unplugin-vue-i18n - i18n 支持
+- vite-bundle-analyzer - 构建分析
 
 ### 代码规范
 
-- ESLint 9 + @antfu/eslint-config
+- ESLint 10 + @antfu/eslint-config
 - simple-git-hooks + lint-staged
 - commitlint + cz-git
 
@@ -99,9 +102,6 @@
 ```bash
 # 使用 pnpm（推荐）
 pnpm install
-
-# 或者使用 npm
-npm install
 ```
 
 ### 开发
@@ -110,7 +110,7 @@ npm install
 pnpm dev
 ```
 
-访问 [http://localhost:3000](http://localhost:3000)
+访问 [http://localhost:5678](http://localhost:5678)
 
 ### 构建
 
@@ -128,7 +128,7 @@ pnpm preview
 
 ```json
 {
-  "dev": "启动开发服务器",
+  "dev": "启动开发服务器（端口 5678）",
   "build": "类型检查并构建生产版本",
   "preview": "本地预览生产构建",
   "lint": "代码检查",
@@ -145,10 +145,10 @@ pnpm preview
 
 ## 📁 项目结构
 
-```bash
+```
 vue3-starter-simple/
-├── api/                    # API 接口定义
-├── config/                 # 配置文件
+├── config/                 # 应用配置常量
+│   └── index.ts           # 端口、API 前缀等配置
 ├── plugins/                # Vite 插件配置
 │   ├── auto-import.ts     # 自动导入配置
 │   ├── components.ts      # 组件自动导入
@@ -158,28 +158,31 @@ vue3-starter-simple/
 │   ├── vue-i18n.ts       # 国际化
 │   └── vue-router.ts     # 路由
 ├── public/                # 静态资源
+├── server/                # Nitro API 路由（Vercel 部署）
 ├── src/
 │   ├── assets/           # 资源文件
-│   ├── components/       # 组件
-│   ├── composables/      # 组合式函数
+│   ├── components/       # 组件（自动导入）
+│   ├── composables/      # 组合式函数（自动导入）
 │   ├── layouts/          # 布局组件
 │   ├── locales/          # 国际化文件
 │   ├── modules/          # 功能模块
-│   ├── pages/            # 页面
-│   ├── stores/           # 状态管理
+│   ├── pages/            # 页面（文件路由）
+│   ├── stores/           # 状态管理（自动导入）
 │   ├── test/             # 测试文件
 │   ├── utils/            # 工具函数
 │   ├── App.vue           # 根组件
 │   └── main.ts           # 入口文件
 ├── .gitignore
-├── commitlint.config.cjs  # Commitlint 配置
-├── eslint.config.js       # ESLint 配置
-├── index.html             # HTML 模板
+├── commitlint.config.js  # Commitlint 配置
+├── eslint.config.js      # ESLint 配置
+├── index.html            # HTML 模板
+├── nitro.config.ts       # Nitro 服务器配置
 ├── package.json
-├── tsconfig.json          # TypeScript 配置
-├── uno.config.ts          # UnoCSS 配置
-├── vite.config.ts         # Vite 配置
-└── vitest.config.ts       # Vitest 配置
+├── tsconfig.json         # TypeScript 配置
+├── uno.config.ts         # UnoCSS 配置
+├── vercel.json           # Vercel 部署配置
+├── vite.config.ts        # Vite 配置
+└── vitest.config.ts      # Vitest 配置
 ```
 
 ## 🔧 配置说明
@@ -191,6 +194,15 @@ vue3-starter-simple/
 import { something } from '~/utils'
 ```
 
+### 开发服务器配置
+
+```typescript
+// config/index.ts
+export const DEV_PORT = 5678        // 前端开发端口
+export const SERVER_PORT = 5633      // 后端 API 端口
+export const API_BASE_PREFIX = '/api' // API 路径前缀
+```
+
 ### 自动导入
 
 项目配置了组件和 API 的自动导入，无需手动 import：
@@ -199,7 +211,9 @@ import { something } from '~/utils'
 - Vue Router API
 - Pinia API
 - VueUse API
-- 组件自动导入
+- `src/composables/*` 导出自动导入
+- `src/stores/*` 导出自动导入
+- `src/components/**/*.{vue,md}` 组件自动导入
 
 ### 主题定制
 
@@ -235,12 +249,15 @@ pnpm test --ui
 - Tree Shaking
 - 代码分割
 - 资源压缩
-- Brotli 压缩
-- 生产环境自动移除 console
+- 生产环境自动移除 console/debugger
+- Sourcemap 支持
 
-### PWA 支持
+### Vercel 部署
 
-项目内置 PWA 支持，构建后自动生成 Service Worker。
+项目使用 Nitro 作为服务器引擎，支持 Vercel 部署：
+
+- 输出目录：`.vercel/output/static`
+- 自动适配 Vercel Serverless Functions
 
 ### 版本标记
 
@@ -274,12 +291,12 @@ pnpm commit
 ### TypeScript
 
 - 严格模式
-- 类型定义使用 `type` 而非 `interface`
+- 类型定义使用 `type` 而非 `interface`（ESLint 规则强制）
 - 路径别名 `~` 指向 `src` 目录
 
 ### Vue
 
-- 使用 Composition API
+- 使用 Composition API + `<script setup>`
 - 组件名使用 PascalCase
 - 遵循 Vue 3 最佳实践
 
@@ -312,6 +329,7 @@ oiij
 - [Naive UI](https://www.naiveui.com/)
 - [Pinia](https://pinia.vuejs.org/)
 - [Vue Router](https://router.vuejs.org/)
+- [Nitro](https://nitro.unjs.io/)
 
 ## 🤝 贡献
 
